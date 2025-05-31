@@ -118,7 +118,6 @@
 
         .mobile-menu-button { display: none; background: none; border: none; font-size: 1.6rem; /* Levemente reduzido */ color: var(--acento); cursor: pointer; z-index: 1001; }
 
-        /* ✨ MICRO-AJUSTE FINAL NO HERO PADDING-TOP ✨ */
         .hero {
             min-height: 100vh;
             padding-top: 80px; /* Ajustado (Ex: navbar ~56px + 24px folga) */
@@ -234,7 +233,6 @@
         .hidden { opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
         .revealed { opacity: 1; transform: translateY(0); }
 
-        /* ✨ MEDIA QUERIES COM AJUSTES FINAIS NO NAVBAR E HERO PADDING-TOP ✨ */
         @media (max-width: 992px) {
             .navbar { padding: 6px 0; /* Igual ao .scrolled base */ }
             .logo { font-size: 1.7rem; /* Reduzido */ }
@@ -314,11 +312,10 @@
             .hero { padding-top: 55px; min-height: auto; } /* Ajustado (Ex: navbar ~36px + 19px folga) */
             .hero-content { padding-top: 0; }
             .hero-title {
-                font-size: 1.8rem; /* Mantido, mas o espaço acima é crucial */
+                font-size: 1.8rem; 
                 line-height: 1.2;
                 margin-bottom: 1rem;
             }
-            /* ... demais estilos permanecem ... */
             .hero-subtitle { font-size: 0.9rem; margin-bottom: 1.5rem;}
             .hero-buttons .btn { width: 100%; font-size:0.8rem; padding: 8px 15px;}
             .hero-stats { margin-top: 2.5rem; }
@@ -378,11 +375,11 @@
                         </div>
                         <div class="hero-stats">
                             <div class="stat-item">
-                                <div class="stat-number">5k+</div>
+                                <div class="stat-number">100+</div>
                                 <div class="stat-label">Professores Qualificados</div>
                             </div>
                             <div class="stat-item">
-                                <div class="stat-number">10k+</div>
+                                <div class="stat-number">500+</div>
                                 <div class="stat-label">Alunos Satisfeitos</div>
                             </div>
                             <div class="stat-item">
@@ -439,51 +436,53 @@
             </section>
 
             <section class="section private-lessons" id="lessons">
-                <div class="container lessons-container">
-                    <h2 class="section-title">Pacotes de Aulas Particulares para Você</h2>
-                    <p class="text-center" style="max-width: 850px; margin: 0 auto 60px;">Oferecemos pacotes flexíveis de aulas particulares em diversas matérias. Escolha o que melhor se adapta aos seus objetivos e orçamento.</p>
-                    <div class="lesson-packages">
-                        <div class="lesson-card">
-                            <i class="lesson-icon fa-solid fa-book-open"></i>
-                            <h3 class="lesson-title">Pacote Essencial</h3>
-                            <p class="lesson-description">Ideal para quem está começando ou precisa de um reforço pontual.</p>
-                            <p class="lesson-price">R$ 99</p>
-                            <ul class="lesson-features">
-                                <li>5 horas de aula</li>
-                                <li>Suporte online</li>
-                                <li>Acesso a materiais básicos</li>
-                            </ul>
-                            <a href="#contact" class="btn btn-contorno">Escolher este pacote</a>
-                        </div>
-                        <div class="lesson-card">
-                            <i class="lesson-icon fa-solid fa-brain"></i>
-                            <h3 class="lesson-title">Pacote Avançado</h3>
-                            <p class="lesson-description">Perfeito para um aprendizado mais profundo e consistente.</p>
-                            <p class="lesson-price">R$ 199</p>
-                            <ul class="lesson-features">
-                                <li>12 horas de aula</li>
-                                <li>Suporte online prioritário</li>
-                                <li>Materiais e exercícios avançados</li>
-                                <li>Relatório de progresso</li>
-                            </ul>
-                            <a href="#contact" class="btn btn-primario">Escolher este pacote</a>
-                        </div>
-                        <div class="lesson-card">
-                            <i class="lesson-icon fa-solid fa-rocket"></i>
-                            <h3 class="lesson-title">Pacote Premium</h3>
-                            <p class="lesson-description">Para quem busca uma imersão completa e resultados de alto nível.</p>
-                            <p class="lesson-price">R$ 299</p>
-                            <ul class="lesson-features">
-                                <li>20 horas de aula</li>
-                                <li>Suporte VIP 24/7</li>
-                                <li>Materiais exclusivos e personalizados</li>
-                                <li>Acompanhamento individualizado</li>
-                            </ul>
-                            <a href="#contact" class="btn btn-contorno">Escolher este pacote</a>
-                        </div>
-                    </div>
-                </div>
-            </section>
+    <div class="container lessons-container">
+        <h2 class="section-title">Pacotes de Aulas Particulares para Você</h2>
+        <p class="text-center" style="max-width: 850px; margin: 0 auto 60px;">
+            Oferecemos pacotes flexíveis de aulas particulares em diversas matérias. Escolha o que melhor se adapta aos seus objetivos e orçamento.
+        </p>
+        <div class="lesson-packages">
+            <div class="lesson-card">
+                <i class="lesson-icon fa-solid fa-hourglass-start"></i>
+                <h3 class="lesson-title">Pacote Rápido</h3>
+                <p class="lesson-description">Ideal para tirar dúvidas específicas ou experimentar nossas aulas.</p>
+                <p class="lesson-price">R$ 55</p>
+                <ul class="lesson-features">
+                    <li>1 hora de aula</li>
+                    <li>Atendimento pontual</li>
+                    <li>Material de apoio incluso</li>
+                </ul>
+                <a href="#contact" class="btn btn-contorno">Escolher este pacote</a>
+            </div>
+            <div class="lesson-card">
+                <i class="lesson-icon fa-solid fa-seedling"></i>
+                <h3 class="lesson-title">Pacote Intensivo</h3>
+                <p class="lesson-description">Para quem quer se preparar melhor em menos tempo.</p>
+                <p class="lesson-price">R$ 250</p>
+                <ul class="lesson-features">
+                    <li>5 horas de aula</li>
+                    <li>Desconto especial (R$50/hora)</li>
+                    <li>Material complementar incluso</li>
+                    <li>Suporte online</li>
+                </ul>
+                <a href="#contact" class="btn btn-primario">Escolher este pacote</a>
+            </div>
+            <div class="lesson-card">
+                <i class="lesson-icon fa-solid fa-star"></i>
+                <h3 class="lesson-title">Pacote Premium</h3>
+                <p class="lesson-description">A escolha ideal para acompanhamento contínuo e aprofundado.</p>
+                <p class="lesson-price">R$ 450</p>
+                <ul class="lesson-features">
+                    <li>10 horas de aula</li>
+                    <li>Desconto progressivo (R$45/hora)</li>
+                    <li>Materiais exclusivos</li>
+                    <li>Acompanhamento individualizado</li>
+                </ul>
+                <a href="#contact" class="btn btn-contorno">Escolher este pacote</a>
+            </div>
+        </div>
+    </div>
+</section>
 
             <section class="section how-it-works" id="how-it-works">
                 <div class="container works-container">
@@ -571,7 +570,7 @@
                         <div class="social-links">
                             <a href="#"><i class="fab fa-facebook-f"></i></a>
                             <a href="#"><i class="fab fa-twitter"></i></a>
-                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.instagram.com/educacao.aurea/"><i class="fab fa-instagram"></i></a>
                             <a href="#"><i class="fab fa-linkedin-in"></i></a>
                             <a href="#"><i class="fab fa-youtube"></i></a>
                         </div>
@@ -597,10 +596,9 @@
                     </div>
                     <div class="footer-contact">
                         <h3>Informações</h3>
-                        <p><i class="fa-solid fa-location-dot"></i> Rua da Luz, 123 - Brilho, SP</p>
                         <p><i class="fa-solid fa-phone"></i> (11) 5555-1234</p>
-                        <p><i class="fa-solid fa-envelope"></i> contato@aurea.com.br</p>
-                        <p><i class="fa-solid fa-clock"></i> Segunda à Sexta, 9h às 18h</p>
+                        <p><i class="fa-solid fa-envelope"></i> aurea.educacao.ouro@gmail.com</p>
+                        <p><i class="fa-solid fa-clock"></i> Todos os dias, 7h às 23h</p>
                     </div>
                 </div>
                 <div class="footer-bottom">
@@ -695,7 +693,7 @@
                             offset = 10; 
                         }
                         
-                        const minOffsetRequired = 50; // ✨ AJUSTE FINO: Menor navbar (~36px) + ~15px margem
+                        const minOffsetRequired = 50; 
                         if (targetId !== "#home" && offset < minOffsetRequired) {
                            offset = minOffsetRequired; 
                         }
