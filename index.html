@@ -172,16 +172,14 @@
         .about-img:hover {
             transform: none !important; 
         }
-        /* .about-img img { width: 100%; height: auto; } */ /* Comentado pois não há mais imagem aqui */
-
+        /* .about-img img { width: 100%; height: auto; } */
 
         .about-content { padding-left: 40px; display: flex; flex-direction: column; justify-content: center;}
-        .about-features { margin-top: 3rem; } /* Reduzido um pouco o margin-top */
-        .feature-item { display: flex; align-items: flex-start; margin-bottom: 2rem; } /* Reduzido margin-bottom */
-        .feature-icon { background: var(--gradiente-primario); color: var(--escuro); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 25px; flex-shrink: 0; font-size: 1.6rem; box-shadow: var(--sombra); }  /* Diminuído um pouco */
-        .feature-text h4 { font-size: 1.5rem; margin-bottom: 8px; color: var(--primario); } /* Diminuído um pouco */
-        .feature-text p { font-size: 1rem; margin-bottom: 0;} /* Ajustado */
-
+        .about-features { margin-top: 3rem; } 
+        .feature-item { display: flex; align-items: flex-start; margin-bottom: 2rem; } 
+        .feature-icon { background: var(--gradiente-primario); color: var(--escuro); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 25px; flex-shrink: 0; font-size: 1.6rem; box-shadow: var(--sombra); }  
+        .feature-text h4 { font-size: 1.5rem; margin-bottom: 8px; color: var(--primario); } 
+        .feature-text p { font-size: 1rem; margin-bottom: 0;} 
 
         .private-lessons { background-color: #1A1A1A; position: relative; overflow: hidden; }
         .private-lessons::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSI1IiBoZWlnaHQ9IjUiIGZpbGw9InJnYmEoNDAsIDQwLCA0MCwgMC41KSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==') repeat; opacity: 0.4; z-index: 0; }
@@ -275,7 +273,7 @@
             .section-title { font-size: 2.5rem; }
             .cta h2 { font-size: 2.8rem; }
             .testimonial-item { padding: 40px 25px; }
-            .about-content { padding-left: 20px; } /* Ajuste para telas médias */
+            .about-content { padding-left: 20px; } 
         }
 
         @media (max-width: 768px) {
@@ -291,7 +289,7 @@
             .btn { padding: 12px 24px; font-size: 0.95rem; }
             .section { padding: 70px 0; }
             .about-container { grid-template-columns: 1fr; gap: 30px; align-items: center; }
-            .about-img { margin: 0 auto 30px auto; max-width: 100%; min-height: auto; /* Altura automática quando empilhado */ } 
+            .about-img { margin: 0 auto 30px auto; max-width: 100%; min-height: auto; } 
             .about-content { padding-left: 0; text-align: center; }
             .feature-item { flex-direction: column; align-items: center; text-align: center; }
             .feature-icon { margin-right: 0; margin-bottom: 15px; }
@@ -358,16 +356,16 @@
         /* ESTILOS PARA TIPOS DE ALUNOS DENTRO DE .about-img */
         .student-types-grid {
             display: grid;
-            grid-template-columns: 1fr; /* ALTERADO: Uma coluna para empilhar os blocos */
-            gap: 25px; /* Espaço vertical entre os blocos de "Foco Acadêmico" e "Desenvolvimento" */
+            grid-template-columns: 1fr; 
+            gap: 25px; 
             width: 100%;
-            max-width: 480px; /* Ajustado para melhor leitura do conteúdo mais extenso */
+            max-width: 480px; 
         }
 
         .student-types-column h4 {
             color: var(--primario);
-            font-size: 1.2rem; /* Levemente ajustado */
-            margin-bottom: 0.8rem; /* Levemente ajustado */
+            font-size: 1.2rem; 
+            margin-bottom: 0.8rem; 
             padding-bottom: 0.4rem;
             border-bottom: 1px solid var(--acento);
             text-align: left; 
@@ -382,51 +380,49 @@
 
         .student-types-column li {
             display: flex;
-            align-items: flex-start; /* Alinhar ao topo se o texto tiver múltiplas linhas */
-            margin-bottom: 0.6rem; /* Levemente ajustado */
-            font-size: 0.9rem; /* Levemente ajustado para mais conteúdo */
+            align-items: flex-start; 
+            margin-bottom: 0.6rem; 
+            font-size: 0.9rem; 
             color: #ccc; 
             text-align: left;
-            line-height: 1.5; /* Melhorar leitura de itens mais longos */
+            line-height: 1.5; 
         }
 
         .student-types-column li i {
             color: var(--acento);
             margin-right: 10px;
-            font-size: 1em; /* Ajustado para ser proporcional ao texto do li */
+            font-size: 1em; 
             width: 18px; 
             text-align: center;
-            margin-top: 0.2em; /* Alinhar melhor com a primeira linha do texto */
+            margin-top: 0.2em; 
         }
 
-        /* Ajustes de responsividade para a nova seção de texto em .about-img */
         @media (max-width: 1100px) and (min-width: 769px) { 
             .student-types-grid {
-                gap: 20px; /* Ajuste do gap para telas médias */
-                max-width: 420px; /* Ajuste do max-width */
+                gap: 20px; 
+                max-width: 420px; 
             }
              .student-types-column h4 {
                 font-size: 1.15rem;
             }
             .student-types-column li {
-                font-size: 0.85rem; /* Reduzir um pouco mais para caber */
+                font-size: 0.85rem; 
             }
         }
-        /* A media query @media (max-width: 520px) que alterava student-types-grid para 1 coluna foi removida pois agora é o padrão.
-           Mantemos ajustes para h4 e ul/li em telas pequenas se necessário. */
+        
         @media (max-width: 520px) { 
             .about-img {
-              padding: 25px 15px; /* Menos padding lateral em telas muito pequenas */
+              padding: 25px 15px; 
             }
             .student-types-grid {
-                max-width: 100%; /* Ocupar toda a largura disponível */
+                max-width: 100%; 
             }
             .student-types-column h4 {
-                font-size: 1.1rem; /* Ajuste de tamanho */
+                font-size: 1.1rem; 
                 text-align: center; 
             }
              .student-types-column ul {
-                align-items: center; /* Centralizar a lista quando os títulos estiverem centralizados */
+                align-items: center; 
                 display: flex;
                 flex-direction: column;
             }
@@ -434,7 +430,7 @@
                 font-size: 0.85rem; 
                 justify-content: flex-start; 
                 width: 100%;
-                max-width: 300px; /* Limitar largura dos itens da lista */
+                max-width: 300px; 
             }
         }
     </style>
@@ -503,6 +499,7 @@
                                         <li><i class="fas fa-book-open-reader"></i> Apoio Escolar Completo (Fundamental e Médio)</li>
                                         <li><i class="fas fa-atom"></i> Reforço em Todas as Disciplinas Escolares (Matemática, Português, Ciências, História, etc.)</li>
                                         <li><i class="fas fa-feather-alt"></i> Aulas de Redação e Interpretação de Texto</li>
+                                        <li><i class="fas fa-university"></i> Auxílio em matérias do Ensino Superior</li> 
                                     </ul>
                                 </div>
                                 <div class="student-types-column">
@@ -510,7 +507,7 @@
                                     <ul>
                                         <li><i class="fas fa-medal"></i> Preparação para Concursos Públicos</li>
                                         <li><i class="fas fa-language"></i> Aprendizado de Idiomas (Inglês, Espanhol, Francês e mais)</li>
-                                        <li><i class="fas fa-chart-line"></i> Desenvolvimento de Habilidades (Comunicação, Oratória, Informática)</li>
+                                        <li><i class="fas fa-chart-line"></i> Desenvolvimento de Habilidades (Comunicação, Oratória, Informática, Programação)</li>
                                         <li><i class="fas fa-palette"></i> Aulas de Música e Artes Visuais</li>
                                     </ul>
                                 </div>
