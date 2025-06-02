@@ -145,7 +145,7 @@
 
         .about { background-color: var(--escuro); }
         .about-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 70px; align-items: center; }
-        .about-img { border-radius: 15px; overflow: hidden; box-shadow: var(--shadow-lg); transform: skewX(-3deg); transition: transform 0.5s ease-in-out; }
+        .about-img { border-radius: 15px; overflow: hidden; box-shadow: var(--shadow-lg); transition: transform 0.5s ease-in-out; }
         .about-img:hover { transform: skewX(0deg); }
         .about-img img { width: 100%; height: auto; }
         .about-content { padding-left: 40px; }
@@ -325,4 +325,84 @@
             .cta p { font-size: 0.9rem; }
             .cta-buttons .btn { width: 100%; }
             .testimonial-text { font-size: 0.85rem; } 
+        }
+
+        /* ESTILOS PARA TIPOS DE ALUNOS DENTRO DE .about-img */
+        .student-types-grid {
+            display: grid;
+            grid-template-columns: 1fr; 
+            gap: 25px; 
+            width: 100%;
+            max-width: 480px; 
+        }
+
+        .student-types-column h4 {
+            color: var(--primario);
+            font-size: 1.2rem; 
+            margin-bottom: 0.8rem; 
+            padding-bottom: 0.4rem;
+            border-bottom: 1px solid var(--acento);
+            text-align: left; 
+            font-weight: 500;
+        }
+
+        .student-types-column ul {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 0.5rem;
+        }
+
+        .student-types-column li {
+            display: flex;
+            align-items: flex-start; 
+            margin-bottom: 0.6rem; 
+            font-size: 0.9rem; 
+            color: #ccc; 
+            text-align: left;
+            line-height: 1.5; 
+        }
+
+        .student-types-column li i {
+            color: var(--acento);
+            margin-right: 10px;
+            font-size: 1em; 
+            width: 18px; 
+            text-align: center;
+            margin-top: 0.2em; 
+        }
+
+        @media (max-width: 1100px) and (min-width: 769px) { 
+            .student-types-grid {
+                gap: 20px; 
+                max-width: 420px; 
+            }
+             .student-types-column h4 {
+                font-size: 1.15rem;
+            }
+            .student-types-column li {
+                font-size: 0.85rem; 
+            }
+        }
+        @media (max-width: 520px) { 
+            .about-img {
+              padding: 25px 15px; 
+            }
+            .student-types-grid {
+                max-width: 100%; 
+            }
+            .student-types-column h4 {
+                font-size: 1.1rem; 
+                text-align: center; 
+            }
+             .student-types-column ul {
+                align-items: center; 
+                display: flex;
+                flex-direction: column;
+            }
+            .student-types-column li {
+                font-size: 0.85rem; 
+                justify-content: flex-start; 
+                width: 100%;
+                max-width: 300px; 
+            }
         }
