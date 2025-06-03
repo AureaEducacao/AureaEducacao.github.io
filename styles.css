@@ -205,7 +205,7 @@ img { max-width: 100%; height: auto; display: block; }
 .history-container {
     display: grid;
     grid-template-columns: 2fr 1fr; 
-    gap: 50px;
+    gap: 100px;
     align-items: flex-start; /* Alinha ao topo para melhor fluxo de texto e imagem */
 }
 
