@@ -202,16 +202,9 @@ img { max-width: 100%; height: auto; display: block; }
     background-color: #121212; 
 }
 
-.history-container {
-    /* Nenhuma estilização de grid específica necessária aqui, 
-       .history-content fluirá naturalmente para 100% da largura do .container da seção */
-}
-
-.history-content {
-    /* Ocupará 100% da largura do .history-container (que está dentro do .container da seção).
-       O .container da seção já tem padding. Se for preciso mais padding interno 
-       específico para o history-content, pode ser adicionado aqui. */
-}
+/* .history-container e .history-content não precisam de estilos específicos aqui
+   se o objetivo é que .history-content ocupe 100% da largura do .container da seção.
+   O .container da seção já gerencia a largura e o padding. */
 
 .history-content p {
     margin-bottom: 1.5rem;
@@ -223,12 +216,13 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .history-content h4 {
-    font-size: 1.5rem;
+    font-size: 1.5rem; 
     color: var(--primario);
     margin-top: 2rem;
     margin-bottom: 1rem;
 }
 /* Estilos para .history-milestones e .history-image foram removidos */
+
 
 .private-lessons { background-color: #1A1A1A; position: relative; overflow: hidden; }
 .private-lessons::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSI1IiBoZWlnaHQ9IjUiIGZpbGw9InJnYmEoNDAsIDQwLCA0MCwgMC41KSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==') repeat; opacity: 0.4; z-index: 0; }
@@ -323,7 +317,6 @@ img { max-width: 100%; height: auto; display: block; }
     .cta h2 { font-size: 2.8rem; }
     .testimonial-item { padding: 40px 25px; }
 
-    /* .history-container não precisa de ajustes de grid aqui */
     .student-types-grid {
         max-width: 100%; 
     }
@@ -368,9 +361,9 @@ img { max-width: 100%; height: auto; display: block; }
     .footer-links ul { padding-left: 0; }
     .footer-about, .footer-links, .footer-contact { margin-bottom: 15px; }
 
-    .history-content h4 {
-        /* font-size: 1.3rem; /* Coberto por media queries gerais para h4 */
-    }
+    /* Os estilos específicos para .history-content h4 ou p em media queries
+       serão cobertos pelas regras gerais para h4 e p se não houver necessidade de
+       diferenciação extra para a seção de história. */
     .student-types-grid {
         padding: 15px;
     }
@@ -418,12 +411,6 @@ img { max-width: 100%; height: auto; display: block; }
     .cta-buttons .btn { width: 100%; }
     .testimonial-text { font-size: 0.85rem; } 
 
-    .history-content p {
-        /* font-size: 0.85rem; /* Coberto por media queries gerais para p */
-    }
-     .history-content h4 {
-        /* font-size: 1.2rem; /* Coberto por media queries gerais para h4 */
-    }
     .about-img {
         padding: 25px 15px; 
     }

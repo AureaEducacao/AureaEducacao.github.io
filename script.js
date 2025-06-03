@@ -146,7 +146,7 @@ if (heroTitleElement) {
 function revealElementsOnScroll() {
     const elements = document.querySelectorAll('.about-container, .history-container, .lesson-packages, .works-container, .testimonials-container, .cta-content, .footer-grid');
     elements.forEach(element => {
-        if (element) { // Verifica se o elemento não é nulo
+        if (element) { 
             const elementPosition = element.getBoundingClientRect().top;
             const screenPosition = window.innerHeight / 1.2;
             if (elementPosition < screenPosition) { 
@@ -157,7 +157,7 @@ function revealElementsOnScroll() {
 }
 const elementsToReveal = document.querySelectorAll('.about-container, .history-container, .lesson-packages, .works-container, .testimonials-container, .cta-content, .footer-grid');
 elementsToReveal.forEach(el => {
-    if (el) { // Verifica se o elemento não é nulo
+    if (el) { 
         el.classList.add('hidden');
     }
 });
