@@ -15,6 +15,7 @@
     --transicao: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     --fonte-principal: 'Poppins', sans-serif;
     --fonte-secundaria: 'Roboto Mono', monospace;
+    --primario-rgb: 255,215,0; 
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -142,7 +143,7 @@ img { max-width: 100%; height: auto; display: block; }
 .about { background-color: var(--escuro); }
 .about-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 70px; align-items: center; }
 .about-img { border-radius: 15px; overflow: hidden; box-shadow: var(--shadow-lg); transition: transform 0.5s ease-in-out; }
-.about-img:hover { transform: skewX(0deg); } /* Pode remover ou ajustar o skew se não for desejado */
+.about-img:hover { transform: skewX(0deg); } 
 .about-img img { width: 100%; height: auto; }
 .about-content { padding-left: 40px; }
 .about-features { margin-top: 4rem; }
@@ -150,15 +151,14 @@ img { max-width: 100%; height: auto; display: block; }
 .feature-icon { background: var(--gradiente-primario); color: var(--escuro); width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 30px; flex-shrink: 0; font-size: 1.8rem; box-shadow: var(--sombra); }
 .feature-text h4 { font-size: 1.6rem; margin-bottom: 10px; color: var(--primario); }
 
-/* ESTILOS PARA TIPOS DE ALUNOS DENTRO DE .about-img */
 .student-types-grid {
     display: grid;
     grid-template-columns: 1fr; 
     gap: 25px; 
     width: 100%;
     max-width: 480px; 
-    padding: 20px; /* Adiciona um pouco de preenchimento interno */
-    background: rgba(255, 255, 255, 0.03); /* Fundo sutil para destacar */
+    padding: 20px; 
+    background: rgba(255, 255, 255, 0.03); 
     border-radius: 10px;
 }
 
@@ -197,16 +197,20 @@ img { max-width: 100%; height: auto; display: block; }
     margin-top: 0.2em; 
 }
 
-/* Seção História */
+/* Seção História Atualizada */
 .history {
-    background-color: #121212; /* Um tom ligeiramente diferente de --escuro para variação sutil */
+    background-color: #121212; 
 }
 
 .history-container {
-    display: grid;
-    grid-template-columns: 2fr 1fr; 
-    gap: 100px;
-    align-items: flex-start; /* Alinha ao topo para melhor fluxo de texto e imagem */
+    /* Nenhuma estilização de grid específica necessária aqui, 
+       .history-content fluirá naturalmente para 100% da largura do .container da seção */
+}
+
+.history-content {
+    /* Ocupará 100% da largura do .history-container (que está dentro do .container da seção).
+       O .container da seção já tem padding. Se for preciso mais padding interno 
+       específico para o history-content, pode ser adicionado aqui. */
 }
 
 .history-content p {
@@ -224,54 +228,7 @@ img { max-width: 100%; height: auto; display: block; }
     margin-top: 2rem;
     margin-bottom: 1rem;
 }
-
-.history-milestones ul {
-    list-style: none;
-    padding-left: 0;
-    margin-bottom: 1.5rem;
-}
-
-.history-milestones li {
-    display: flex;
-    align-items: flex-start;
-    margin-bottom: 0.8rem;
-    font-size: 1rem;
-    color: #ccc;
-}
-
-.history-milestones li i {
-    color: var(--acento);
-    margin-right: 12px;
-    font-size: 1.1em;
-    width: 20px;
-    text-align: center;
-    margin-top: 0.1em;
-}
-
-.history-image img {
-    width: 100%;
-    border-radius: 10px;
-    box-shadow: var(--sombra);
-    object-fit: cover;
-    margin-bottom: 20px; /* Espaço entre as imagens, se houver mais de uma */
-}
-
-.history-image img:first-of-type { /* Estilo específico para a logo */
-    max-width: 250px; /* Ajuste conforme necessário */
-    margin-left: auto;
-    margin-right: auto; 
-    opacity: 0.85; 
-    border-radius:10px; 
-    padding:15px; 
-    background: rgba(var(--primario-rgb, 255,215,0),0.05); /* Fundo sutil */
-    display: block;
-}
-/* Defina --primario-rgb se quiser usar rgba com a cor primária */
-:root {
-    /* ...outras variáveis... */
-    --primario-rgb: 255,215,0; 
-}
-
+/* Estilos para .history-milestones e .history-image foram removidos */
 
 .private-lessons { background-color: #1A1A1A; position: relative; overflow: hidden; }
 .private-lessons::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSI1IiBoZWlnaHQ9IjUiIGZpbGw9InJnYmEoNDAsIDQwLCA0MCwgMC41KSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==') repeat; opacity: 0.4; z-index: 0; }
@@ -366,20 +323,9 @@ img { max-width: 100%; height: auto; display: block; }
     .cta h2 { font-size: 2.8rem; }
     .testimonial-item { padding: 40px 25px; }
 
-    .history-container {
-        grid-template-columns: 1fr; 
-        gap: 40px;
-    }
-    .history-image {
-        order: -1; 
-        max-width: 70%;
-        margin: 0 auto 30px auto;
-    }
-    .history-image img:first-of-type {
-        margin-bottom: 20px; 
-    }
+    /* .history-container não precisa de ajustes de grid aqui */
     .student-types-grid {
-        max-width: 100%; /* Ocupa a largura disponível */
+        max-width: 100%; 
     }
 }
 
@@ -422,17 +368,8 @@ img { max-width: 100%; height: auto; display: block; }
     .footer-links ul { padding-left: 0; }
     .footer-about, .footer-links, .footer-contact { margin-bottom: 15px; }
 
-    .history-content {
-        text-align: left; 
-    }
     .history-content h4 {
-        font-size: 1.3rem;
-    }
-    .history-milestones li {
-        font-size: 0.95rem;
-    }
-    .history-image {
-        max-width: 80%;
+        /* font-size: 1.3rem; /* Coberto por media queries gerais para h4 */
     }
     .student-types-grid {
         padding: 15px;
@@ -482,25 +419,11 @@ img { max-width: 100%; height: auto; display: block; }
     .testimonial-text { font-size: 0.85rem; } 
 
     .history-content p {
-        font-size: 0.85rem;
+        /* font-size: 0.85rem; /* Coberto por media queries gerais para p */
     }
      .history-content h4 {
-        font-size: 1.2rem;
+        /* font-size: 1.2rem; /* Coberto por media queries gerais para h4 */
     }
-    .history-milestones li {
-        font-size: 0.8rem;
-    }
-    .history-milestones li i {
-        margin-right: 8px;
-        font-size: 1em;
-    }
-    .history-image {
-        max-width: 90%;
-    }
-     .history-image img:first-of-type {
-        max-width: 180px; /* Reduzir logo em telas muito pequenas */
-    }
-
     .about-img {
         padding: 25px 15px; 
     }
@@ -521,7 +444,7 @@ img { max-width: 100%; height: auto; display: block; }
         font-size: 0.8rem; 
         justify-content: flex-start; 
         width: 100%;
-        max-width: 280px; /* Limitar largura para centralizar melhor */
+        max-width: 280px; 
     }
 }
 
