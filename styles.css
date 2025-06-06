@@ -204,7 +204,7 @@ img { max-width: 100%; height: auto; display: block; }
     grid-template-columns: 1fr; 
     gap: 25px; 
     width: 100%;
-    max-width: 480px; 
+    max-width: 1000px; 
     padding: 20px; 
     background: rgba(255, 255, 255, 0.03); 
     border-radius: 10px;
