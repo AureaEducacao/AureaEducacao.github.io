@@ -85,6 +85,56 @@ body, html {
     transform: translateY(0px);
 }
 
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    border: none;
+    background: transparent;
+    font-size: 24px;
+    color:#00FFFF;
+    cursor: pointer;
+    }
+
+
+.input-estilizado {
+  display: inline-block;
+  padding: 14px 32px;
+  border-radius: 50px;
+  font-weight: 600;
+  text-align: center;
+  font-family: var(--fonte-principal);
+  font-size: 1.1rem;
+  border: none;
+  box-shadow: var(--sombra);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: var(--transicao);
+  outline: none;
+}
+
+.input-estilizado:focus {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+/* Optional variants */
+.input-primario {
+  background: var(--gradiente-primario);
+  color: var(--escuro);
+}
+
+.input-contorno {
+  background: transparent;
+  border: 2px solid var(--acento);
+  color: var(--acento);
+}
+
+.input-contorno:focus {
+  background-color: var(--acento);
+  color: var(--escuro);
+}
+
 .page-content-wrapper {
     position: relative;
     z-index: 1;

@@ -53,6 +53,7 @@
 
     <div class="popup" id="student-popup">
         <div class="lesson-card">
+            <button class="close-btn" id="close-student-popup">x</button>
             <h1>Espere! Temos uma oferta especial para sua primeira aula!</h1>
             <i class="lesson-icon fa-solid fa-hourglass-start"></i>
             <h3 class="lesson-title">Pacote Rápido</h3>
@@ -63,7 +64,14 @@
                 <li>Material de apoio incluso</li>
                 <li>Acompanhamento individualizado</li>
             </ul>
-            <a href="https://wa.me/5544988324894?text=Tenho+interesse+no+pacote+r%C3%A1pido%21+promocional" class="btn btn-contorno">Enviar</a>
+
+            <form id="student-form" action="https://api.sheetmonkey.io/form/hpG2fipVpN9jz1pCVGhyAL" method="post">
+                <li>Seu telefone: <input type="number" name="Telefone" class="input-estilizado input-contorno" required /></li>
+                <input type="hidden" name="Created" value="x-sheetmonkey-current-date-time" />
+                <input type="submit" class="input-estilizado input-primario" value="Receber Desconto Exclusivo!" />
+            </form>
+            <!-- <a href="https://wa.me/5544988324894?text=Tenho+interesse+no+pacote+r%C3%A1pido%21+promocional" class="btn btn-contorno">Enviar</a> -->
+            <!-- <button class="btn btn-contorno" id="send-student-popup">Enviar</button> -->
         </div>
     </div>
 
@@ -358,5 +366,6 @@
     </div>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="script.js"></script>
+    <script src="popup.js"></script>
 </body>
 </html>
