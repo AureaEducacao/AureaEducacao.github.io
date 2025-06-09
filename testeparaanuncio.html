@@ -15,7 +15,7 @@
         :root {
             --primario: #FFD700; /* Cor da sua marca (amarelo/dourado) */
             --primario-escuro: #B8860B;
-            --gradiente-primario: linear-gradient(135deg, var(--primario), var(--primario-escuro));
+            --gradiente-primario: linear-gradient(135deg, #FFD700, #B8860B);
             --cor-texto-principal: #2d3748; /* Cinza bem escuro */
             --cor-texto-secundario: #4a5568; /* Cinza um pouco mais claro */
             --cor-fundo: #f7fafc; /* Fundo branco-gelo */
@@ -33,88 +33,50 @@
         }
         .container { width: 90%; max-width: 1200px; margin: 0 auto; }
 
-        /* --- Seções e Layout --- */
-        .section { padding: 60px 0; }
-        .lp-navbar {
-            padding: 15px 0;
-            background-color: var(--cor-branco);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        /* --- Estilos Gerais --- */
+        .section { padding: 80px 0; }
+        .section-title {
             text-align: center;
-        }
-        .logo {
-            display: inline-flex;
-            align-items: center;
-            font-size: 1.8rem;
+            font-size: 2.2rem;
             font-weight: 700;
+            margin-bottom: 50px;
             color: var(--cor-texto-principal);
-            text-decoration: none;
         }
-        .logo img { height: 40px; margin-right: 12px; }
-
-        .lp-hero { padding: 60px 0; }
-        .lp-hero-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-        /* --- A ESCRITA CORRIGIDA --- */
-        .hero-text-content .hero-title {
-            font-size: 2.8rem;
-            font-weight: 700;
-            line-height: 1.3;
-            color: var(--cor-texto-principal);
-            margin-bottom: 1rem;
-        }
-        .hero-text-content .hero-subtitle {
-            font-size: 1.1rem;
-            color: var(--cor-texto-secundario);
-            margin-bottom: 2rem;
-        }
-        .hero-benefits-list { list-style: none; padding: 0; }
-        .hero-benefits-list li { display: flex; align-items: center; margin-bottom: 15px; color: var(--cor-texto-secundario); }
-        .hero-benefits-list i { color: var(--primario-escuro); font-size: 1.5rem; margin-right: 15px; }
-
-        /* --- O FORMULÁRIO CORRIGIDO --- */
-        .form-container {
-            background-color: var(--cor-branco);
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-        .form-container h3 {
-            font-size: 1.5rem;
-            text-align: center;
-            color: var(--cor-texto-principal); /* Cor escura para legibilidade */
-            margin-bottom: 10px;
-        }
-        .form-container p {
-            text-align: center;
-            color: var(--cor-texto-secundario); /* Cor escura para legibilidade */
-            margin-bottom: 20px;
-        }
-        .form-container input {
-            width: 100%;
-            padding: 14px;
-            margin-bottom: 15px;
-            border: 1px solid #cbd5e0;
-            border-radius: 5px;
-            font-family: 'Poppins', sans-serif;
-            font-size: 1rem;
-        }
-        .form-container input::placeholder { color: #a0aec0; }
         .btn {
             display: inline-block; padding: 15px 32px; border-radius: 8px; font-weight: 600; text-align: center;
             cursor: pointer; transition: all 0.3s ease; border: none; font-size: 1.1rem;
         }
-        .btn-primario {
-            background: var(--gradiente-primario);
-            color: #2d3748;
-            width: 100%;
-        }
-        .btn-primario:hover { box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4); transform: translateY(-2px); }
 
-        /* --- Botão WhatsApp --- */
+        /* --- Seção Navbar e Herói (Topo) --- */
+        .lp-navbar {
+            padding: 15px 0; background-color: var(--cor-branco); box-shadow: 0 2px 4px rgba(0,0,0,0.05); text-align: center;
+        }
+        .logo {
+            display: inline-flex; align-items: center; font-size: 1.8rem; font-weight: 700;
+            color: var(--cor-texto-principal); text-decoration: none;
+        }
+        .logo img { height: 40px; margin-right: 12px; }
+
+        .lp-hero { padding: 60px 0; }
+        .lp-hero-content { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .hero-title { font-size: 2.8rem; font-weight: 700; line-height: 1.3; color: var(--cor-texto-principal); margin-bottom: 1rem; }
+        .hero-subtitle { font-size: 1.1rem; color: var(--cor-texto-secundario); margin-bottom: 2rem; }
+        .hero-benefits-list { list-style: none; padding: 0; }
+        .hero-benefits-list li { display: flex; align-items: center; margin-bottom: 15px; color: var(--cor-texto-secundario); }
+        .hero-benefits-list i { color: var(--primario-escuro); font-size: 1.5rem; margin-right: 15px; }
+
+        .form-container {
+            background-color: var(--cor-branco); padding: 40px; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .form-container h3 { font-size: 1.5rem; text-align: center; color: var(--cor-texto-principal); margin-bottom: 10px; }
+        .form-container p { text-align: center; color: var(--cor-texto-secundario); margin-bottom: 20px; }
+        .form-container input {
+            width: 100%; padding: 14px; margin-bottom: 15px; border: 1px solid #cbd5e0;
+            border-radius: 5px; font-family: 'Poppins', sans-serif; font-size: 1rem;
+        }
+        .form-container input::placeholder { color: #a0aec0; }
+        .btn-primario { background: var(--gradiente-primario); color: #2d3748; width: 100%; }
+        .btn-primario:hover { box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4); transform: translateY(-2px); }
         .btn-whatsapp {
             display: flex; align-items: center; justify-content: center; background-color: var(--whatsapp-cor);
             color: var(--cor-branco) !important; width: 100%; text-align: center;
@@ -127,11 +89,49 @@
             box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4); z-index: 1000; display: flex; align-items: center; justify-content: center;
         }
 
+        /* --- Seção "Como Funciona" --- */
+        .how-it-works-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+        .works-step { text-align: center; }
+        .works-icon { font-size: 3rem; color: var(--primario-escuro); margin-bottom: 15px; }
+        .works-title { font-size: 1.3rem; font-weight: 600; margin-bottom: 10px; }
+
+        /* --- Seção Depoimentos --- */
+        .testimonials { background-color: var(--cor-branco); }
+        .testimonials-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .testimonial-item {
+            background-color: var(--cor-fundo); border: 1px solid #e2e8f0; padding: 30px; border-radius: 8px;
+            display: flex; flex-direction: column;
+        }
+        .testimonial-text { font-style: italic; color: var(--cor-texto-secundario); margin-bottom: 20px; flex-grow: 1; }
+        .testimonial-author { display: flex; align-items: center; margin-top: auto; }
+        .testimonial-author img { width: 50px; height: 50px; border-radius: 50%; margin-right: 15px; object-fit: cover; }
+        .author-info h4 { font-size: 1rem; font-weight: 600; }
+        .author-info p { font-size: 0.9rem; color: var(--cor-texto-secundario); margin: 0; }
+
+        /* --- Seção CTA Final --- */
+        .cta { background: var(--gradiente-primario); text-align: center; }
+        .cta h2 { color: var(--cor-texto-principal); }
+        .cta p { color: var(--cor-texto-secundario); max-width: 600px; margin: 0 auto 30px auto; }
+        .btn-cta { background-color: var(--cor-branco); color: var(--cor-texto-principal); }
+        .btn-cta:hover { background-color: #f0f0f0; }
+
+        /* --- Rodapé --- */
+        .footer { background-color: #1a202c; color: #a0aec0; padding: 60px 0; }
+        .footer .container { text-align: center; }
+        .footer .logo { color: var(--cor-branco); justify-content: center; }
+        .footer p { margin-top: 15px; }
+        .footer-bottom { margin-top: 30px; padding-top: 20px; border-top: 1px solid #2d3748; font-size: 0.9rem; }
+
         /* --- Responsividade --- */
         @media (max-width: 992px) {
-            .lp-hero-content { grid-template-columns: 1fr; }
+            .lp-hero-content, .testimonials-container { grid-template-columns: 1fr; }
             .hero-text-content { text-align: center; margin-bottom: 40px; }
-            .hero-text-content .hero-title { font-size: 2.2rem; }
+            .hero-title { font-size: 2.2rem; }
+            .testimonial-item { margin-bottom: 20px; }
+        }
+        @media (max-width: 768px) {
+            .how-it-works-container { grid-template-columns: 1fr; }
+            .works-step { margin-bottom: 40px; }
         }
     </style>
 </head>
@@ -154,7 +154,6 @@
                     <div class="hero-text-content">
                         <h1 class="hero-title">Seu filho com dificuldades nos estudos e você não sabe mais como ajudar?</h1>
                         <p class="hero-subtitle">Recupere a confiança e o prazer do seu filho em aprender. Com a metodologia da Áurea, transformamos a dificuldade em sucesso. Agende uma aula experimental e veja a diferença.</p>
-                        
                         <ul class="hero-benefits-list">
                             <li><i class="fas fa-check-circle"></i> Aulas personalizadas para o ritmo do aluno.</li>
                             <li><i class="fas fa-check-circle"></i> Professores experientes e qualificados.</li>
@@ -173,7 +172,6 @@
                             <input type="hidden" name="Created" value="x-sheetmonkey-current-date-time" />
                             <button type="submit" class="btn btn-primario">QUERO A AULA GRÁTIS!</button>
                         </form>
-
                         <p style="text-align: center; margin-top: 15px; margin-bottom: 10px; font-weight: 500;">ou se preferir:</p>
                         <a href="https://wa.me/5544988324894?text=Ol%C3%A1!%20Vi%20a%20p%C3%A1gina%20da%20%C3%81urea%20e%20tenho%20interesse%20em%20agendar%20a%20aula%20experimental%20gratuita." target="_blank" class="btn-whatsapp">
                             <i class="fab fa-whatsapp"></i> Agendar por WhatsApp
@@ -182,7 +180,88 @@
                 </div>
             </div>
         </section>
-        
-        </main>
+
+        <section class="section how-it-works">
+            <div class="container">
+                <h2 class="section-title">É Simples, Rápido e Eficaz</h2>
+                <div class="how-it-works-container">
+                    <div class="works-step">
+                        <div class="works-icon"><i class="fas fa-mouse-pointer"></i></div>
+                        <h3 class="works-title">1. Peça sua Aula</h3>
+                        <p>Preencha o formulário acima ou chame no WhatsApp. É sem compromisso.</p>
+                    </div>
+                    <div class="works-step">
+                        <div class="works-icon"><i class="far fa-calendar-alt"></i></div>
+                        <h3 class="works-title">2. Agende o Horário</h3>
+                        <p>Nossa equipe entra em contato para entender a necessidade e marcar o melhor dia e hora.</p>
+                    </div>
+                    <div class="works-step">
+                        <div class="works-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                        <h3 class="works-title">3. Veja a Transformação</h3>
+                        <p>Seu filho participa da aula e você comprova na prática a eficácia do nosso método.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section testimonials">
+            <div class="container">
+                <h2 class="section-title">Pais que Confiaram na Áurea</h2>
+                <div class="testimonials-container">
+                    <div class="testimonial-item">
+                        <p class="testimonial-text">"O dever de casa era sempre uma briga. Depois que o Lucas começou na Áurea, ele vai para a aula de reforço animado! As notas em matemática melhoraram e a confiança dele voltou."</p>
+                        <div class="testimonial-author">
+                            <img src="https://i.pravatar.cc/150?img=5" alt="Foto da mãe de um aluno">
+                            <div class="author-info">
+                                <h4>Camila Borges</h4>
+                                <p>Mãe do Lucas, 5º ano</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-item">
+                        <p class="testimonial-text">"Minha filha tinha muita dificuldade em redação. A professora da Áurea foi incrível, soube identificar exatamente onde estava o problema. Hoje ela escreve com muito mais segurança."</p>
+                        <div class="testimonial-author">
+                            <img src="https://i.pravatar.cc/150?img=12" alt="Foto do pai de uma aluna">
+                            <div class="author-info">
+                                <h4>Roberto Almeida</h4>
+                                <p>Pai da Sofia, 9º ano</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-item">
+                        <p class="testimonial-text">"Estava preocupada com a preparação do meu filho para o vestibular. A Áurea montou um plano de estudos focado. O resultado foi a aprovação que tanto sonhamos. Gratidão!"</p>
+                        <div class="testimonial-author">
+                            <img src="https://i.pravatar.cc/150?img=32" alt="Foto da mãe de um aluno">
+                            <div class="author-info">
+                                <h4>Juliana Costa</h4>
+                                <p>Mãe do Pedro, 3º ano</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section cta">
+            <div class="container">
+                <h2 class="section-title">Dê o primeiro passo para o sucesso escolar do seu filho.</h2>
+                <p>Não espere as notas caírem ainda mais. Agende hoje mesmo a aula experimental gratuita e sem compromisso.</p>
+                <a href="#home" class="btn btn-cta">Agendar Aula Grátis Agora</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <a href="#" class="logo">
+                <img src="./Imagens/Logosemfundo.png" alt="Logotipo Áurea">
+                <span>Áurea Educação</span>
+            </a>
+            <p>Facilitando o acesso à educação de qualidade e transformando o futuro do seu filho.</p>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Áurea. Todos os direitos reservados. </p>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
