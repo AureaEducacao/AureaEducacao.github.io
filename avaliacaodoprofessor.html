@@ -14,7 +14,7 @@
         :root {
             --primario: #FFD700;
             --acento: #00FFFF;
-            --roxo-destaque: #9C27B0; /* <<< EDITE ESTA COR ROXA AQUI */
+            --magenta: #E91E63; 
             --luz: #F0FFF0;
             --escuro: #0A0A0A;
             --sombra: 0 8px 12px rgba(0, 0, 0, 0.2);
@@ -22,6 +22,7 @@
             --fonte-principal: 'Poppins', sans-serif;
             --fonte-secundaria: 'Roboto Mono', monospace;
             --transicao: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            --gradiente-primario: linear-gradient(135deg, var(--primario), #6A5ACD);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -168,9 +169,11 @@
         
         .linear-rating-group {
             display: flex;
-            justify-content: space-between;
+            justify-content: center; /* Centralizado para melhor responsividade */
             align-items: center;
+            flex-wrap: wrap; /* Permite quebrar a linha em telas pequenas */
             flex-direction: row-reverse;
+            gap: 5px; /* Espaçamento entre as bolinhas */
         }
         .linear-rating-group input { display: none; }
         .linear-rating-group label {
@@ -187,18 +190,21 @@
             cursor: pointer;
             transition: all 0.2s ease;
         }
-        /* CORRIGIDO: Lógica de hover e checked aprimorada */
-        .linear-rating-group:not(:has(:checked)) label:hover,
-        .linear-rating-group:not(:has(:checked)) label:hover ~ label {
-            transform: scale(1.15);
+        .linear-rating-group label:hover,
+        .linear-rating-group label:hover ~ label {
+            transform: scale(1.1);
             background-color: var(--primario);
-            color: var(--escuro);
         }
         .linear-rating-group input:checked ~ label {
-            background-color: var(--roxo-destaque);
+            background-color: var(--magenta);
             color: var(--luz); 
             transform: scale(1.05);
         }
+         .linear-rating-group input:checked ~ label:hover,
+         .linear-rating-group input:checked ~ label:hover ~ label {
+            background-color: var(--magenta);
+            transform: scale(1.15);
+         }
 
         .rating-explanation {
             font-size: 0.8rem;
@@ -245,7 +251,7 @@
         }
         
         @media (max-width: 480px) {
-            .linear-rating-group label { width: 24px; height: 24px; font-size: 0.7rem; }
+            .linear-rating-group label { width: 24px; height: 24px; font-size: 0.7rem; margin: 3px;}
         }
     </style>
 </head>
@@ -335,7 +341,7 @@
                             <textarea id="improvement-points" name="Pontos_a_Melhorar" placeholder="Existe algo que poderia ser diferente? Sua sugestão é valiosa."></textarea>
                         </div>
     
-                        <input type="hidden" name="Created" value="x-sheetmonkey-current-date-time" />
+                        <input type="hidden" id="submission-timestamp" name="Data_e_Hora_Envio" />
                         
                         <button type="submit" class="submit-btn" id="submit-button">Enviar Avaliação</button>
                     </div>
@@ -410,6 +416,10 @@
                 
                 submitButton.disabled = true;
                 submitButton.textContent = 'Enviando...';
+                
+                // Pega a data e hora local do Brasil
+                const timestamp = new Date().toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' });
+                document.getElementById('submission-timestamp').value = timestamp;
 
                 const formData = new FormData(form);
 
@@ -453,4 +463,3 @@
     </script>
 </body>
 </html>
-
