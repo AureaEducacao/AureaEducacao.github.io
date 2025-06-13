@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Áurea - Avaliação de Aula</title>
+    <title>Áurea - Avaliação de Professor</title>
     <meta name="description" content="Formulário para avaliação de aulas e professores da Áurea.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,7 +14,6 @@
         :root {
             --primario: #FFD700;
             --acento: #00FFFF;
-            --roxo-destaque: #9C27B0; /* <<< EDITE ESTA COR ROXA AQUI */
             --luz: #F0FFF0;
             --escuro: #0A0A0A;
             --sombra: 0 8px 12px rgba(0, 0, 0, 0.2);
@@ -141,7 +140,7 @@
         }
 
         .form-group { margin-bottom: 25px; }
-        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: var(--primario); } /* COR DA LABEL ALTERADA */
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: #EAEAEA; } /* MODIFICADO: Cor dos Títulos */
         .form-group input, .form-group textarea, .form-group select {
             width: 100%;
             padding: 12px 15px;
@@ -170,7 +169,9 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
             flex-direction: row-reverse;
+            gap: 5px;
         }
         .linear-rating-group input { display: none; }
         .linear-rating-group label {
@@ -187,16 +188,20 @@
             cursor: pointer;
             transition: all 0.2s ease;
         }
-        .linear-rating-group:not(:has(:checked)) label:hover,
-        .linear-rating-group:not(:has(:checked)) label:hover ~ label {
+        .linear-rating-group label:hover,
+        .linear-rating-group label:hover ~ label {
             transform: scale(1.15);
             background-color: var(--primario);
-            color: var(--escuro);
         }
         .linear-rating-group input:checked ~ label {
-            background-color: var(--roxo-destaque);
-            color: var(--luz); 
+            background-color: var(--acento); /* MODIFICADO: Cor da bolinha selecionada */
+            color: var(--escuro); 
             transform: scale(1.05);
+        }
+        .linear-rating-group input:checked + label:hover,
+        .linear-rating-group input:checked ~ label:hover {
+             background-color: var(--acento);
+             transform: scale(1.15);
         }
 
         .rating-explanation {
@@ -323,7 +328,7 @@
                                 <input type="radio" id="rate-2" name="Nota_Geral" value="2"><label for="rate-2">2</label>
                                 <input type="radio" id="rate-1" name="Nota_Geral" value="1"><label for="rate-1">1</label>
                             </div>
-                            <p class="rating-explanation">* Dê sua nota de 1 a 10. Passe o mouse para pré-visualizar em amarelo e clique para confirmar sua nota em roxo.</p>
+                            <p class="rating-explanation">* Dê sua nota de 1 a 10. Passe o mouse para pré-visualizar em amarelo e clique para confirmar sua nota em azul.</p>
                         </div>
                         
                         <div class="form-group">
@@ -335,7 +340,7 @@
                             <label for="improvement-points">Algum ponto que podemos melhorar?</label>
                             <textarea id="improvement-points" name="Pontos_a_Melhorar" placeholder="Sua sugestão é valiosa para evoluirmos sempre."></textarea>
                         </div>
-                        
+    
                         <button type="submit" class="submit-btn" id="submit-button">Enviar Avaliação</button>
                     </div>
                     
