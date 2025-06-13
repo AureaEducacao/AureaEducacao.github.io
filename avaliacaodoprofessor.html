@@ -14,7 +14,7 @@
         :root {
             --primario: #FFD700;
             --acento: #00FFFF;
-            --magenta: #E91E63; 
+            --roxo-destaque: #9C27B0; /* <<< EDITE ESTA COR ROXA AQUI */
             --luz: #F0FFF0;
             --escuro: #0A0A0A;
             --sombra: 0 8px 12px rgba(0, 0, 0, 0.2);
@@ -22,7 +22,6 @@
             --fonte-principal: 'Poppins', sans-serif;
             --fonte-secundaria: 'Roboto Mono', monospace;
             --transicao: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            --gradiente-primario: linear-gradient(135deg, var(--primario), #6A5ACD);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -142,7 +141,7 @@
         }
 
         .form-group { margin-bottom: 25px; }
-        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: var(--acento); }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: var(--primario); } /* MODIFICADO: Cor da Label */
         .form-group input, .form-group textarea, .form-group select {
             width: 100%;
             padding: 12px 15px;
@@ -188,15 +187,22 @@
             cursor: pointer;
             transition: all 0.2s ease;
         }
+        
         .linear-rating-group:not(:has(:checked)) label:hover,
         .linear-rating-group:not(:has(:checked)) label:hover ~ label {
+            transform: scale(1.15);
             background-color: var(--primario);
             color: var(--escuro);
         }
         .linear-rating-group input:checked ~ label {
-            background-color: var(--magenta);
+            background-color: var(--roxo-destaque);
             color: var(--luz); 
+            transform: scale(1.05);
         }
+         .linear-rating-group input:checked ~ label:hover {
+            transform: scale(1.15);
+            background-color: var(--roxo-destaque);
+         }
 
         .rating-explanation {
             font-size: 0.8rem;
@@ -280,26 +286,25 @@
                 
                 <form id="evaluation-form" action="https://api.sheetmonkey.io/form/g7yF1bgFSNiE6SECwbCAMU" method="post">
                     <div id="form-content">
-                        <!-- MODIFICADO: Campo oculto movido para o topo para ser a primeira coluna na planilha -->
                         <input type="hidden" id="submission-timestamp" name="Data_e_Hora_Envio" />
 
                         <div class="form-group">
-                            <label for="teacher-name">Nome do Professor(a)</label>
-                            <input type="text" id="teacher-name" name="Professor" placeholder="Quem ministrou a aula?" required>
+                            <label for="teacher-name">Qual professor(a) ministrou a aula?</label>
+                            <input type="text" id="teacher-name" name="Professor" placeholder="Digite o nome completo" required>
                         </div>
     
                         <div class="form-group">
-                            <label for="subject">Matéria / Disciplina</label>
-                            <input type="text" id="subject" name="Materia" placeholder="Qual foi o tema da aula?" required>
+                            <label for="subject">Qual foi a matéria ou disciplina?</label>
+                            <input type="text" id="subject" name="Materia" placeholder="Ex: Matemática, Cálculo, História..." required>
                         </div>
                         
                         <div class="form-group">
-                            <label for="class-date">Data da Aula</label>
+                            <label for="class-date">Em que data a aula aconteceu?</label>
                             <input type="date" id="class-date" name="Data_da_Aula" required>
                         </div>
     
                         <div class="form-group">
-                            <label>Didática e Clareza do Professor(a)</label>
+                            <label>Como você avalia a didática e a clareza do professor?</label>
                             <div class="rating-group">
                                 <input type="radio" id="star-5" name="Nota_Didatica" value="5" required><label for="star-5"><i class="fas fa-star"></i></label>
                                 <input type="radio" id="star-4" name="Nota_Didatica" value="4"><label for="star-4"><i class="fas fa-star"></i></label>
@@ -310,7 +315,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label>De 1 a 10, qual sua nota para a aula no geral?</label>
+                            <label>E para a aula como um todo, qual sua nota de 1 a 10?</label>
                             <div class="linear-rating-group">
                                 <input type="radio" id="rate-10" name="Nota_Geral" value="10" required><label for="rate-10">10</label>
                                 <input type="radio" id="rate-9" name="Nota_Geral" value="9"><label for="rate-9">9</label>
@@ -323,17 +328,17 @@
                                 <input type="radio" id="rate-2" name="Nota_Geral" value="2"><label for="rate-2">2</label>
                                 <input type="radio" id="rate-1" name="Nota_Geral" value="1"><label for="rate-1">1</label>
                             </div>
-                            <p class="rating-explanation">* Dê sua nota de 1 a 10. Passe o mouse para pré-visualizar em amarelo e clique para confirmar sua nota em roxo.</p>
+                            <p class="rating-explanation">* Passe o mouse para pré-visualizar em amarelo e clique para confirmar sua nota em roxo.</p>
                         </div>
                         
                         <div class="form-group">
-                            <label for="positive-points">Pontos Positivos</label>
-                            <textarea id="positive-points" name="Pontos_Positivos" placeholder="O que você mais gostou na aula?"></textarea>
+                            <label for="positive-points">O que você mais gostou na aula?</label>
+                            <textarea id="positive-points" name="Pontos_Positivos" placeholder="Sua opinião nos ajuda a identificar nossos pontos fortes."></textarea>
                         </div>
                         
                         <div class="form-group">
-                            <label for="improvement-points">Pontos a Melhorar</label>
-                            <textarea id="improvement-points" name="Pontos_a_Melhorar" placeholder="Existe algo que poderia ser diferente? Sua sugestão é valiosa."></textarea>
+                            <label for="improvement-points">Algum ponto que podemos melhorar?</label>
+                            <textarea id="improvement-points" name="Pontos_a_Melhorar" placeholder="Sua sugestão é valiosa para evoluirmos sempre."></textarea>
                         </div>
                         
                         <button type="submit" class="submit-btn" id="submit-button">Enviar Avaliação</button>
