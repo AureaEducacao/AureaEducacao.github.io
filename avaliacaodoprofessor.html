@@ -14,7 +14,7 @@
         :root {
             --primario: #FFD700;
             --acento: #00FFFF;
-            --magenta: #E91E63; /* NOVA COR ADICIONADA */
+            --magenta: #E91E63;
             --luz: #F0FFF0;
             --escuro: #0A0A0A;
             --sombra: 0 8px 12px rgba(0, 0, 0, 0.2);
@@ -167,11 +167,12 @@
         .rating-group label:hover, .rating-group label:hover ~ label { transform: scale(1.15); color: var(--primario); }
         .rating-group input:checked ~ label { color: var(--primario); }
         
-        /* Avaliação de 0-10 com bolinhas (cores novas) */
+        /* MODIFICADO: Estilos para avaliação de 0-10 com bolinhas */
         .linear-rating-group {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-direction: row-reverse; /* Inverte a ordem para lógica de hover funcionar */
         }
         .linear-rating-group input { display: none; }
         .linear-rating-group label {
@@ -188,20 +189,22 @@
             cursor: pointer;
             transition: all 0.2s ease;
         }
-        .linear-rating-group label:hover {
+        .linear-rating-group label:hover,
+        .linear-rating-group label:hover ~ label {
             transform: scale(1.1);
-            background-color: var(--magenta); /* MODIFICADO */
+            background-color: var(--primario); /* Cor amarela para o hover */
         }
-        .linear-rating-group input:checked + label,
         .linear-rating-group input:checked ~ label {
-            background-color: var(--magenta); /* MODIFICADO */
-            color: var(--luz); /* Ajustado para melhor contraste */
+            background-color: var(--magenta); /* Cor magenta para o item selecionado */
+            color: var(--luz); 
         }
-        .linear-rating-group:hover input + label {
-             background-color: var(--primario);
-        }
-        .linear-rating-group input:hover ~ label {
-             background-color: #444;
+
+        .rating-explanation {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.5);
+            text-align: center;
+            margin-top: 15px;
+            font-style: italic;
         }
         
         .submit-btn { display: block; width: 100%; padding: 14px; border-radius: 8px; font-weight: 700; text-align: center; transition: all 0.3s ease; border: none; font-size: 1.1rem; box-shadow: var(--sombra); text-transform: uppercase; letter-spacing: 0.05em; cursor: pointer; background: var(--primario); color: var(--escuro); margin-top: 40px;}
@@ -318,6 +321,7 @@
                                 <input type="radio" id="rate-2" name="Nota_Geral" value="2"><label for="rate-2">2</label>
                                 <input type="radio" id="rate-1" name="Nota_Geral" value="1"><label for="rate-1">1</label>
                             </div>
+                            <p class="rating-explanation">* Dê sua nota de 1 a 10. Passe o mouse para pré-visualizar em amarelo e clique para confirmar sua nota em magenta.</p>
                         </div>
                         
                         <div class="form-group">
