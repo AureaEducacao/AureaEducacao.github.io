@@ -1,371 +1,344 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-TLK6DV63');</script>
-    <!-- End Google Tag Manager -->
-
-
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Áurea - Seu Futuro em Aulas Particulares</title>
-    <meta name="description" content="Transforme seu aprendizado com aulas particulares personalizadas. Encontre professores ou ofereça seus serviços na Áurea.">
+    <title>Áurea - Avaliação de Professor</title>
+    <meta name="description" content="Formulário para avaliação de aulas e professores da Áurea.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="icon" href="./Imagens/Logosemfundo.png" type="image/x-icon">
-    <link rel="stylesheet" href="./styles.css">
+    <style>
+        :root {
+            --primario: #FFD700;
+            --acento: #00FFFF;
+            --luz: #F0FFF0;
+            --escuro: #0A0A0A;
+            --sombra: 0 8px 12px rgba(0, 0, 0, 0.2);
+            --fonte-principal: 'Poppins', sans-serif;
+            --fonte-secundaria: 'Roboto Mono', monospace;
+        }
 
-    <!-- Meta Pixel Code -->
-    <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '2256911164766461');
-    fbq('track', 'PageView');
-    </script>
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=2256911164766461&ev=PageView&noscript=1"
-    /></noscript>
-    <!-- End Meta Pixel Code -->
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            font-family: var(--fonte-principal);
+            line-height: 1.7;
+            color: var(--luz);
+            background-color: var(--escuro);
+            overflow-x: hidden;
+        }
+
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            background-color: var(--escuro);
+        }
+
+        .page-wrapper {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .form-container {
+            width: 100%;
+            max-width: 700px;
+            padding: 40px;
+            background-color: rgba(20, 20, 20, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-header img {
+            width: 80px;
+            margin-bottom: 15px;
+        }
+
+        .form-header h1 {
+            color: var(--primario);
+            font-family: var(--fonte-secundaria);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0;
+            font-size: 2rem;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--acento);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background-color: rgba(0, 0, 0, 0.3);
+            color: #fff;
+            font-size: 1rem;
+            font-family: var(--fonte-principal);
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primario);
+            box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.3);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .rating-group {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: center;
+            gap: 5px;
+        }
+        .rating-group input { display: none; }
+        .rating-group label {
+            font-size: 2.5rem;
+            color: #444;
+            cursor: pointer;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+        .rating-group label:hover {
+            transform: scale(1.15);
+        }
+        .rating-group input:checked ~ label,
+        .rating-group label:hover,
+        .rating-group label:hover ~ label {
+            color: var(--primario);
+        }
+        
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            border-radius: 8px;
+            font-weight: 700;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 1.1rem;
+            box-shadow: var(--sombra);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            background: var(--primario);
+            color: var(--escuro);
+        }
+        .submit-btn:hover {
+            background: var(--acento);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+        .submit-btn:disabled {
+            background-color: #555;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        #success-message {
+            display: none;
+            text-align: center;
+            padding: 40px;
+            background-color: rgba(0, 255, 255, 0.1);
+            border: 1px solid var(--acento);
+            border-radius: 8px;
+        }
+        #success-message h2 {
+            color: var(--acento);
+            margin-bottom: 15px;
+        }
+        #success-message p {
+            color: #ddd;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .social-links a {
+            color: var(--luz);
+            font-size: 1.8rem;
+            margin: 0 15px;
+            transition: color 0.3s ease;
+        }
+        .social-links a:hover {
+            color: var(--primario);
+        }
+    </style>
 </head>
-
-
 <body>
-    <!-- Google Tag Manager (noscript) -->
-        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TLK6DV63"
-        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
+    <div id="particles-js"></div> 
 
-
-
-    <div class="popup" id="student-popup">
-        <div class="lesson-card">
-            <button class="close-btn" id="close-student-popup">x</button>
-            <h1>Espere! Temos uma oferta especial para sua primeira aula!</h1>
-            <i class="lesson-icon fa-solid fa-hourglass-start"></i>
-            <h3 class="lesson-title">Pacote Rápido</h3>
-            <p class="lesson-price-old">R$ 55</p>
-            <p class="lesson-price">R$ 45</p>
-            <ul class="lesson-features">
-                <li>1 hora de aula</li>
-                <li>Material de apoio incluso</li>
-                <li>Acompanhamento individualizado</li>
-            </ul>
-
-            <form id="student-form" action="https://api.sheetmonkey.io/form/hpG2fipVpN9jz1pCVGhyAL" method="post">
-                <li>Seu telefone: <input type="number" name="Telefone" class="input-estilizado input-contorno" required /></li>
-                <input type="hidden" name="Created" value="x-sheetmonkey-current-date-time" />
-                <input type="submit" class="input-estilizado input-primario" value="Receber Desconto Exclusivo!" />
-            </form>
-            <!-- <a href="https://wa.me/5544988324894?text=Tenho+interesse+no+pacote+r%C3%A1pido%21+promocional" class="btn btn-contorno">Enviar</a> -->
-            <!-- <button class="btn btn-contorno" id="send-student-popup">Enviar</button> -->
-        </div>
-    </div>
-
-    <div class="overlay", id="overlay"></div>
-
-    <div id="particles-js"></div>
-
-    <div class="page-content-wrapper">
-        <nav class="navbar">
-            <div class="container navbar-container">
-                <a href="./index" class="logo">
-                    <img src="./Imagens/Logosemfundo.png" alt="Logotipo Áurea">
-                    Áurea
-                </a>
-                <button class="mobile-menu-button" id="mobileMenuBtn">
-                    <i class="fa-solid fa-bars"></i>
-                </button>
-                <ul class="nav-links" id="navLinks">
-                    <li><a href="#home">Início</a></li>
-                    <li><a href="#about">Sobre</a></li>
-                    <li><a href="#lessons">Aulas Particulares</a></li>
-                    <li><a href="#how-it-works">Como Funciona</a></li>
-                    <li><a href="#testimonials">Depoimentos</a></li>
-                    <li><a href="#history">História</a></li> 
-                    <li><a href="#contact">Contato</a></li>
-                </ul>
+    <div class="page-wrapper">
+        <div class="form-container">
+            <div class="form-header">
+                <img src="./Imagens/Logosemfundo.png" alt="Logo Áurea">
+                <h1>Avaliação de Aula</h1>
             </div>
-        </nav>
+            
+            <form id="evaluation-form" action="https://api.sheetmonkey.io/form/g7yF1bgFSNiE6SECwbCAMU" method="post">
+                
+                <div id="form-content">
+                    <div class="form-group">
+                        <label for="teacher-name">Nome do Professor(a)</label>
+                        <input type="text" id="teacher-name" name="Professor" placeholder="Quem ministrou a aula?" required>
+                    </div>
 
-        <main>
-            <section class="hero section" id="home">
-                <div class="container">
-                    <div class="hero-content">
-                        <h1 class="hero-title">Seu Futuro Brilha com Aulas Particulares Personalizadas</h1>
-                        <p class="hero-subtitle">Conectamos você aos melhores professores para alcançar seus objetivos de aprendizado. Seja para aprender algo novo ou aprofundar seus conhecimentos.</p>
-                        <div class="hero-buttons">
-                            <a href="https://wa.me/5544988324894?text=Tenho+Interesse+em+Aulas+Particulares%21" class="btn btn-primario">Encontre um Professor</a>
-                            <a href="https://wa.me/5544988324894?text=Tenho+interesse+em+me+tornar+professor+do+%C3%81urea%21" class="btn btn-contorno">Seja um Professor</a>
-                        </div>
+                    <div class="form-group">
+                        <label for="subject">Matéria / Disciplina</label>
+                        <input type="text" id="subject" name="Materia" placeholder="Qual foi o tema da aula?" required>
                     </div>
-                </div>
-            </section>
+                    
+                    <div class="form-group">
+                        <label for="class-date">Data da Aula</label>
+                        <input type="date" id="class-date" name="Data da Aula" required>
+                    </div>
 
-            <section class="section about" id="about">
-                <div class="container">
-                    <h2 class="section-title">Sobre a Áurea: Iluminando seu Caminho Educacional</h2>
-                    <div class="about-container">
-                        <div class="about-img">
-                            <div class="student-types-grid">
-                                <div class="student-types-column">
-                                    <h4>Foco no Sucesso Acadêmico:</h4>
-                                    <ul>
-                                        <li><i class="fas fa-graduation-cap"></i> Preparação para Vestibulares e ENEM</li>
-                                        <li><i class="fas fa-book-open-reader"></i> Apoio Escolar Completo (Fundamental e Médio)</li>
-                                        <li><i class="fas fa-atom"></i> Reforço em Todas as Disciplinas Escolares (Matemática, Português, Ciências, História, etc.)</li>
-                                        <li><i class="fas fa-feather-alt"></i> Aulas de Redação e Interpretação de Texto</li>
-                                        <li><i class="fas fa-university"></i> Auxílio em matérias do Ensino Superior</li> 
-                                    </ul>
-                                </div>
-                                <div class="student-types-column">
-                                    <h4>Desenvolvimento e Oportunidades:</h4>
-                                    <ul>
-                                        <li><i class="fas fa-medal"></i> Preparação para Concursos Públicos</li>
-                                        <li><i class="fas fa-language"></i> Aprendizado de Idiomas (Inglês, Espanhol, Francês e mais)</li>
-                                        <li><i class="fas fa-chart-line"></i> Desenvolvimento de Habilidades (Comunicação, Oratória, Informática, Programação)</li>
-                                        <li><i class="fas fa-palette"></i> Aulas de Música e Artes Visuais</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="about-content">
-                            <p>Na Áurea, acreditamos que o aprendizado individualizado é a chave para desbloquear seu potencial máximo. Nossa plataforma foi criada para conectar alunos a professores particulares experientes e apaixonados, prontos para oferecer aulas personalizadas que atendam às suas necessidades específicas.</p>
-                            <div class="about-features">
-                                <div class="feature-item">
-                                    <div class="feature-icon">
-                                        <i class="fa-solid fa-user-graduate"></i>
-                                    </div>
-                                    <div class="feature-text">
-                                        <h4>Aprendizado Personalizado</h4>
-                                        <p>Aulas adaptadas ao seu ritmo, estilo de aprendizado e objetivos individuais.</p>
-                                    </div>
-                                </div>
-                                <div class="feature-item">
-                                    <div class="feature-icon">
-                                        <i class="fa-solid fa-chalkboard-teacher"></i>
-                                    </div>
-                                    <div class="feature-text">
-                                        <h4>Professores Qualificados</h4>
-                                        <p>Encontre tutores experientes e verificados em diversas áreas do conhecimento.</p>
-                                    </div>
-                                </div>
-                                <div class="feature-item">
-                                    <div class="feature-icon">
-                                        <i class="fa-solid fa-infinity"></i>
-                                    </div>
-                                    <div class="feature-text">
-                                        <h4>Flexibilidade Total</h4>
-                                        <p>Agende aulas no seu tempo, de onde estiver, no formato que preferir.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="#lessons" class="btn btn-primario">Explore Nossas Aulas</a>
+                    <div class="form-group">
+                        <label>Como você avalia a didática e a clareza do professor(a)?</label>
+                        <div class="rating-group">
+                            <input type="radio" id="star-5" name="Nota" value="5" required><label for="star-5"><i class="fas fa-star"></i></label>
+                            <input type="radio" id="star-4" name="Nota" value="4"><label for="star-4"><i class="fas fa-star"></i></label>
+                            <input type="radio" id="star-3" name="Nota" value="3"><label for="star-3"><i class="fas fa-star"></i></label>
+                            <input type="radio" id="star-2" name="Nota" value="2"><label for="star-2"><i class="fas fa-star"></i></label>
+                            <input type="radio" id="star-1" name="Nota" value="1"><label for="star-1"><i class="fas fa-star"></i></label>
                         </div>
                     </div>
-                </div>
-            </section>
+                    
+                    <div class="form-group">
+                        <label for="positive-points">Pontos Positivos</label>
+                        <textarea id="positive-points" name="Pontos Positivos" placeholder="O que você mais gostou na aula?"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="improvement-points">Pontos a Melhorar</label>
+                        <textarea id="improvement-points" name="Pontos a Melhorar" placeholder="Existe algo que poderia ser diferente? Sua sugestão é valiosa."></textarea>
+                    </div>
 
-            <section class="section private-lessons" id="lessons">
-                <div class="container lessons-container">
-                    <h2 class="section-title">Pacotes de Aulas Particulares para Você</h2>
-                    <p class="text-center" style="max-width: 850px; margin: 0 auto 60px;">
-                        Oferecemos pacotes flexíveis de aulas particulares em diversas matérias. Escolha o que melhor se adapta aos seus objetivos e orçamento.
-                    </p>
-                    <div class="lesson-packages">
-                        <div class="lesson-card">
-                            <i class="lesson-icon fa-solid fa-hourglass-start"></i>
-                            <h3 class="lesson-title">Pacote Rápido</h3>
-                            <p class="lesson-description">Ideal para tirar dúvidas específicas ou experimentar nossas aulas.</p>
-                            <p class="lesson-price">R$ 55</p>
-                            <ul class="lesson-features">
-                                <li>1 hora de aula</li>
-                                <li>Atendimento pontual</li>
-                                <li>Material de apoio incluso</li>
-                                <li>Acompanhamento individualizado</li>
-                            </ul>
-                            <a href="https://wa.me/5544988324894?text=Tenho+interesse+no+pacote+r%C3%A1pido%21" class="btn btn-contorno">Escolher este pacote</a>
-                        </div>
-                        <div class="lesson-card">
-                            <i class="lesson-icon fa-solid fa-seedling"></i>
-                            <h3 class="lesson-title">Pacote Intensivo</h3>
-                            <p class="lesson-description">Para quem quer se preparar melhor em menos tempo.</p>
-                            <p class="lesson-price">R$ 250</p>
-                            <ul class="lesson-features">
-                                <li>5 horas de aula</li>
-                                <li>Desconto especial (R$50/hora)</li>
-                                <li>Material de apoio incluso</li>
-                                <li>Acompanhamento individualizado</li>
-                                <li>Suporte online</li>
-                            </ul>
-                            <a href="https://wa.me/5544988324894?text=Tenho+interesse+no+Pacote+Intensivo%21" class="btn btn-primario">Escolher este pacote</a>
-                        </div>
-                        <div class="lesson-card">
-                            <i class="lesson-icon fa-solid fa-star"></i>
-                            <h3 class="lesson-title">Pacote Premium</h3>
-                            <p class="lesson-description">A escolha ideal para acompanhamento contínuo e aprofundado.</p>
-                            <p class="lesson-price">R$ 360</p>
-                            <ul class="lesson-features">
-                                <li>8 horas de aula</li>
-                                <li>Desconto progressivo (R$45/hora)</li>
-                                <li>Material de apoio incluso</li>
-                                <li>Acompanhamento individualizado</li>
-                                <li>Suporte online</li>
-                            </ul>
-                            <a href="https://wa.me/5544988324894?text=Tenho+interesse+no+Pacote+Premium%21" class="btn btn-contorno">Escolher este pacote</a>
-                        </div>
-                    </div>
+                    <input type="hidden" name="Created" value="x-sheetmonkey-current-date-time" />
+                    
+                    <button type="submit" class="submit-btn" id="submit-button">Enviar Avaliação</button>
                 </div>
-            </section>
-            <section class="section how-it-works" id="how-it-works">
-                <div class="container works-container">
-                    <h2 class="section-title">Como a Áurea Facilita seu Aprendizado</h2>
-                    <div class="works-step">
-                        <i class="works-icon fa-solid fa-search"></i>
-                        <h3 class="works-title">Encontre um Professor</h3>
-                        <p>Escolhemos o professor perfeito para as suas necessidades.</p>
-                    </div>
-                    <div class="works-step">
-                        <i class="works-icon fa-solid fa-calendar-check"></i>
-                        <h3 class="works-title">Agende suas Aulas</h3>
-                        <p>Escolha os horários que melhor se encaixam na sua rotina e reserve suas aulas online.</p>
-                    </div>
-                    <div class="works-step">
-                        <i class="works-icon fa-solid fa-lightbulb"></i>
-                        <h3 class="works-title">Aprenda e Evolua</h3>
-                        <p>Desfrute de aulas particulares personalizadas e alcance seus objetivos de aprendizado.</p>
-                    </div>
-                    <div class="works-step" id="become-teacher">
-                        <i class="works-icon fa-solid fa-handshake"></i>
-                        <h3 class="works-title">Seja um Professor Áurea</h3>
-                        <p>Compartilhe seu conhecimento e paixão, ajudando alunos a brilharem. <a href="https://wa.me/5544988324894?text=Tenho+interesse+em+me+tornar+professor+do+%C3%81urea%21" style="color: var(--acento);">Cadastre-se aqui</a>.</p>
-                    </div>
+                
+                <div id="success-message">
+                    <h2>Obrigado!</h2>
+                    <p>Sua avaliação foi enviada com sucesso. Você será redirecionado em breve.</p>
                 </div>
-            </section>
-
-            <section class="section testimonials" id="testimonials">
-                <div class="container">
-                    <h2 class="section-title">Histórias de Sucesso na Áurea</h2>
-                    <div class="testimonials-container"> <div class="testimonial-item">
-                            <p class="testimonial-text">Consegui melhorar minhas notas em matemática com a ajuda de um professor incrível da Áurea. As aulas foram personalizadas e muito eficazes!</p>
-                            <div class="testimonial-author">
-                                <div class="author-info">
-                                    <h4>Mariana Silva</h4>
-                                    <p>Estudante do Ensino Médio</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="testimonial-item">
-                            <p class="testimonial-text">Como professor de inglês, encontrei na Áurea uma ótima plataforma para conectar com alunos interessados em aprender. A flexibilidade de horários é excelente.</p>
-                            <div class="testimonial-author">
-                                <div class="author-info">
-                                    <h4>Carlos Oliveira</h4>
-                                    <p>Professor de Inglês</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="testimonial-item">
-                            <p class="testimonial-text">Precisava de aulas particulares de programação para mudar de carreira e a Áurea me proporcionou um professor experiente e dedicado. Estou muito feliz com meu progresso!</p>
-                            <div class="testimonial-author">
-                                <div class="author-info">
-                                    <h4>João Pereira</h4>
-                                    <p>Aluno de Programação</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="section cta">
-                <div class="container">
-                    <div class="cta-content">
-                        <h2>Pronto para Iluminar seu Aprendizado com a Áurea?</h2>
-                        <p>Encontre o professor particular ideal ou compartilhe seu talento com milhares de alunos. Sua jornada de aprendizado começa aqui.</p>
-                        <div class="cta-buttons">
-                            <a href="https://wa.me/5544988324894?text=Tenho+Interesse+em+Aulas+Particulares%21" class="btn btn-primario btn-lg">Encontrar um Professor</a>
-                            <a href="https://wa.me/5544988324894?text=Tenho+interesse+em+me+tornar+professor+do+%C3%81urea%21" class="btn btn-contorno btn-lg">Seja um Professor</a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="section history" id="history">
-                <div class="container">
-                    <h2 class="section-title">Nossa Trajetória: A História da Áurea</h2>
-                    <div class="history-container">
-                        <div class="history-content">
-                            <p>A Áurea nasceu da paixão, de dois estudantes do curso de Licenciatura em matemática, por transformar a educação e da crença no poder do aprendizado individualizado. Fundada em <strong>2024</strong>, nossa jornada começou com um objetivo claro: criar uma ponte entre alunos buscando conhecimento e professores dedicados, prontos para compartilhar seu conhecimento.</p>
-                            <p>Desde o início, focamos em construir uma plataforma que não apenas conectasse pessoas, mas que também inspirasse confiança e promovesse um ambiente de aprendizado acolhedor e eficaz. Percebemos que muitos estudantes enfrentavam desafios que poderiam ser superados com a atenção personalizada que uma aula particular oferece.</p>
-                            <h4>Nossa Missão e Visão</h4>
-                            <p><strong>Missão:</strong> Facilitar o acesso à educação de qualidade, conectando alunos a professores qualificados através de uma plataforma intuitiva e personalizada, promovendo o desenvolvimento contínuo e o alcance de objetivos educacionais.</p>
-                            <p><strong>Visão:</strong> Ser a principal referência em aulas particulares no Brasil, reconhecida pela excelência, inovação e pelo impacto positivo na trajetória de aprendizado de cada indivíduo.</p>
-                            <p>A Áurea é mais do que uma plataforma; é uma comunidade construída sobre a confiança, o conhecimento e o desejo de ver cada aluno brilhar. Olhamos para o futuro com entusiasmo, prontos para continuar iluminando caminhos educacionais e construindo novas histórias de sucesso.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </main>
-
-        <footer class="footer section" id="contact">
-            <div class="container">
-                <div class="footer-grid">
-                    <div class="footer-about">
-                        <a href="#home" class="footer-logo">Áurea</a>
-                        <p>A plataforma que conecta alunos e professores particulares, oferecendo aprendizado personalizado e flexível para todos os níveis.</p>
-                        <div class="social-links">
-                            <a href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a href="https://www.instagram.com/educacao.aurea/"><i class="fab fa-instagram"></i></a>
-                        </div>
-                    </div>
-                    <div class="footer-links">
-                        <h3>Navegação</h3>
-                        <ul>
-                            <li><a href="#home">Início</a></li>
-                            <li><a href="#about">Sobre</a></li>
-                            <li><a href="#lessons">Aulas Particulares</a></li>
-                            <li><a href="#how-it-works">Como Funciona</a></li>
-                            <li><a href="#testimonials">Depoimentos</a></li>
-                            <li><a href="#history">História</a></li>
-                            <li><a href="#contact">Contato</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-links">
-                        <h3>Contato</h3>
-                        <ul>
-                            <li><a href="https://wa.me/5544988324894">Central de Ajuda</a></li>
-                            <li><a href="https://wa.me/5544988324894">Fale Conosco</a></li>
-                            <li><a href="https://wa.me/5544988324894">Trabalhe Conosco</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-contact">
-                        <h3>Informações</h3>
-                        <p><i class="fa-solid fa-phone"></i> (44) 98832-4894</p>
-                        <p><i class="fa-solid fa-envelope"></i> aurea.educacao.ouro@gmail.com</p>
-                        <p><i class="fa-solid fa-clock"></i> Todos os dias, 7h às 23h</p>
-                    </div>
-                </div>
-                <div class="footer-bottom">
-                    <p>&copy; 2025 Áurea. Todos os direitos reservados. </p>
-                </div>
+            </form>
+        </div>
+        
+        <footer class="footer">
+             <div class="social-links">
+                <a href="https://www.instagram.com/educacao.aurea/" target="_blank" rel="noopener noreferrer" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://wa.me/5544988324894" target="_blank" rel="noopener noreferrer" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
             </div>
         </footer>
     </div>
+
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script src="script.js"></script>
-    <script src="popup.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Inicializa o particles.js
+            particlesJS('particles-js', {
+                "particles": { "number": { "value": 60, "density": { "enable": true, "value_area": 800 } }, "color": { "value": "#FFD700" }, "shape": { "type": "circle" }, "opacity": { "value": 0.5, "random": true, "anim": { "enable": true, "speed": 1, "opacity_min": 0.1, "sync": false } }, "size": { "value": 3, "random": true }, "line_linked": { "enable": true, "distance": 150, "color": "#00FFFF", "opacity": 0.3, "width": 1 }, "move": { "enable": true, "speed": 2, "direction": "none", "random": true, "out_mode": "out" } },
+                "interactivity": { "detect_on": "canvas", "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": false } } },
+                "retina_detect": true
+            });
+
+            // Lógica do Formulário
+            const form = document.getElementById('evaluation-form');
+            const formContent = document.getElementById('form-content');
+            const successMessage = document.getElementById('success-message');
+            const submitButton = document.getElementById('submit-button');
+
+            form.addEventListener('submit', function (e) {
+                e.preventDefault(); 
+                
+                submitButton.disabled = true;
+                submitButton.textContent = 'Enviando...';
+
+                const formData = new FormData(form);
+
+                fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                })
+                .then(response => {
+                    if (response.ok) {
+                        formContent.style.display = 'none';
+                        successMessage.style.display = 'block';
+                        
+                        // Redireciona para a página principal após 4 segundos
+                        setTimeout(() => {
+                            window.location.href = './index.html'; // Altere para o nome da sua página principal se for diferente
+                        }, 4000);
+
+                    } else {
+                        response.json().then(data => {
+                            console.error('Erro:', data);
+                            alert('Ocorreu um erro ao enviar sua avaliação. Tente novamente.');
+                            submitButton.disabled = false;
+                            submitButton.textContent = 'Enviar Avaliação';
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro na requisição:', error);
+                    alert('Ocorreu um erro de rede. Verifique sua conexão e tente novamente.');
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Enviar Avaliação';
+                });
+            });
+        });
+    </script>
 </body>
 </html>
