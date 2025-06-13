@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Áurea - Avaliação de Professor</title>
-    <meta name="description" content="Formulário para avaliação de aulas e professores.">
+    <meta name="description" content="Formulário para avaliação de aulas e professores da Áurea.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" href="./Imagens/Logosemfundo.png" type="image/x-icon">
     <style>
         :root {
             --primario: #FFD700;
@@ -41,12 +42,14 @@
             top: 0;
             left: 0;
             z-index: 0;
+            background-color: var(--escuro);
         }
 
         .page-wrapper {
             position: relative;
             z-index: 1;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
@@ -55,7 +58,7 @@
 
         .form-container {
             width: 100%;
-            max-width: 600px;
+            max-width: 700px;
             padding: 40px;
             background-color: rgba(20, 20, 20, 0.7);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -63,15 +66,30 @@
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        h1 {
+        .form-header {
             text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-header img {
+            width: 80px;
+            margin-bottom: 15px;
+        }
+
+        .form-header h1 {
             color: var(--primario);
             font-family: var(--fonte-secundaria);
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            margin-bottom: 30px;
+            margin-bottom: 0;
             font-size: 2rem;
             text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
         }
@@ -111,7 +129,7 @@
 
         textarea {
             resize: vertical;
-            min-height: 120px;
+            min-height: 100px;
         }
 
         .rating-group {
@@ -125,14 +143,17 @@
             font-size: 2.5rem;
             color: #444;
             cursor: pointer;
-            transition: color 0.2s ease;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+        .rating-group label:hover {
+            transform: scale(1.15);
         }
         .rating-group input:checked ~ label,
         .rating-group label:hover,
         .rating-group label:hover ~ label {
             color: var(--primario);
         }
-
+        
         .submit-btn {
             display: block;
             width: 100%;
@@ -158,6 +179,7 @@
         .submit-btn:disabled {
             background-color: #555;
             cursor: not-allowed;
+            opacity: 0.7;
         }
 
         #success-message {
@@ -175,6 +197,22 @@
         #success-message p {
             color: #ddd;
         }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .social-links a {
+            color: var(--luz);
+            font-size: 1.8rem;
+            margin: 0 15px;
+            transition: color 0.3s ease;
+        }
+        .social-links a:hover {
+            color: var(--primario);
+        }
     </style>
 </head>
 <body>
@@ -182,27 +220,31 @@
 
     <div class="page-wrapper">
         <div class="form-container">
-            <h1>Avaliação de Aula</h1>
+            <div class="form-header">
+                <img src="./Imagens/Logosemfundo.png" alt="Logo Áurea">
+                <h1>Avaliação de Aula</h1>
+            </div>
             
             <form id="evaluation-form" action="https://api.sheetmonkey.io/form/g7yF1bgFSNiE6SECwbCAMU" method="post">
+                
                 <div id="form-content">
                     <div class="form-group">
-                        <label for="student-name">Seu Nome (Opcional)</label>
-                        <input type="text" id="student-name" name="Aluno" placeholder="Como podemos te chamar?">
-                    </div>
-
-                    <div class="form-group">
                         <label for="teacher-name">Nome do Professor(a)</label>
-                        <input type="text" id="teacher-name" name="Professor" placeholder="Quem foi o professor(a)?" required>
+                        <input type="text" id="teacher-name" name="Professor" placeholder="Quem ministrou a aula?" required>
                     </div>
 
                     <div class="form-group">
                         <label for="subject">Matéria / Disciplina</label>
-                        <input type="text" id="subject" name="Materia" placeholder="Qual matéria você estudou?" required>
+                        <input type="text" id="subject" name="Materia" placeholder="Qual foi o tema da aula?" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="class-date">Data da Aula</label>
+                        <input type="date" id="class-date" name="Data da Aula" required>
                     </div>
 
                     <div class="form-group">
-                        <label>Nota para a Aula (de 1 a 5)</label>
+                        <label>Como você avalia a didática e a clareza do professor(a)?</label>
                         <div class="rating-group">
                             <input type="radio" id="star-5" name="Nota" value="5" required><label for="star-5"><i class="fas fa-star"></i></label>
                             <input type="radio" id="star-4" name="Nota" value="4"><label for="star-4"><i class="fas fa-star"></i></label>
@@ -211,13 +253,17 @@
                             <input type="radio" id="star-1" name="Nota" value="1"><label for="star-1"><i class="fas fa-star"></i></label>
                         </div>
                     </div>
-
+                    
                     <div class="form-group">
-                        <label for="comments">Comentários</label>
-                        <textarea id="comments" name="Comentarios" placeholder="Sua opinião é muito importante! Conte-nos como foi a aula."></textarea>
+                        <label for="positive-points">Pontos Positivos</label>
+                        <textarea id="positive-points" name="Pontos Positivos" placeholder="O que você mais gostou na aula?"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="improvement-points">Pontos a Melhorar</label>
+                        <textarea id="improvement-points" name="Pontos a Melhorar" placeholder="Existe algo que poderia ser diferente? Sua sugestão é valiosa."></textarea>
                     </div>
 
-                    <!-- Campos ocultos para o Sheet Monkey -->
                     <input type="hidden" name="Created" value="x-sheetmonkey-current-date-time" />
                     
                     <button type="submit" class="submit-btn" id="submit-button">Enviar Avaliação</button>
@@ -225,10 +271,17 @@
                 
                 <div id="success-message">
                     <h2>Obrigado!</h2>
-                    <p>Sua avaliação foi enviada com sucesso e nos ajudará a melhorar cada vez mais.</p>
+                    <p>Sua avaliação foi enviada com sucesso. Você será redirecionado em breve.</p>
                 </div>
             </form>
         </div>
+        
+        <footer class="footer">
+             <div class="social-links">
+                <a href="https://www.instagram.com/educacao.aurea/" target="_blank" rel="noopener noreferrer" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://wa.me/5544988324894" target="_blank" rel="noopener noreferrer" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </footer>
     </div>
 
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
@@ -236,8 +289,8 @@
         document.addEventListener('DOMContentLoaded', function () {
             // Inicializa o particles.js
             particlesJS('particles-js', {
-                "particles": { "number": { "value": 80, "density": { "enable": true, "value_area": 800 } }, "color": { "value": "#ffffff" }, "shape": { "type": "circle" }, "opacity": { "value": 0.5, "random": true }, "size": { "value": 3, "random": true }, "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.4, "width": 1 }, "move": { "enable": true, "speed": 2, "direction": "none", "random": true, "out_mode": "out" } },
-                "interactivity": { "detect_on": "canvas", "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" } } },
+                "particles": { "number": { "value": 60, "density": { "enable": true, "value_area": 800 } }, "color": { "value": "#FFD700" }, "shape": { "type": "circle" }, "opacity": { "value": 0.5, "random": true, "anim": { "enable": true, "speed": 1, "opacity_min": 0.1, "sync": false } }, "size": { "value": 3, "random": true }, "line_linked": { "enable": true, "distance": 150, "color": "#00FFFF", "opacity": 0.3, "width": 1 }, "move": { "enable": true, "speed": 2, "direction": "none", "random": true, "out_mode": "out" } },
+                "interactivity": { "detect_on": "canvas", "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": false } } },
                 "retina_detect": true
             });
 
@@ -248,7 +301,7 @@
             const submitButton = document.getElementById('submit-button');
 
             form.addEventListener('submit', function (e) {
-                e.preventDefault(); // Impede o envio padrão do formulário
+                e.preventDefault(); 
                 
                 submitButton.disabled = true;
                 submitButton.textContent = 'Enviando...';
@@ -261,11 +314,15 @@
                 })
                 .then(response => {
                     if (response.ok) {
-                        // Sucesso!
                         formContent.style.display = 'none';
                         successMessage.style.display = 'block';
+                        
+                        // Redireciona para a página principal após 4 segundos
+                        setTimeout(() => {
+                            window.location.href = './index.html'; // Altere para o nome da sua página principal se for diferente
+                        }, 4000);
+
                     } else {
-                        // Trata erros de rede ou do servidor
                         response.json().then(data => {
                             console.error('Erro:', data);
                             alert('Ocorreu um erro ao enviar sua avaliação. Tente novamente.');
