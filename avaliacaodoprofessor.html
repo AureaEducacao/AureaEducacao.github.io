@@ -14,7 +14,7 @@
         :root {
             --primario: #FFD700;
             --acento: #00FFFF;
-            --magenta: #E91E63;
+            --magenta: #E91E63; 
             --luz: #F0FFF0;
             --escuro: #0A0A0A;
             --sombra: 0 8px 12px rgba(0, 0, 0, 0.2);
@@ -167,12 +167,11 @@
         .rating-group label:hover, .rating-group label:hover ~ label { transform: scale(1.15); color: var(--primario); }
         .rating-group input:checked ~ label { color: var(--primario); }
         
-        /* MODIFICADO: Estilos para avaliação de 0-10 com bolinhas */
         .linear-rating-group {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-direction: row-reverse; /* Inverte a ordem para lógica de hover funcionar */
+            flex-direction: row-reverse;
         }
         .linear-rating-group input { display: none; }
         .linear-rating-group label {
@@ -192,10 +191,10 @@
         .linear-rating-group label:hover,
         .linear-rating-group label:hover ~ label {
             transform: scale(1.1);
-            background-color: var(--primario); /* Cor amarela para o hover */
+            background-color: var(--primario);
         }
         .linear-rating-group input:checked ~ label {
-            background-color: var(--magenta); /* Cor magenta para o item selecionado */
+            background-color: var(--magenta);
             color: var(--luz); 
         }
 
