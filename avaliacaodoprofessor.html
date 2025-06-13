@@ -166,7 +166,44 @@
         .rating-group label:hover, .rating-group label:hover ~ label { transform: scale(1.15); color: var(--primario); }
         .rating-group input:checked ~ label { color: var(--primario); }
         
-        .submit-btn { display: block; width: 100%; padding: 14px; border-radius: 8px; font-weight: 700; text-align: center; transition: all 0.3s ease; border: none; font-size: 1.1rem; box-shadow: var(--sombra); text-transform: uppercase; letter-spacing: 0.05em; cursor: pointer; background: var(--primario); color: var(--escuro); }
+        /* NOVO: Estilos para avaliação de 0-10 com bolinhas */
+        .linear-rating-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .linear-rating-group input { display: none; }
+        .linear-rating-group label {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #444;
+            color: var(--escuro);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .linear-rating-group label:hover {
+            transform: scale(1.1);
+            background-color: var(--acento);
+        }
+        .linear-rating-group input:checked + label,
+        .linear-rating-group input:checked ~ label {
+            background-color: var(--acento);
+            color: var(--escuro);
+        }
+        .linear-rating-group:hover input + label {
+             background-color: var(--primario);
+        }
+        .linear-rating-group input:hover ~ label {
+             background-color: #444;
+        }
+        
+        .submit-btn { display: block; width: 100%; padding: 14px; border-radius: 8px; font-weight: 700; text-align: center; transition: all 0.3s ease; border: none; font-size: 1.1rem; box-shadow: var(--sombra); text-transform: uppercase; letter-spacing: 0.05em; cursor: pointer; background: var(--primario); color: var(--escuro); margin-top: 40px;}
         .submit-btn:hover { background: var(--acento); transform: translateY(-3px); box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); }
         .submit-btn:disabled { background-color: #555; cursor: not-allowed; opacity: 0.7; }
 
@@ -200,6 +237,10 @@
             .mobile-menu-button { display: block; }
             .form-container { padding: 30px; }
             .form-header h1 { font-size: 1.5rem; }
+        }
+        
+        @media (max-width: 480px) {
+            .linear-rating-group label { width: 24px; height: 24px; font-size: 0.7rem; }
         }
     </style>
 </head>
@@ -254,11 +295,27 @@
                         <div class="form-group">
                             <label>Didática e Clareza do Professor(a)</label>
                             <div class="rating-group">
-                                <input type="radio" id="star-5" name="Nota" value="5" required><label for="star-5"><i class="fas fa-star"></i></label>
-                                <input type="radio" id="star-4" name="Nota" value="4"><label for="star-4"><i class="fas fa-star"></i></label>
-                                <input type="radio" id="star-3" name="Nota" value="3"><label for="star-3"><i class="fas fa-star"></i></label>
-                                <input type="radio" id="star-2" name="Nota" value="2"><label for="star-2"><i class="fas fa-star"></i></label>
-                                <input type="radio" id="star-1" name="Nota" value="1"><label for="star-1"><i class="fas fa-star"></i></label>
+                                <input type="radio" id="star-5" name="Nota_Didatica" value="5" required><label for="star-5"><i class="fas fa-star"></i></label>
+                                <input type="radio" id="star-4" name="Nota_Didatica" value="4"><label for="star-4"><i class="fas fa-star"></i></label>
+                                <input type="radio" id="star-3" name="Nota_Didatica" value="3"><label for="star-3"><i class="fas fa-star"></i></label>
+                                <input type="radio" id="star-2" name="Nota_Didatica" value="2"><label for="star-2"><i class="fas fa-star"></i></label>
+                                <input type="radio" id="star-1" name="Nota_Didatica" value="1"><label for="star-1"><i class="fas fa-star"></i></label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>De 1 a 10, qual sua nota para a aula no geral?</label>
+                            <div class="linear-rating-group">
+                                <input type="radio" id="rate-10" name="Nota_Geral" value="10" required><label for="rate-10">10</label>
+                                <input type="radio" id="rate-9" name="Nota_Geral" value="9"><label for="rate-9">9</label>
+                                <input type="radio" id="rate-8" name="Nota_Geral" value="8"><label for="rate-8">8</label>
+                                <input type="radio" id="rate-7" name="Nota_Geral" value="7"><label for="rate-7">7</label>
+                                <input type="radio" id="rate-6" name="Nota_Geral" value="6"><label for="rate-6">6</label>
+                                <input type="radio" id="rate-5" name="Nota_Geral" value="5"><label for="rate-5">5</label>
+                                <input type="radio" id="rate-4" name="Nota_Geral" value="4"><label for="rate-4">4</label>
+                                <input type="radio" id="rate-3" name="Nota_Geral" value="3"><label for="rate-3">3</label>
+                                <input type="radio" id="rate-2" name="Nota_Geral" value="2"><label for="rate-2">2</label>
+                                <input type="radio" id="rate-1" name="Nota_Geral" value="1"><label for="rate-1">1</label>
                             </div>
                         </div>
                         
@@ -279,7 +336,7 @@
                     
                     <div id="success-message">
                         <h2>Obrigado!</h2>
-                        <p>Sua avaliação foi enviada com sucesso. Você será redirecionado em breve.</p>
+                        <p>Sua avaliação foi enviada com sucesso. Você será redirecionado para a página inicial em breve.</p>
                     </div>
                 </form>
             </div>
@@ -301,7 +358,7 @@
                         <ul>
                             <li><a href="./index.html#home">Início</a></li>
                             <li><a href="./index.html#about">Sobre</a></li>
-                            <li><a href="./index.html#lessons">Aulas Particulares</a></li>
+                            <li><a href="./index.html#lessons">Aulas</a></li>
                             <li><a href="./index.html#how-it-works">Como Funciona</a></li>
                             <li><a href="./index.html#testimonials">Depoimentos</a></li>
                         </ul>
@@ -390,4 +447,3 @@
     </script>
 </body>
 </html>
-
