@@ -14,6 +14,7 @@
         :root {
             --primario: #FFD700;
             --acento: #00FFFF;
+            --magenta: #E91E63; /* NOVA COR ADICIONADA */
             --luz: #F0FFF0;
             --escuro: #0A0A0A;
             --sombra: 0 8px 12px rgba(0, 0, 0, 0.2);
@@ -57,7 +58,7 @@
         
         main {
             flex-grow: 1;
-            padding-top: 120px; /* Espaço para o navbar fixo */
+            padding-top: 120px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -71,7 +72,7 @@
             padding: 0 20px; 
         }
 
-        /* --- Estilos do Navbar (Idêntico à Página Principal) --- */
+        /* --- Estilos do Navbar --- */
         .navbar { 
             position: fixed; top: 0; left: 0; width: 100%; 
             padding: 10px 0;
@@ -166,7 +167,7 @@
         .rating-group label:hover, .rating-group label:hover ~ label { transform: scale(1.15); color: var(--primario); }
         .rating-group input:checked ~ label { color: var(--primario); }
         
-        /* NOVO: Estilos para avaliação de 0-10 com bolinhas */
+        /* Avaliação de 0-10 com bolinhas (cores novas) */
         .linear-rating-group {
             display: flex;
             justify-content: space-between;
@@ -189,12 +190,12 @@
         }
         .linear-rating-group label:hover {
             transform: scale(1.1);
-            background-color: var(--acento);
+            background-color: var(--magenta); /* MODIFICADO */
         }
         .linear-rating-group input:checked + label,
         .linear-rating-group input:checked ~ label {
-            background-color: var(--acento);
-            color: var(--escuro);
+            background-color: var(--magenta); /* MODIFICADO */
+            color: var(--luz); /* Ajustado para melhor contraste */
         }
         .linear-rating-group:hover input + label {
              background-color: var(--primario);
@@ -211,7 +212,7 @@
         #success-message h2 { color: var(--acento); margin-bottom: 15px; }
         #success-message p { color: #ddd; margin-bottom: 0; }
 
-        /* --- Estilos do Footer (Idêntico à Página Principal) --- */
+        /* --- Estilos do Footer --- */
         .footer { background-color: #0A0A0A; color: #ddd; padding: 80px 0 40px; }
         .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 50px; }
         .footer-logo { font-size: 2.5rem; font-weight: 700; color: var(--primario); margin-bottom: 20px; display: inline-block; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); text-decoration: none; }
