@@ -188,14 +188,21 @@
             cursor: pointer;
             transition: all 0.2s ease;
         }
+        /* MODIFICADO: Lógica de hover e checked corrigida */
         .linear-rating-group label:hover,
-        .linear-rating-group label:hover ~ label {
+        .linear-rating-group input:hover + label {
             transform: scale(1.1);
-            background-color: var(--primario);
+            background-color: var(--primario); /* Preview em amarelo */
         }
+        .linear-rating-group input:checked + label,
         .linear-rating-group input:checked ~ label {
-            background-color: var(--magenta);
+            background-color: var(--magenta); /* Selecionado em magenta */
             color: var(--luz); 
+        }
+        /* Garante que o hover não substitua a seleção */
+        .linear-rating-group input:checked + label:hover,
+        .linear-rating-group input:checked ~ label:hover {
+             background-color: var(--magenta); /* Mantém magenta mesmo no hover */
         }
 
         .rating-explanation {
