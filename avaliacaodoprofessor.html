@@ -169,11 +169,9 @@
         
         .linear-rating-group {
             display: flex;
-            justify-content: center; /* Centralizado para melhor responsividade */
+            justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap; /* Permite quebrar a linha em telas pequenas */
             flex-direction: row-reverse;
-            gap: 5px; /* Espaçamento entre as bolinhas */
         }
         .linear-rating-group input { display: none; }
         .linear-rating-group label {
@@ -190,21 +188,15 @@
             cursor: pointer;
             transition: all 0.2s ease;
         }
-        .linear-rating-group label:hover,
-        .linear-rating-group label:hover ~ label {
-            transform: scale(1.1);
+        .linear-rating-group:not(:has(:checked)) label:hover,
+        .linear-rating-group:not(:has(:checked)) label:hover ~ label {
             background-color: var(--primario);
+            color: var(--escuro);
         }
         .linear-rating-group input:checked ~ label {
             background-color: var(--magenta);
             color: var(--luz); 
-            transform: scale(1.05);
         }
-         .linear-rating-group input:checked ~ label:hover,
-         .linear-rating-group input:checked ~ label:hover ~ label {
-            background-color: var(--magenta);
-            transform: scale(1.15);
-         }
 
         .rating-explanation {
             font-size: 0.8rem;
@@ -288,6 +280,9 @@
                 
                 <form id="evaluation-form" action="https://api.sheetmonkey.io/form/g7yF1bgFSNiE6SECwbCAMU" method="post">
                     <div id="form-content">
+                        <!-- MODIFICADO: Campo oculto movido para o topo para ser a primeira coluna na planilha -->
+                        <input type="hidden" id="submission-timestamp" name="Data_e_Hora_Envio" />
+
                         <div class="form-group">
                             <label for="teacher-name">Nome do Professor(a)</label>
                             <input type="text" id="teacher-name" name="Professor" placeholder="Quem ministrou a aula?" required>
@@ -340,8 +335,6 @@
                             <label for="improvement-points">Pontos a Melhorar</label>
                             <textarea id="improvement-points" name="Pontos_a_Melhorar" placeholder="Existe algo que poderia ser diferente? Sua sugestão é valiosa."></textarea>
                         </div>
-    
-                        <input type="hidden" id="submission-timestamp" name="Data_e_Hora_Envio" />
                         
                         <button type="submit" class="submit-btn" id="submit-button">Enviar Avaliação</button>
                     </div>
@@ -417,9 +410,11 @@
                 submitButton.disabled = true;
                 submitButton.textContent = 'Enviando...';
                 
-                // Pega a data e hora local do Brasil
-                const timestamp = new Date().toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' });
-                document.getElementById('submission-timestamp').value = timestamp;
+                const timestampField = document.getElementById('submission-timestamp');
+                if(timestampField) {
+                    const timestamp = new Date().toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' });
+                    timestampField.value = timestamp;
+                }
 
                 const formData = new FormData(form);
 
