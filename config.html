@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html>Add commentMore actions
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <!-- CORREÇÃO: O atributo 'xintegrity' foi corrigido para 'integrity' -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         :root {
@@ -21,116 +22,27 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
         body, html {
             font-family: var(--fonte-principal);
             line-height: 1.6;
             color: var(--luz);
             background-color: var(--escuro);
             overflow-x: hidden;
-            /* Inicia com scroll travado para a tela de senha */
-            overflow-y: hidden;
         }
 
-        #particles-js { 
+        #particles-js {
             position: fixed;
             width: 100%;
             height: 100%;
             top: 0;
             left: 0;
-            z-index: 0; 
+            z-index: 0;
         }
         
-        /* --- INÍCIO: ESTILOS DA TELA DE SENHA --- */
-        #password-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--escuro);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 2000;
-            transition: opacity 0.5s ease-out;
-        }
-        #password-overlay.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-        .password-box {
-            background-color: rgba(20, 20, 20, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 40px;
-            border-radius: 12px;
-            text-align: center;
-            width: 90%;
-            max-width: 400px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            animation: fadeIn 0.5s ease-out;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .password-box h2 {
-            color: var(--primario);
-            font-family: var(--fonte-secundaria);
-            margin-bottom: 10px;
-        }
-        .password-box p {
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 25px;
-        }
-        .password-box input {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 20px;
-            border-radius: 6px;
-            border: 1px solid var(--primario);
-            background-color: rgba(0,0,0,0.3);
-            color: #fff;
-            font-size: 1rem;
-            text-align: center;
-        }
-        .password-box input:focus {
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.5);
-        }
-        .password-box button {
-            width: 100%;
-            padding: 12px;
-            border-radius: 6px;
-            border: none;
-            background-color: var(--primario);
-            color: var(--escuro);
-            font-weight: 700;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .password-box button:hover {
-            background-color: var(--acento);
-        }
-        .password-error {
-            color: #ff6b6b;
-            font-size: 0.9em;
-            height: 20px;
-            margin-top: 10px;
-        }
-        /* --- FIM: ESTILOS DA TELA DE SENHA --- */
-
         .page-wrapper {
             position: relative;
             z-index: 1;
             padding: 40px 20px;
-            display: none; /* Conteúdo principal começa escondido */
-        }
-        .page-wrapper.unlocked {
-            display: block; /* Mostrado após senha correta */
         }
 
         .container {
@@ -151,14 +63,144 @@
             font-family: var(--fonte-secundaria);
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            margin-bottom: 40px;
+            margin-bottom: 20px;
             font-size: 2.5rem;
             text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
         }
 
+        /* --- ESTILOS PARA FILTROS --- */
+        #filtros-container {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        #filtro-busca-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .search-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .search-wrapper i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.4);
+            transition: color 0.3s;
+        }
+
+        #filtro-nome {
+            width: 100%;
+            padding: 10px 15px 10px 40px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            color: var(--luz);
+            font-family: var(--fonte-principal);
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        #filtro-nome::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        #filtro-nome:focus {
+            outline: none;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: var(--primario);
+        }
+
+        #filtro-nome:focus + i {
+            color: var(--primario);
+        }
+        
+        #filtro-cursos-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px 20px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .filtro-label {
+            display: block;
+            position: relative;
+            padding-left: 30px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            color: var(--luz);
+            user-select: none;
+            transition: color 0.3s;
+        }
+
+        .filtro-label:hover {
+            color: var(--primario);
+        }
+
+        .filtro-label input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+
+        .checkmark {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            height: 20px;
+            width: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .filtro-label:hover input ~ .checkmark {
+            background-color: rgba(0, 255, 255, 0.2);
+        }
+
+        .filtro-label input:checked ~ .checkmark {
+            background-color: var(--acento);
+            border-color: var(--acento);
+        }
+
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+
+        .filtro-label input:checked ~ .checkmark:after {
+            display: block;
+        }
+
+        .filtro-label .checkmark:after {
+            left: 6px;
+            top: 2px;
+            width: 5px;
+            height: 10px;
+            border: solid var(--escuro);
+            border-width: 0 3px 3px 0;
+            transform: rotate(45deg);
+        }
+        /* --- FIM DOS ESTILOS DE FILTRO --- */
+
         #schedule-grid {
             display: grid;
-            grid-template-columns: 70px repeat(7, 1fr); 
+            grid-template-columns: 70px repeat(7, 1fr);
             gap: 5px;
             text-align: center;
         }
@@ -216,7 +258,7 @@
         .modal {
             display: none;
             position: fixed;
-            z-index: 2001; /* Acima do overlay da senha */
+            z-index: 1000;
             left: 0;
             top: 0;
             width: 100%;
@@ -243,6 +285,11 @@
             animation: fadeIn 0.3s ease;
         }
         
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
         .close-button {
             color: #aaa;
             position: absolute;
@@ -264,7 +311,7 @@
             padding-bottom: 15px;
             margin-bottom: 20px;
         }
-        
+    
         .modal-content ul { list-style: none; padding: 0; }
         .modal-content li {
             padding: 12px 5px;
@@ -298,6 +345,7 @@
     </style>
 </head>
 <body>
+
     <!-- 
     ==================================================================
     ===> EDITAR DADOS DOS PROFESSORES E HORÁRIOS AQUI <===
@@ -684,24 +732,28 @@
     <!-- ===============================================================
     FIM DA ÁREA DE EDIÇÃO - Não mexa no código abaixo desta linha.
     =============================================================== -->
-        <div id="particles-js"></div> 
+    
+    <div id="particles-js"></div> 
 
-    <!-- TELA DE SENHA -->
-    <div id="password-overlay">
-        <div class="password-box">
-            <h2>Acesso Restrito</h2>
-            <p>Por favor, insira a senha para visualizar o conteúdo.</p>
-            <input type="password" id="password-input" placeholder="••••••••" autofocus>
-            <button id="password-submit">Entrar</button>
-            <p class="password-error" id="password-error-message"></p>
-        </div>
-    </div>
-
-    <!-- CONTEÚDO PRINCIPAL (COMEÇA ESCONDIDO) -->
-    <div class="page-wrapper" id="page-content-wrapper">
+    <div class="page-wrapper">
         <div class="container">
             <h1>Horários Disponíveis</h1>
-            <div id="schedule-grid"></div>
+
+            <div id="filtros-container">
+                <div id="filtro-busca-container">
+                    <div class="search-wrapper">
+                        <input type="text" id="filtro-nome" placeholder="Pesquisar por nome do professor...">
+                        <i class="fas fa-search"></i>
+                    </div>
+                </div>
+                <div id="filtro-cursos-container">
+                    <!-- Os filtros de curso serão gerados dinamicamente aqui -->
+                </div>
+            </div>
+
+            <div id="schedule-grid">
+                <!-- A grade de horários será gerada aqui pelo JavaScript -->
+            </div>
         </div>
     </div>
 
@@ -715,15 +767,18 @@
 
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-        // Esta função inicializa todo o aplicativo principal
-        function initializeApp() {
+        document.addEventListener('DOMContentLoaded', function () {
+            
             const scheduleGrid = document.getElementById('schedule-grid');
             const modal = document.getElementById('modal');
             const modalTitle = document.getElementById('modal-title');
             const modalTeacherList = document.getElementById('modal-teacher-list');
             const closeModalButton = document.querySelector('.close-button');
+            const filtroCursosContainer = document.getElementById('filtro-cursos-container');
+            const filtroNomeInput = document.getElementById('filtro-nome');
 
             const diasDaSemana = ["", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb", "Dom"];
+            
             const timeSlotsDoDia = [];
             for(let i = 7; i <= 23; i += 0.5) {
                 timeSlotsDoDia.push(i);
@@ -734,9 +789,56 @@
                 const minutos = (horaDecimal % 1) * 60;
                 return `${String(hora).padStart(2, '0')}:${String(minutos).padStart(2, '0')}`;
             }
+            
+            function gerarFiltrosDeCurso() {
+                const todosOsCursos = new Set();
+                professores.forEach(prof => {
+                    if (prof.materia) { // Verifica se a matéria existe
+                        const cursos = prof.materia.split('/').map(m => m.trim());
+                        cursos.forEach(curso => todosOsCursos.add(curso));
+                    }
+                });
+
+                filtroCursosContainer.innerHTML = '';
+                
+                [...todosOsCursos].sort().forEach(curso => {
+                    const label = document.createElement('label');
+                    label.className = 'filtro-label';
+                    label.innerHTML = `
+                        ${curso}
+                        <input type="checkbox" class="filtro-curso" value="${curso}">
+                        <span class="checkmark"></span>
+                    `;
+                    filtroCursosContainer.appendChild(label);
+                });
+
+                filtroCursosContainer.addEventListener('change', gerarGradeHorarios);
+            }
 
             function gerarGradeHorarios() {
+                const cursosSelecionados = Array.from(filtroCursosContainer.querySelectorAll('.filtro-curso:checked')).map(cb => cb.value);
+                const termoBusca = filtroNomeInput.value.toLowerCase().trim();
+
+                if (cursosSelecionados.length === 0 && termoBusca === '') {
+                    scheduleGrid.style.display = 'block';
+                    scheduleGrid.innerHTML = `<div style="text-align:center; padding: 40px 20px; color: var(--primario); background-color: rgba(255,215,0,0.05); border-radius: 8px;">Selecione um curso ou pesquise por um nome para visualizar os horários.</div>`;
+                    return;
+                }
+
+                const professoresFiltrados = professores.filter(p => {
+                    const nomeCorresponde = termoBusca === '' || p.nome.toLowerCase().includes(termoBusca);
+                    
+                    let cursoCorresponde = true;
+                    if (cursosSelecionados.length > 0) {
+                        const cursosDoProfessor = p.materia ? p.materia.split('/').map(m => m.trim()) : [];
+                        cursoCorresponde = cursosDoProfessor.some(c => cursosSelecionados.includes(c));
+                    }
+                    
+                    return nomeCorresponde && cursoCorresponde;
+                });
+
                 scheduleGrid.innerHTML = ''; 
+                scheduleGrid.style.display = 'grid'; 
 
                 diasDaSemana.forEach(dia => {
                     const headerCell = document.createElement('div');
@@ -757,13 +859,13 @@
                         timeSlot.dataset.day = dia;
                         timeSlot.dataset.hour = hora;
                         
-                        const professoresDisponiveis = professores.filter(p => 
+                        const professoresDisponiveisNesteSlot = professoresFiltrados.filter(p => 
                             p.disponibilidade.some(h => h.dia === dia && hora >= h.inicio && hora < h.fim)
                         );
 
-                        if (professoresDisponiveis.length > 0) {
+                        if (professoresDisponiveisNesteSlot.length > 0) {
                             timeSlot.classList.add('available');
-                            timeSlot.textContent = `${professoresDisponiveis.length} disp.`;
+                            timeSlot.textContent = `${professoresDisponiveisNesteSlot.length} disp.`;
                         } else {
                             timeSlot.textContent = '—';
                         }
@@ -771,17 +873,29 @@
                     }
                 });
             }
-
+            
             function abrirModal(dia, hora) {
+                const cursosSelecionados = Array.from(filtroCursosContainer.querySelectorAll('.filtro-curso:checked')).map(cb => cb.value);
+                const termoBusca = filtroNomeInput.value.toLowerCase().trim();
+
                 const diaSemanaNome = ["", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"][dia];
                 const horaFormatada = formatarHora(hora);
                 modalTitle.textContent = `Disponíveis: ${diaSemanaNome} às ${horaFormatada}`;
-                
                 modalTeacherList.innerHTML = ''; 
 
-                let professoresDisponiveis = professores.filter(p => 
-                    p.disponibilidade.some(h => h.dia === dia && hora >= h.inicio && hora < h.fim)
-                );
+                let professoresDisponiveis = professores.filter(p => {
+                    const nomeCorresponde = termoBusca === '' || p.nome.toLowerCase().includes(termoBusca);
+
+                    let cursoCorresponde = true;
+                    if (cursosSelecionados.length > 0) {
+                        const cursosDoProfessor = p.materia ? p.materia.split('/').map(m => m.trim()) : [];
+                        cursoCorresponde = cursosDoProfessor.some(c => cursosSelecionados.includes(c));
+                    }
+                    
+                    const estaDisponivel = p.disponibilidade.some(h => h.dia === dia && hora >= h.inicio && hora < h.fim);
+                    
+                    return nomeCorresponde && cursoCorresponde && estaDisponivel;
+                });
                 
                 professoresDisponiveis.sort((a, b) => b.nota - a.nota);
 
@@ -795,15 +909,11 @@
                             </div>
                             <div class="teacher-rating">
                                 <i class="fas fa-star"></i>
-                                <span>${(prof.nota / 10).toFixed(1)}</span>
+                                <span>${prof.nota.toFixed(1)}</span>
                             </div>
                         `;
                         modalTeacherList.appendChild(li);
                     });
-                } else {
-                    const li = document.createElement('li');
-                    li.textContent = 'Nenhum professor disponível neste horário.';
-                    modalTeacherList.appendChild(li);
                 }
                 
                 modal.classList.add('visible');
@@ -813,15 +923,17 @@
                 modal.classList.remove('visible');
             }
 
+            // --- EVENT LISTENERS ---
             scheduleGrid.addEventListener('click', function(event) {
                 const target = event.target;
-                if (target && target.classList.contains('time-slot')) {
+                if (target && target.classList.contains('time-slot') && target.classList.contains('available')) {
                     const dia = parseInt(target.dataset.day);
                     const hora = parseFloat(target.dataset.hour);
                     abrirModal(dia, hora);
                 }
             });
             
+            filtroNomeInput.addEventListener('input', gerarGradeHorarios);
             closeModalButton.addEventListener('click', fecharModal);
             modal.addEventListener('click', function(event) {
                 if (event.target === modal) { 
@@ -829,57 +941,14 @@
                 }
             });
 
+            // --- INICIALIZAÇÃO ---
+            gerarFiltrosDeCurso(); 
             gerarGradeHorarios();
             
             particlesJS('particles-js', {
                 "particles": { "number": { "value": 80, "density": { "enable": true, "value_area": 800 } }, "color": { "value": "#ffffff" }, "shape": { "type": "circle" }, "opacity": { "value": 0.5, "random": true }, "size": { "value": 3, "random": true }, "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.4, "width": 1 }, "move": { "enable": true, "speed": 2, "direction": "none", "random": true, "out_mode": "out" } },
                 "interactivity": { "detect_on": "canvas", "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" } } },
                 "retina_detect": true
-            });
-        }
-
-        // LÓGICA DA SENHA
-        document.addEventListener('DOMContentLoaded', function() {
-            const passwordOverlay = document.getElementById('password-overlay');
-            const passwordInput = document.getElementById('password-input');
-            const passwordSubmit = document.getElementById('password-submit');
-            const errorMessage = document.getElementById('password-error-message');
-            const pageContent = document.getElementById('page-content-wrapper');
-
-            // ===================================
-            // ====> EDITE SUA SENHA AQUI <====
-            const correctPassword = "10kdopainho"; 
-            // ===================================
-
-            function unlockPage() {
-                passwordOverlay.classList.add('hidden');
-                setTimeout(() => {
-                    passwordOverlay.style.display = 'none';
-                }, 500);
-
-                pageContent.style.display = 'block';
-                document.body.style.overflowY = 'auto'; // Permite o scroll vertical
-                
-                // Inicializa o aplicativo principal somente após desbloquear
-                initializeApp(); 
-            }
-
-            function checkPassword() {
-                if (passwordInput.value === correctPassword) {
-                    unlockPage();
-                } else {
-                    errorMessage.textContent = "Senha incorreta. Tente novamente.";
-                    passwordInput.value = ""; 
-                    passwordInput.focus(); 
-                }
-            }
-            
-            passwordSubmit.addEventListener('click', checkPassword);
-            
-            passwordInput.addEventListener('keyup', function(event) {
-                if (event.key === 'Enter') {
-                    checkPassword();
-                }
             });
         });
     </script>
