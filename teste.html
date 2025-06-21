@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Áurea - Gestão de Horários (5 Semanas)</title>
+    <meta name="description" content="Consulte os horários de professores, alunos e a disponibilidade real para as próximas 5 semanas.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        :root {
+            --primario: #FFD700;
+            --acento: #00FFFF;
+            --agendado: #FF6347; /* Cor para aulas agendadas */
+            --luz: #F0FFF0;
+            --escuro: #0A0A0A;
+            --sombra: 0 8px 12px rgba(0, 0, 0, 0.2);
+            --fonte-principal: 'Poppins', sans-serif;
+            --fonte-secundaria: 'Roboto Mono', monospace;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body, html {
+            font-family: var(--fonte-principal);
+            line-height: 1.6;
+            color: var(--luz);
+            background-color: var(--escuro);
+        }
+        
+        .page-wrapper {
+            position: relative;
+            z-index: 1;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 40px;
+            background-color: rgba(20, 20, 20, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        h1, h2, h3 {
+            text-align: center;
+            color: var(--primario);
+            font-family: var(--fonte-secundaria);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+        }
+        h1 { font-size: 2.5rem; margin-bottom: 20px; }
+        h2 { font-size: 1.8rem; margin-top: 50px; margin-bottom: 20px; }
+        h3 { font-size: 1.5rem; margin-top: 30px; margin-bottom: 15px; color: var(--luz); text-align: left;}
+
+        .semana-container {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid rgba(255, 215, 0, 0.4);
+        }
+
+        /* --- ESTILOS PARA FILTROS --- */
+        #filtros-container {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        #filtro-busca-container { display: flex; justify-content: center; }
+        .search-wrapper { position: relative; width: 100%; max-width: 400px; }
+        .search-wrapper i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.4);
+            transition: color 0.3s;
+        }
+        #filtro-nome {
+            width: 100%;
+            padding: 10px 15px 10px 40px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            color: var(--luz);
+            font-family: var(--fonte-principal);
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+        #filtro-nome::placeholder { color: rgba(255, 255, 255, 0.4); }
+        #filtro-nome:focus {
+            outline: none;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: var(--primario);
+        }
+        #filtro-nome:focus + i { color: var(--primario); }
+        #filtro-cursos-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px 20px;
+            justify-content: center;
+            align-items: center;
+        }
+        .filtro-label {
+            display: block;
+            position: relative;
+            padding-left: 30px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            color: var(--luz);
+            user-select: none;
+            transition: color 0.3s;
+        }
+        .filtro-label:hover { color: var(--primario); }
+        .filtro-label input { position: absolute; opacity: 0; cursor: pointer; height: 0; width: 0; }
+        .checkmark {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            height: 20px;
+            width: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        .filtro-label:hover input ~ .checkmark { background-color: rgba(0, 255, 255, 0.2); }
+        .filtro-label input:checked ~ .checkmark { background-color: var(--acento); border-color: var(--acento); }
+        .checkmark:after { content: ""; position: absolute; display: none; }
+        .filtro-label input:checked ~ .checkmark:after { display: block; }
+        .filtro-label .checkmark:after {
+            left: 6px; top: 2px; width: 5px; height: 10px;
+            border: solid var(--escuro);
+            border-width: 0 3px 3px 0;
+            transform: rotate(45deg);
+        }
+        /* --- FIM DOS ESTILOS DE FILTRO --- */
+
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: 70px repeat(7, 1fr);
+            gap: 5px;
+            text-align: center;
+        }
+
+        .grid-header {
+            font-weight: 700;
+            font-family: var(--fonte-secundaria);
+            padding: 10px 5px;
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--primario);
+            border-radius: 6px;
+            text-transform: uppercase;
+            font-size: 0.8em;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        
+        .hour-label {
+            font-weight: 600;
+            font-size: 0.8em;
+            color: rgba(255, 255, 255, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .time-slot {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+            min-height: 40px;
+            transition: all 0.2s ease;
+            cursor: default; /* Padrão não clicável */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8em;
+            border: 1px solid transparent;
+            padding: 2px;
+            line-height: 1.2;
+        }
+
+        .time-slot.available, .time-slot.clickable-agendado {
+            cursor: pointer;
+        }
+
+        .time-slot.available:hover, .time-slot.clickable-agendado:hover {
+            background-color: rgba(255, 215, 0, 0.2);
+            transform: scale(1.03);
+            border-color: var(--primario);
+        }
+        
+        .time-slot.available {
+            background-color: rgba(0, 255, 255, 0.1);
+            font-weight: 600;
+            color: var(--acento);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+        }
+
+        .time-slot.agendado {
+            background-color: rgba(255, 99, 71, 0.2);
+            font-weight: 600;
+            color: var(--agendado);
+            border: 1px solid rgba(255, 99, 71, 0.4);
+        }
+        
+        .modal {
+            display: none; position: fixed; z-index: 1000; left: 0; top: 0;
+            width: 100%; height: 100%; overflow: auto;
+            background-color: rgba(0, 0, 0, 0.7);
+            align-items: center; justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+        .modal.visible { display: flex; }
+        .modal-content {
+            background-color: rgba(30, 30, 30, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            margin: auto; padding: 30px; border-radius: 12px;
+            width: 90%; max-width: 600px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+            position: relative; animation: fadeIn 0.3s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .close-button {
+            color: #aaa; position: absolute; top: 10px; right: 15px;
+            font-size: 28px; font-weight: bold; cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        .close-button:hover, .close-button:focus { color: #fff; }
+        
+        .modal-content h2 {
+            margin-top: 0; color: var(--primario); font-size: 1.5rem;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+            padding-bottom: 15px; margin-bottom: 20px;
+        }
+    
+        .modal-content ul { list-style: none; padding: 0; }
+        .modal-content li {
+            padding: 12px 5px; border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            align-items: center;
+            font-size: 1rem;
+        }
+        
+        .modal-content li:last-child { border-bottom: none; }
+        .teacher-info { display: flex; flex-direction: column; text-align: left; gap: 4px; }
+        .materia, .aula-info .materia { font-size: 0.85em; color: rgba(255, 255, 255, 0.6); }
+        .telefone { font-size: 0.9em; color: var(--luz); display: flex; align-items: center; gap: 8px; }
+        .telefone i { color: var(--acento); }
+        .teacher-rating { font-weight: 600; color: #fff; display: flex; align-items: center; justify-self: end;}
+        .teacher-rating i { color: var(--primario); margin-right: 5px; }
+
+        #modal-aulas-list li {
+            grid-template-columns: 1.5fr 1.5fr;
+        }
+        .aula-info .aluno { font-weight: 600; }
+        .aula-info .professor { font-size: 0.9em; color: var(--primario); }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8rem; } h2 { font-size: 1.5rem; } h3 {font-size: 1.3rem;}
+            .schedule-grid { grid-template-columns: 50px repeat(7, 1fr); }
+            .grid-header { font-size: 0.65em; padding: 8px 1px; word-break: break-all;}
+            .time-slot { min-height: 35px; font-size: 0.65em; }
+            #modal-aulas-list li, .modal-content li { grid-template-columns: 1fr; text-align: left; gap: 8px; }
+            .teacher-rating { justify-self: start; margin-top: 8px; }
+        }
+        
+        @media (max-width: 480px) {
+            body { padding: 5px; } .container { padding: 15px; }
+            h1 { font-size: 1.5rem; } h2 { font-size: 1.2rem; } h3 {font-size: 1.1rem;}
+            .schedule-grid { grid-template-columns: 40px repeat(7, 1fr); gap: 2px;}
+            .grid-header { font-size: 0.5em; }
+        }
+    </style>
+</head>
+<body>
+
+   <script>
+    // BANCO DE DADOS SIMULADO
+    // A disponibilidade de cada professor é gerada para 5 semanas, repetindo a mesma agenda semanal.
+    // O campo 'semana' vai de 1 a 5.
+    // O campo 'dia' segue a convenção: 1=Seg, 2=Ter, 3=Qua, 4=Qui, 5=Sex, 6=Sáb, 7=Dom.
+    const professores = [
+        {
+            id: 1,
+            nome: 'Lucas de Oliveira Lira',
+            materia: 'Programação/Matemática',
+            telefone: '94 9909-4731',
+            nota: 80,
+            disponibilidade: [
+                // Disponível todas as 5 semanas nos mesmos horários
+                ...[1,2,3,4,5].flatMap(semana => [
+                    { semana, dia: 1, inicio: 10, fim: 23 },
+                    { semana, dia: 2, inicio: 10, fim: 23 },
+                    { semana, dia: 3, inicio: 10, fim: 23 },
+                    { semana, dia: 4, inicio: 10, fim: 23 },
+                ])
+            ]
+        },
+        {
+            id: 2,
+            nome: 'Raquell Aparecida de Oliveira',
+            materia: 'Matemática',
+            telefone: '33 9949-7281',
+            nota: 60,
+            disponibilidade: [
+                ...[1,2,3,4,5].flatMap(semana => [
+                    { semana, dia: 1, inicio: 12.5, fim: 15.5 },
+                    { semana, dia: 2, inicio: 12.5, fim: 15.5 },
+                    { semana, dia: 3, inicio: 12.5, fim: 15.5 },
+                    { semana, dia: 4, inicio: 12.5, fim: 15.5 },
+                    { semana, dia: 5, inicio: 12.5, fim: 15.5 }
+                ])
+            ]
+        },
+        {
+            id: 3,
+            nome: 'Naty',
+            materia: 'História',
+            telefone: '44 9937-2161',
+            nota: 70,
+            disponibilidade: [
+                ...[1,2,3,4,5].flatMap(semana => [
+                    { semana, dia: 5, inicio: 18, fim: 20 },
+                    { semana, dia: 6, inicio: 7,  fim: 23 },
+                ])
+            ]
+        },
+        {
+            id: 4,
+            nome: 'Maria Fernanda Cequinel',
+            materia: 'Pedagogia',
+            telefone: '44 9765-3620',
+            nota: 70,
+            disponibilidade: [
+                ...[1,2,3,4,5].flatMap(semana => [
+                    { semana, dia: 1, inicio: 19, fim: 21 },
+                    { semana, dia: 2, inicio: 19, fim: 21 },
+                    { semana, dia: 3, inicio: 19, fim: 21 },
+                    { semana, dia: 4, inicio: 19, fim: 21 },
+                    { semana, dia: 5, inicio: 19, fim: 21 },
+                    { semana, dia: 6, inicio: 10.5, fim: 11.5 },
+                    { semana, dia: 6, inicio: 14, fim: 19.5 }
+                ])
+            ]
+        },
+        {
+            id: 5,
+            nome: 'Crislaine Cesario Salles',
+            materia: 'Pedagogia',
+            telefone: '44 9935-8621',
+            nota: 96,
+            disponibilidade: [
+                ...[1,2,3,4,5].flatMap(semana => [
+                    { semana, dia: 1, inicio: 8, fim: 12 },
+                    { semana, dia: 1, inicio: 19, fim: 22 },
+                    { semana, dia: 2, inicio: 8, fim: 12 },
+                    { semana, dia: 2, inicio: 19, fim: 22 },
+                    { semana, dia: 3, inicio: 8, fim: 12 },
+                    { semana, dia: 3, inicio: 19, fim: 22 },
+                    { semana, dia: 4, inicio: 8, fim: 12 },
+                    { semana, dia: 4, inicio: 19, fim: 22 },
+                    { semana, dia: 5, inicio: 8, fim: 12 },
+                    { semana, dia: 5, inicio: 19, fim: 22 },
+                    { semana, dia: 6, inicio: 7, fim: 23 },
+                    { semana, dia: 7, inicio: 7, fim: 23 }
+                ])
+            ]
+        },
+        {
+            id: 6,
+            nome: 'Welington da Cruz Tavares',
+            materia: 'Matemática',
+            telefone: '44 9947-3567',
+            nota: 78,
+            disponibilidade: [
+                ...[1,2,3,4,5].flatMap(semana => [
+                    { semana, dia: 1, inicio: 8, fim: 12 },
+                    { semana, dia: 4, inicio: 8, fim: 12 },
+                    { semana, dia: 2, inicio: 13, fim: 14 },
+                    { semana, dia: 3, inicio: 13, fim: 14 },
+                    { semana, dia: 5, inicio: 13, fim: 14 },
+                    { semana, dia: 2, inicio: 16.5, fim: 17.5 },
+                    { semana, dia: 3, inicio: 16.5, fim: 17.5 },
+                    { semana, dia: 5, inicio: 16.5, fim: 17.5 },
+                    { semana, dia: 6, inicio: 13, fim: 19 },
+                    { semana, dia: 7, inicio: 13, fim: 19 }
+                ])
+            ]
+        },
+        {
+            id: 7,
+            nome: 'Léonardo Nunes oliveira',
+            materia: 'História/Filosofia/Sociologia',
+            telefone: '44 9934-7003',
+            nota: 86,
+            disponibilidade: [
+                ...[1,2,3,4,5].flatMap(semana => [
+                    { semana, dia: 1, inicio: 8, fim: 11.5 },
+                    { semana, dia: 2, inicio: 8, fim: 11.5 },
+                    { semana, dia: 3, inicio: 8, fim: 11.5 },
+                    { semana, dia: 4, inicio: 8, fim: 11.5 },
+                    { semana, dia: 5, inicio: 8, fim: 11.5 },
+                    { semana, dia: 6, inicio: 8, fim: 21 }
+                ])
+            ]
+        },
+        // Alice ainda sem horários definidos
+        { id: 8, nome: 'Alice Martins', materia: 'Pedagogia', telefone: ' 44 9737-1552', nota: 0, disponibilidade: [] },
+        {
+            id: 9,
+            nome: 'Patrick Pacheco',
+            materia: 'Matemática',
+            telefone: '44 9820-3447',
+            nota: 8,
+            disponibilidade: [
+                ...[1,2,3,4,5].flatMap(semana => [
+                    { semana, dia: 6, inicio: 7, fim: 11.5 }
+                ])
+            ]
+        },
+        // Kelmara ainda sem horários definidos
+        { id: 10, nome: 'Kelmara Andrade', materia: 'Pedagogia', telefone: '44 9938-3477', nota: 7, disponibilidade: [] },
+        {
+            id: 11,
+            nome: 'Edwiges Franco',
+            materia: 'História',
+            telefone: '44 9823-9189',
+            nota: 82,
+            disponibilidade: [
+                ...[1,2,3,4,5].flatMap(semana => [
+                    { semana, dia: 1, inicio: 15, fim: 19 },
+                    { semana, dia: 2, inicio: 15, fim: 19 },
+                    { semana, dia: 3, inicio: 15, fim: 19 },
+                    { semana, dia: 4, inicio: 15, fim: 19 },
+                    { semana, dia: 5, inicio: 15, fim: 19 },
+                    { semana, dia: 6, inicio: 9, fim: 13 }
+                ])
+            ]
+        },
+        {
+            id: 12,
+            nome: 'Raissa Fernanda Melo Kuyava',
+            materia: 'EPA/Calculo',
+            telefone: '44 9744-4711',
+            nota: 65,
+            disponibilidade: [
+                ...[1,2,3,4,5].flatMap(semana => [
+                    { semana, dia: 1, inicio: 12.5, fim: 15 },
+                    { semana, dia: 1, inicio: 18, fim: 19 },
+                    { semana, dia: 2, inicio: 12.5, fim: 15 },
+                    { semana, dia: 2, inicio: 18, fim: 19 },
+                    { semana, dia: 3, inicio: 12.5, fim: 15 },
+                    { semana, dia: 3, inicio: 18, fim: 19 },
+                    { semana, dia: 4, inicio: 12.5, fim: 15 },
+                    { semana, dia: 4, inicio: 18, fim: 19 },
+                    { semana, dia: 5, inicio: 12.5, fim: 15 },
+                    { semana, dia: 5, inicio: 18, fim: 19 },
+                    { semana, dia: 6, inicio: 12.5, fim: 23 },
+                    { semana, dia: 7, inicio: 8, fim: 23 }
+                ])
+            ]
+        },
+        // Ana Carla (ID 13) ainda sem horários definidos
+        { id: 13, nome: 'Ana Carla de Oliveira Pereira', materia: 'Letras', telefone: '44 90000-0013', nota: 8, disponibilidade: [] },
+        // Ana Clara (ID 14) ainda sem horários definidos
+        { id: 14, nome: 'Ana Clara Leite', materia: 'Letras', telefone: '44 90000-0014', nota: 75, disponibilidade: [] },
+        {
+            id: 15,
+            nome: 'Lucas Desante',
+            materia: 'Matemática',
+            telefone: '44 8802-1661',
+            nota: 100,
+            disponibilidade: [
+                ...[1,2,3,4,5].flatMap(semana => [
+                    { semana, dia: 2, inicio: 14.5, fim: 18 },
+                    { semana, dia: 3, inicio: 19, fim: 22 },
+                    { semana, dia: 6, inicio: 8, fim: 22 },
+                    { semana, dia: 7, inicio: 8, fim: 22 }
+                ])
+            ]
+        },
+        {
+            id: 16,
+            nome: 'Karla de oliveira rodrigues',
+            materia: 'Pedagogia',
+            telefone: '44 99966-0068',
+            nota: 100,
+            disponibilidade: [
+                ...[1,2,3,4,5].flatMap(semana => [
+                    { semana, dia: 1, inicio: 17.5, fim: 18.5 },
+                    { semana, dia: 2, inicio: 17.5, fim: 18.5 },
+                    { semana, dia: 3, inicio: 17.5, fim: 18.5 },
+                    { semana, dia: 4, inicio: 17.5, fim: 18.5 },
+                    { semana, dia: 5, inicio: 17.5, fim: 18.5 },
+                    { semana, dia: 2, inicio: 11.5, fim: 14.5 },
+                    { semana, dia: 5, inicio: 11.5, fim: 14.5 }
+                ])
+            ]
+        },
+        {
+            id: 17,
+            nome: 'Rafael Kovalik',
+            materia: 'História',
+            telefone: '44 8841-5267',
+            nota: 100,
+            disponibilidade: [
+                ...[1,2,3,4,5].flatMap(semana => [
+                    { semana, dia: 1, inicio: 13.5, fim: 17.5 },
+                    { semana, dia: 2, inicio: 13.5, fim: 17.5 },
+                    { semana, dia: 3, inicio: 13.5, fim: 17.5 },
+                    { semana, dia: 4, inicio: 13.5, fim: 17.5 },
+                    { semana, dia: 5, inicio: 13.5, fim: 17.5 },
+                    { semana, dia: 6, inicio: 13.5, fim: 17.5 },
+                    { semana, dia: 7, inicio: 13.5, fim: 17.5 }
+                ])
+            ]
+        },
+        {
+            id: 18,
+            nome: 'Beatriz Vaz de Miranda',
+            materia: 'Matemática',
+            telefone: '44 9951-0222',
+            nota: 100,
+            disponibilidade: [
+                ...[1,2,3,4,5].flatMap(semana => [
+                    { semana, dia: 1, inicio: 8, fim: 12 },
+                    { semana, dia: 2, inicio: 8, fim: 12 },
+                    { semana, dia: 3, inicio: 8, fim: 12 },
+                    { semana, dia: 4, inicio: 8, fim: 12 },
+                    { semana, dia: 5, inicio: 8, fim: 12 }
+                ])
+            ]
+        },
+        {
+            id: 19,
+            nome: 'Carina Cambuí',
+            materia: 'História',
+            telefone: '44 9804-5461',
+            nota: 0,
+            disponibilidade: [
+                ...[1,2,3,4,5].flatMap(semana => [
+                    { semana, dia: 2, inicio: 8, fim: 11.5 },
+                    { semana, dia: 3, inicio: 8, fim: 11.5 },
+                    { semana, dia: 4, inicio: 8, fim: 11.5 },
+                    { semana, dia: 5, inicio: 8, fim: 11.5 }
+                ])
+            ]
+        },
+        {
+            id: 20,
+            nome: 'Fabrício',
+            materia: 'Matemática',
+            telefone: '19 98177-2859',
+            nota: 100,
+            disponibilidade: [
+                ...[1,2,3,4,5].flatMap(semana => [
+                    { semana, dia: 1, inicio: 14, fim: 18 },
+                    { semana, dia: 2, inicio: 14, fim: 18 },
+                    { semana, dia: 4, inicio: 14, fim: 18 }
+                ])
+            ]
+        },
+        {
+            id: 21,
+            nome: 'Gabrielly Martins Davila',
+            materia: 'Matemática',
+            telefone: '44 9988-2735',
+            nota:100,
+            disponibilidade: [
+                ...[1,2,3,4,5].flatMap(semana => [
+                    { semana, dia: 1, inicio: 13, fim: 18 },
+                    { semana, dia: 2, inicio: 13, fim: 18 },
+                    { semana, dia: 4, inicio: 13, fim: 18 }
+                ])
+            ]
+        },
+        {
+            id: 22,
+            nome: 'Helena Tramontini Marques',
+            materia: 'Letras',
+            telefone: '44 9725-6389',
+            nota: 100,
+            disponibilidade: [
+                ...[1,2,3,4,5].flatMap(semana => [
+                    { semana, dia: 1, inicio: 17.5, fim: 19 },
+                    { semana, dia: 2, inicio: 17.5, fim: 19 },
+                    { semana, dia: 3, inicio: 17.5, fim: 19 },
+                    { semana, dia: 4, inicio: 17.5, fim: 19 },
+                    { semana, dia: 5, inicio: 17.5, fim: 19 },
+                    { semana, dia: 6, inicio: 13.5, fim: 17 }
+                ])
+            ]
+        },
+        {
+            id: 23,
+            nome: 'Kauã Alexander',
+            materia: 'Matemática',
+            telefone: '44 9810-3465',
+            nota: 100,
+            disponibilidade: [
+                ...[1,2,3,4,5].flatMap(semana => [
+                    { semana, dia: 2, inicio: 13, fim: 17.5 },
+                    { semana, dia: 3, inicio: 13, fim: 15 },
+                    { semana, dia: 5, inicio: 8, fim: 12 },
+                    { semana, dia: 6, inicio: 13, fim: 17.5 }
+                ])
+            ]
+        },
+        {
+            id: 24,
+            nome: 'Leandro Yudi',
+            materia: 'Geografia',
+            telefone: '44 9732-9717',
+            nota: 100,
+            disponibilidade: [
+                ...[1,2,3,4,5].flatMap(semana => [
+                    { semana, dia: 1, inicio: 8, fim: 10 },
+                    { semana, dia: 1, inicio: 13, fim: 17 },
+                    { semana, dia: 2, inicio: 8, fim: 10 },
+                    { semana, dia: 2, inicio: 13, fim: 17 },
+                    { semana, dia: 4, inicio: 8, fim: 10 },
+                    { semana, dia: 4, inicio: 13, fim: 17 }
+                ])
+            ]
+        },
+        {
+            id: 25,
+            nome: 'Rafaela Karen Scheffer',
+            materia: 'História',
+            telefone: '44 9167-8568',
+            nota: 100,
+            disponibilidade: [
+                ...[1,2,3,4,5].flatMap(semana => [
+                    { semana, dia: 2, inicio: 19, fim: 23 },
+                    { semana, dia: 3, inicio: 7, fim: 12 },
+                    { semana, dia: 3, inicio: 20.5, fim: 23 },
+                    { semana, dia: 4, inicio: 7, fim: 12 },
+                    { semana, dia: 4, inicio: 20, fim: 22 },
+                    { semana, dia: 5, inicio: 7, fim: 12 },
+                    { semana, dia: 5, inicio: 19, fim: 22 },
+                    { semana, dia: 7, inicio: 9, fim: 12 },
+                    { semana, dia: 7, inicio: 14, fim: 17 }
+                ])
+            ]
+        },
+        {
+            id: 26,
+            nome: 'Rita de Cássia Duarte',
+            materia: 'Matemática',
+            telefone: '44 9809-3474',
+            nota: 100,
+            disponibilidade: [
+                ...[1,2,3,4,5].flatMap(semana => [
+                    { semana, dia: 5, inicio: 8, fim: 12 }
+                ])
+            ]
+        },
+        {
+            id: 27,
+            nome: 'Rodrigo Eber Almeida',
+            materia: 'Matemática',
+            telefone: '44 9734-6683',
+            nota: 100,
+            disponibilidade: [
+                ...[1,2,3,4,5].flatMap(semana => [
+                    { semana, dia: 3, inicio: 13, fim: 17.5 }
+                ])
+            ]
+        },
+        {
+            id: 28,
+            nome: 'Valéria Deparis do Amaral',
+            materia: 'Pedagogia',
+            telefone: '46 9985-9160',
+            nota: 100,
+            disponibilidade: [
+                ...[1,2,3,4,5].flatMap(semana => [
+                    { semana, dia: 1, inicio: 16.5, fim: 18.5 },
+                    { semana, dia: 2, inicio: 16.5, fim: 18.5 },
+                    { semana, dia: 3, inicio: 16.5, fim: 18.5 },
+                    { semana, dia: 4, inicio: 16.5, fim: 18.5 },
+                    { semana, dia: 5, inicio: 16.5, fim: 18.5 }
+                ])
+            ]
+        },
+        {
+            id: 29,
+            nome: 'Samuel Apolinario',
+            materia: 'Matemática',
+            telefone: '44 99879-6493',
+            nota: 100,
+            disponibilidade: [
+                ...[1,2,3,4,5].flatMap(semana => [
+                    { semana, dia: 1, inicio: 16.5, fim: 22.0 },
+                    { semana, dia: 3, inicio: 16.5, fim: 17.50 },
+                    { semana, dia: 4, inicio: 9.0, fim: 12.0 },
+                    { semana, dia: 5, inicio: 13.5, fim: 18.0 }
+                ])
+            ]
+        },
+        {
+            id: 30,
+            nome: 'Ana Carla de Oliveira',
+            materia: 'Pedagogia',
+            telefone: '44 99834-3882',
+            nota: 80,
+            disponibilidade: [
+                ...[1,2,3,4,5].flatMap(semana => [
+                    { semana, dia: 1, inicio: 8.0, fim: 11.0 },
+                    { semana, dia: 3, inicio: 8.0, fim: 9.0 },
+                    { semana, dia: 4, inicio: 8.0, fim: 9.0 },
+                    { semana, dia: 5, inicio: 8.0, fim: 11.0 },
+                    { semana, dia: 6, inicio: 8.0, fim: 18.0 }
+                ])
+            ]
+        }
+    ];
+
+    // BANCO DE DADOS DE AULAS AGENDADAS
+    // Para agendar uma aula, especifique a 'semana' (de 1 a 5) além do dia e horário.
+    const aulasAgendadas = [
+    // --- SEMANA 2 (08/06 a 15/06) ---
+    { aluno: 'Stella-- João', professorId: 1, materia: 'Física', semana: 2, dia: 4, inicio: 16, fim: 17 },
+    { aluno: 'Stella-- João', professorId: 1, materia: 'Física', semana: 2, dia: 4, inicio: 16, fim: 17 },
+
+    // --- SEMANA 3 (16/06 a 22/06) ---
+    { aluno: 'Claudianne Souza', professorId: 12, materia: 'Cálculo', semana: 3, dia: 3, inicio: 14.5, fim: 15.5 },
+    { aluno: 'Adriana (mãe)', professorId: 1, materia: 'Matemática', semana: 3, dia: 4, inicio: 15, fim: 16 },
+    { aluno: 'Adriana (mãe)', professorId: 1, materia: 'Matemática', semana: 3, dia: 4, inicio: 16, fim: 17 },
+    { aluno: 'Allan', professorId: 26, materia: 'Matemática', semana: 3, dia: 5, inicio: 9, fim: 10 },
+    { aluno: 'Adriana (mãe)', professorId: 1, materia: 'Matemática', semana: 3, dia: 5, inicio: 16.5, fim: 17.5 },
+    { aluno: 'Adriana (mãe)', professorId: 1, materia: 'Matemática', semana: 3, dia: 5, inicio: 17.5, fim: 18.5 },
+    { aluno: 'Alexandre', professorId: 25, materia: 'História', semana: 3, dia: 5, inicio: 20, fim: 21 },
+    { aluno: 'Allan', professorId: 22, materia: 'Letras', semana: 3, dia: 6, inicio: 14, fim: 15 },
+    { aluno: 'Allan', professorId: 22, materia: 'Letras', semana: 3, dia: 6, inicio: 15, fim: 16 },
+    { aluno: 'Adriana (mãe)', professorId: 1, materia: 'Matemática', semana: 3, dia: 6, inicio: 18, fim: 19 },
+    { aluno: 'Adriana (mãe)', professorId: 1, materia: 'Matemática', semana: 3, dia: 6, inicio: 19, fim: 20 },
+
+    // --- SEMANA 4 (23/06 a 30/06) ---
+    { aluno: 'Leda / Miguel gomes', professorId: 6, materia: 'Matemática', semana: 4, dia: 1, inicio: 10, fim: 11 },
+    { aluno: 'Regina Aparecida Da Silva', professorId: 22, materia: 'Letras', semana: 4, dia: 2, inicio: 17.5, fim: 18.5 },
+    { aluno: 'Claudianne Souza', professorId: 12, materia: 'Cálculo', semana: 4, dia: 3, inicio: 9, fim: 10 },
+    { aluno: 'Claudianne Souza', professorId: 12, materia: 'Cálculo', semana: 4, dia: 3, inicio: 10, fim: 11 },
+    { aluno: 'Allan', professorId: 26, materia: 'Matemática', semana: 4, dia: 6, inicio: 14, fim: 15 },
+    { aluno: 'Allan', professorId: 26, materia: 'Matemática', semana: 4, dia: 6, inicio: 15, fim: 16 }
+];
+</script>
+    
+    <div class="page-wrapper">
+        <div class="container">
+            <h1>Gestão de Horários - 5 Semanas</h1>
+
+            <div id="filtros-container">
+                <div id="filtro-busca-container">
+                    <div class="search-wrapper">
+                        <input type="text" id="filtro-nome" placeholder="Filtrar por nome do professor...">
+                        <i class="fas fa-search"></i>
+                    </div>
+                </div>
+                <div id="filtro-cursos-container"></div>
+            </div>
+            
+            <div id="schedules-wrapper">
+                </div>
+
+        </div>
+    </div>
+
+    <div id="modal-professores" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2 id="modal-professores-title">Professores Disponíveis</h2>
+            <ul id="modal-professores-list"></ul>
+        </div>
+    </div>
+
+    <div id="modal-aulas" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2 id="modal-aulas-title">Aulas no Horário</h2>
+            <ul id="modal-aulas-list"></ul>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            
+            // --- ELEMENTOS DO DOM ---
+            const schedulesWrapper = document.getElementById('schedules-wrapper');
+            const filtroCursosContainer = document.getElementById('filtro-cursos-container');
+            const filtroNomeInput = document.getElementById('filtro-nome');
+            const modalProfessores = document.getElementById('modal-professores');
+            const modalProfessoresTitle = document.getElementById('modal-professores-title');
+            const modalProfessoresList = document.getElementById('modal-professores-list');
+            const closeModalProfessores = modalProfessores.querySelector('.close-button');
+            const modalAulas = document.getElementById('modal-aulas');
+            const modalAulasTitle = document.getElementById('modal-aulas-title');
+            const modalAulasList = document.getElementById('modal-aulas-list');
+            const closeModalAulas = modalAulas.querySelector('.close-button');
+
+            // --- CONSTANTES E VARIÁVEIS GLOBAIS ---
+            const diasDaSemana = ["", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb", "Dom"];
+            const timeSlotsDoDia = [];
+            for(let i = 7; i <= 23; i += 0.5) { timeSlotsDoDia.push(i); }
+            const totalSemanas = 5;
+
+            // --- FUNÇÕES DE RENDERIZAÇÃO ---
+            function formatarHora(horaDecimal) {
+                const hora = Math.floor(horaDecimal);
+                const minutos = (horaDecimal % 1) * 60;
+                return `${String(hora).padStart(2, '0')}:${String(minutos).padStart(2, '0')}`;
+            }
+
+            function criarEstruturaBaseGrade(gridElement, semana) {
+                gridElement.innerHTML = '';
+                diasDaSemana.forEach(dia => {
+                    const headerCell = document.createElement('div');
+                    headerCell.classList.add('grid-header');
+                    headerCell.textContent = dia;
+                    gridElement.appendChild(headerCell);
+                });
+
+                timeSlotsDoDia.forEach(hora => {
+                    const hourLabel = document.createElement('div');
+                    hourLabel.classList.add('hour-label');
+                    hourLabel.textContent = formatarHora(hora);
+                    gridElement.appendChild(hourLabel);
+                    for (let dia = 1; dia <= 7; dia++) {
+                        const timeSlot = document.createElement('div');
+                        timeSlot.classList.add('time-slot');
+                        timeSlot.dataset.semana = semana;
+                        timeSlot.dataset.day = dia;
+                        timeSlot.dataset.hour = hora;
+                        timeSlot.textContent = '—';
+                        gridElement.appendChild(timeSlot);
+                    }
+                });
+            }
+
+            function criarEstruturaSemanas() {
+                for (let i = 1; i <= totalSemanas; i++) {
+                    const semanaContainer = document.createElement('div');
+                    semanaContainer.className = 'semana-container';
+                    semanaContainer.innerHTML = `<h2>Semana ${i}</h2>`;
+                    
+                    const quadros = [
+                        { id: `grid-professores-total-${i}`, titulo: 'Disponibilidade Total dos Professores' },
+                        { id: `grid-aulas-agendadas-${i}`, titulo: 'Aulas Agendadas (Alunos)' },
+                        { id: `grid-disponiveis-real-${i}`, titulo: 'Horários Realmente Disponíveis' }
+                    ];
+
+                    quadros.forEach(quadro => {
+                        const divQuadro = document.createElement('div');
+                        divQuadro.innerHTML = `<h3>${quadro.titulo}</h3>`;
+                        const grid = document.createElement('div');
+                        grid.id = quadro.id;
+                        grid.className = 'schedule-grid';
+                        divQuadro.appendChild(grid);
+                        semanaContainer.appendChild(divQuadro);
+                    });
+                    
+                    schedulesWrapper.appendChild(semanaContainer);
+                }
+            }
+            
+            // --- FUNÇÕES DE ATUALIZAÇÃO DE GRADES (POR SEMANA) ---
+            function atualizarTodasAsGrades() {
+                const cursosSelecionados = Array.from(filtroCursosContainer.querySelectorAll('.filtro-curso:checked')).map(cb => cb.value);
+                const termoBusca = filtroNomeInput.value.toLowerCase().trim();
+
+                const professoresFiltrados = professores.filter(p => {
+                    const nomeCorresponde = termoBusca === '' || p.nome.toLowerCase().includes(termoBusca);
+                    const cursoCorresponde = cursosSelecionados.length === 0 || (p.materia && p.materia.split('/').some(m => cursosSelecionados.includes(m.trim())));
+                    return nomeCorresponde && cursoCorresponde;
+                });
+                
+                for (let semana = 1; semana <= totalSemanas; semana++) {
+                    gerarGradeProfessoresTotal(semana, professoresFiltrados);
+                    gerarGradeAulasAgendadas(semana, aulasAgendadas, professoresFiltrados);
+                    gerarGradeDisponiveisReal(semana, professoresFiltrados, aulasAgendadas);
+                }
+            }
+            
+            function gerarGradeProfessoresTotal(semana, professoresFiltrados) {
+                const grid = document.getElementById(`grid-professores-total-${semana}`);
+                grid.querySelectorAll('.time-slot').forEach(slot => {
+                    const dia = parseInt(slot.dataset.day);
+                    const hora = parseFloat(slot.dataset.hour);
+                    const profsDisponiveis = professoresFiltrados.filter(p => p.disponibilidade.some(h => h.semana === semana && h.dia === dia && hora >= h.inicio && hora < h.fim));
+                    
+                    slot.className = 'time-slot';
+                    if (profsDisponiveis.length > 0) {
+                        slot.classList.add('available');
+                        slot.textContent = `${profsDisponiveis.length} disp.`;
+                    } else {
+                        slot.textContent = '—';
+                    }
+                });
+            }
+
+            function gerarGradeAulasAgendadas(semana, todasAsAulas, professoresFiltrados) {
+                const grid = document.getElementById(`grid-aulas-agendadas-${semana}`);
+                grid.querySelectorAll('.time-slot').forEach(slot => {
+                    slot.className = 'time-slot';
+                    slot.innerHTML = '—';
+                    
+                    const dia = parseInt(slot.dataset.day);
+                    const hora = parseFloat(slot.dataset.hour);
+                    const idsProfessoresFiltrados = professoresFiltrados.map(p => p.id);
+                    
+                    const aulasNoSlot = todasAsAulas.filter(a => 
+                        a.semana === semana && a.dia === dia && hora >= a.inicio && hora < a.fim && idsProfessoresFiltrados.includes(a.professorId)
+                    );
+
+                    if (aulasNoSlot.length > 0) {
+                        slot.classList.add('agendado', 'clickable-agendado');
+                        slot.textContent = `${aulasNoSlot.length} Aula(s)`;
+                    }
+                 });
+            }
+
+            function gerarGradeDisponiveisReal(semana, professoresFiltrados, todasAsAulas) {
+                const grid = document.getElementById(`grid-disponiveis-real-${semana}`);
+                grid.querySelectorAll('.time-slot').forEach(slot => {
+                    const dia = parseInt(slot.dataset.day);
+                    const hora = parseFloat(slot.dataset.hour);
+
+                    const profsTeoricamenteDisponiveis = professoresFiltrados.filter(p => 
+                        p.disponibilidade.some(h => h.semana === semana && h.dia === dia && hora >= h.inicio && hora < h.fim)
+                    );
+
+                    if (profsTeoricamenteDisponiveis.length === 0) {
+                        slot.className = 'time-slot';
+                        slot.textContent = '—';
+                        return;
+                    }
+
+                    const idsProfessoresOcupados = todasAsAulas
+                        .filter(aula => aula.semana === semana && aula.dia === dia && hora >= aula.inicio && hora < aula.fim)
+                        .map(aula => aula.professorId);
+
+                    const profsRealmenteDisponiveis = profsTeoricamenteDisponiveis.filter(p => !idsProfessoresOcupados.includes(p.id));
+
+                    if (profsRealmenteDisponiveis.length > 0) {
+                        slot.className = 'time-slot available';
+                        slot.textContent = `${profsRealmenteDisponiveis.length} disp.`;
+                    } else {
+                        slot.className = 'time-slot agendado';
+                        slot.textContent = 'Ocupado';
+                    }
+                });
+            }
+
+            // --- FUNÇÕES DO MODAL ---
+            function abrirModalProfessores(semana, dia, hora) {
+                modalProfessoresTitle.textContent = `Semana ${semana} - ${diasDaSemana[dia]} às ${formatarHora(hora)}`;
+                modalProfessoresList.innerHTML = '';
+                
+                const cursosSelecionados = Array.from(filtroCursosContainer.querySelectorAll('.filtro-curso:checked')).map(cb => cb.value);
+                const termoBusca = filtroNomeInput.value.toLowerCase().trim();
+
+                const profsDisponiveis = professores.filter(p => {
+                    const disponivelNoHorario = p.disponibilidade.some(h => h.semana === semana && h.dia === dia && hora >= h.inicio && hora < h.fim);
+                    if (!disponivelNoHorario) return false;
+                    const nomeCorresponde = termoBusca === '' || p.nome.toLowerCase().includes(termoBusca);
+                    const cursoCorresponde = cursosSelecionados.length === 0 || (p.materia && p.materia.split('/').some(m => cursosSelecionados.includes(m.trim())));
+                    return nomeCorresponde && cursoCorresponde;
+                });
+
+                const profsComAulaNoHorario = aulasAgendadas
+                    .filter(a => a.semana === semana && a.dia === dia && hora >= a.inicio && hora < a.fim)
+                    .map(a => a.professorId);
+                
+                const profsRealmenteDisponiveis = profsDisponiveis.filter(p => !profsComAulaNoHorario.includes(p.id));
+                profsRealmenteDisponiveis.sort((a, b) => b.nota - a.nota);
+
+                if (profsRealmenteDisponiveis.length > 0) {
+                    profsRealmenteDisponiveis.forEach(prof => {
+                        const li = document.createElement('li');
+                        li.innerHTML = `
+                            <div class="teacher-info"><strong>${prof.nome}</strong><span class="materia">${prof.materia}</span><span class="telefone"><i class="fas fa-phone"></i> ${prof.telefone}</span></div>
+                            <div class="teacher-rating"><i class="fas fa-star"></i> <span>${prof.nota.toFixed(1)}</span></div>`;
+                        modalProfessoresList.appendChild(li);
+                       });
+                } else {
+                    modalProfessoresList.innerHTML = '<li>Nenhum professor disponível para os filtros atuais neste horário.</li>';
+                }
+                modalProfessores.classList.add('visible');
+            }
+
+            function abrirModalAulas(semana, dia, hora) {
+                modalAulasTitle.textContent = `Aulas (Semana ${semana} - ${diasDaSemana[dia]} às ${formatarHora(hora)})`;
+                modalAulasList.innerHTML = '';
+
+                const cursosSelecionados = Array.from(filtroCursosContainer.querySelectorAll('.filtro-curso:checked')).map(cb => cb.value);
+                const termoBusca = filtroNomeInput.value.toLowerCase().trim();
+
+                const aulasNoSlot = aulasAgendadas.filter(a => {
+                    const timeMatch = a.semana === semana && a.dia === dia && hora >= a.inicio && hora < a.fim;
+                    if (!timeMatch) return false;
+                    const professorDaAula = professores.find(p => p.id === a.professorId);
+                    if (!professorDaAula) return false;
+                    const nomeCorresponde = termoBusca === '' || professorDaAula.nome.toLowerCase().includes(termoBusca);
+                    const cursoCorresponde = cursosSelecionados.length === 0 || (professorDaAula.materia && professorDaAula.materia.split('/').some(m => cursosSelecionados.includes(m.trim())));
+                    return nomeCorresponde && cursoCorresponde;
+                });
+                
+                if (aulasNoSlot.length > 0) {
+                    aulasNoSlot.forEach(aula => {
+                        const professor = professores.find(p => p.id === aula.professorId) || { nome: 'Não encontrado' };
+                        const li = document.createElement('li');
+                        li.innerHTML = `
+                            <div class="aula-info"><strong class="aluno">${aula.aluno}</strong><div class="materia">${aula.materia}</div></div>
+                            <div class="aula-info"><div class="professor">${professor.nome}</div></div>`;
+                        modalAulasList.appendChild(li);
+                    });
+                } else {
+                    modalAulasList.innerHTML = '<li>Nenhuma aula encontrada para os filtros atuais neste horário.</li>';
+                }
+                modalAulas.classList.add('visible');
+            }
+            
+            function fecharModais() { 
+                modalProfessores.classList.remove('visible');
+                modalAulas.classList.remove('visible');
+            }
+            
+            // --- INICIALIZAÇÃO E EVENT LISTENERS ---
+            function gerarFiltrosDeCurso() {
+                const todosOsCursos = new Set();
+                professores.forEach(prof => {
+                    if (prof.materia) {
+                        prof.materia.split('/').forEach(curso => todosOsCursos.add(curso.trim()));
+                    }
+                });
+                filtroCursosContainer.innerHTML = '';
+                [...todosOsCursos].sort().forEach(curso => {
+                    const label = document.createElement('label');
+                    label.className = 'filtro-label';
+                    label.innerHTML = `${curso} <input type="checkbox" class="filtro-curso" value="${curso}"><span class="checkmark"></span>`;
+                    filtroCursosContainer.appendChild(label);
+                });
+                filtroCursosContainer.addEventListener('change', atualizarTodasAsGrades);
+            }
+
+            // --- INICIALIZAÇÃO PRINCIPAL ---
+            criarEstruturaSemanas();
+            for (let i = 1; i <= totalSemanas; i++) {
+                criarEstruturaBaseGrade(document.getElementById(`grid-professores-total-${i}`), i);
+                criarEstruturaBaseGrade(document.getElementById(`grid-aulas-agendadas-${i}`), i);
+                criarEstruturaBaseGrade(document.getElementById(`grid-disponiveis-real-${i}`), i);
+            }
+            gerarFiltrosDeCurso(); 
+            atualizarTodasAsGrades();
+
+            // --- EVENT LISTENERS GLOBAIS ---
+            filtroNomeInput.addEventListener('input', atualizarTodasAsGrades);
+            
+            schedulesWrapper.addEventListener('click', function(event) {
+                const target = event.target.closest('.time-slot');
+                if (!target) return;
+
+                const semana = parseInt(target.dataset.semana);
+                const dia = parseInt(target.dataset.day);
+                const hora = parseFloat(target.dataset.hour);
+                
+                if (target.classList.contains('available')) {
+                    abrirModalProfessores(semana, dia, hora);
+                } else if (target.classList.contains('clickable-agendado')) {
+                    abrirModalAulas(semana, dia, hora);
+                }
+            });
+            
+            closeModalProfessores.addEventListener('click', fecharModais);
+            closeModalAulas.addEventListener('click', fecharModais);
+            modalProfessores.addEventListener('click', e => { if (e.target === modalProfessores) fecharModais(); });
+            modalAulas.addEventListener('click', e => { if (e.target === modalAulas) fecharModais(); });
+        });
+    </script>
+
+</body>
+</html>
