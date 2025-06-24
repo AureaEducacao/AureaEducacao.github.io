@@ -1,1013 +1,1014 @@
+<!DOCTYPE html>Add commentMore actions
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Áurea - Horários Disponíveis</title>
-    <meta name="description" content="Consulte os horários disponíveis para aulas particulares.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet">
-    <!-- CORREÇÃO: O atributo 'xintegrity' foi corrigido para 'integrity' -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-        :root {
-            --primario: #FFD700;
-            --acento: #00FFFF;
-            --luz: #F0FFF0;
-            --escuro: #0A0A0A;
-            --sombra: 0 8px 12px rgba(0, 0, 0, 0.2);
-            --fonte-principal: 'Poppins', sans-serif;
-            --fonte-secundaria: 'Roboto Mono', monospace;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Áurea - Horários Disponíveis</title>
+<meta name="description" content="Consulte os horários disponíveis para aulas particulares.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet">
+<!-- CORREÇÃO: O atributo 'xintegrity' foi corrigido para 'integrity' -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style>
+:root {
+--primario: #FFD700;
+--acento: #00FFFF;
+--luz: #F0FFF0;
+--escuro: #0A0A0A;
+--sombra: 0 8px 12px rgba(0, 0, 0, 0.2);
+--fonte-principal: 'Poppins', sans-serif;
+--fonte-secundaria: 'Roboto Mono', monospace;
+}
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body, html {
-            font-family: var(--fonte-principal);
-            line-height: 1.6;
-            color: var(--luz);
-            background-color: var(--escuro);
-            overflow-x: hidden;
-        }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body, html {
+font-family: var(--fonte-principal);
+line-height: 1.6;
+color: var(--luz);
+background-color: var(--escuro);
+overflow-x: hidden;
+}
 
-        #particles-js {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: 0;
-        }
-        
-        .page-wrapper {
-            position: relative;
-            z-index: 1;
-            padding: 40px 20px;
-        }
+#particles-js {
+position: fixed;
+width: 100%;
+height: 100%;
+top: 0;
+left: 0;
+z-index: 0;
+}
 
-        .container {
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 40px;
-            background-color: rgba(20, 20, 20, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-        }
+.page-wrapper {
+position: relative;
+z-index: 1;
+padding: 40px 20px;
+}
 
-        h1 {
-            text-align: center;
-            color: var(--primario);
-            font-family: var(--fonte-secundaria);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 20px;
-            font-size: 2.5rem;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
-        }
+.container {
+max-width: 1300px;
+margin: 0 auto;
+padding: 40px;
+background-color: rgba(20, 20, 20, 0.6);
+border: 1px solid rgba(255, 255, 255, 0.1);
+border-radius: 12px;
+box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+backdrop-filter: blur(10px);
+-webkit-backdrop-filter: blur(10px);
+}
 
-        /* --- ESTILOS PARA FILTROS --- */
-        #filtros-container {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-            margin-bottom: 25px;
-            padding-bottom: 25px;
-            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
-        }
+h1 {
+text-align: center;
+color: var(--primario);
+font-family: var(--fonte-secundaria);
+text-transform: uppercase;
+letter-spacing: 0.1em;
+margin-bottom: 20px;
+font-size: 2.5rem;
+text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+}
 
-        #filtro-busca-container {
-            display: flex;
-            justify-content: center;
-        }
+/* --- ESTILOS PARA FILTROS --- */
+#filtros-container {
+display: flex;
+flex-direction: column;
+gap: 25px;
+margin-bottom: 25px;
+padding-bottom: 25px;
+border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+}
 
-        .search-wrapper {
-            position: relative;
-            width: 100%;
-            max-width: 400px;
-        }
+#filtro-busca-container {
+display: flex;
+justify-content: center;
+}
 
-        .search-wrapper i {
-            position: absolute;
-            left: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: rgba(255, 255, 255, 0.4);
-            transition: color 0.3s;
-        }
+.search-wrapper {
+position: relative;
+width: 100%;
+max-width: 400px;
+}
 
-        #filtro-nome {
-            width: 100%;
-            padding: 10px 15px 10px 40px;
-            background-color: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 6px;
-            color: var(--luz);
-            font-family: var(--fonte-principal);
-            font-size: 0.9rem;
-            transition: all 0.3s;
-        }
+.search-wrapper i {
+position: absolute;
+left: 15px;
+top: 50%;
+transform: translateY(-50%);
+color: rgba(255, 255, 255, 0.4);
+transition: color 0.3s;
+}
 
-        #filtro-nome::placeholder {
-            color: rgba(255, 255, 255, 0.4);
-        }
+#filtro-nome {
+width: 100%;
+padding: 10px 15px 10px 40px;
+background-color: rgba(255, 255, 255, 0.05);
+border: 1px solid rgba(255, 255, 255, 0.2);
+border-radius: 6px;
+color: var(--luz);
+font-family: var(--fonte-principal);
+font-size: 0.9rem;
+transition: all 0.3s;
+}
 
-        #filtro-nome:focus {
-            outline: none;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-color: var(--primario);
-        }
+#filtro-nome::placeholder {
+color: rgba(255, 255, 255, 0.4);
+}
 
-        #filtro-nome:focus + i {
-            color: var(--primario);
-        }
-        
-        #filtro-cursos-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px 20px;
-            justify-content: center;
-            align-items: center;
-        }
+#filtro-nome:focus {
+outline: none;
+background-color: rgba(255, 255, 255, 0.1);
+border-color: var(--primario);
+}
 
-        .filtro-label {
-            display: block;
-            position: relative;
-            padding-left: 30px;
-            cursor: pointer;
-            font-size: 0.95rem;
-            color: var(--luz);
-            user-select: none;
-            transition: color 0.3s;
-        }
+#filtro-nome:focus + i {
+color: var(--primario);
+}
 
-        .filtro-label:hover {
-            color: var(--primario);
-        }
+#filtro-cursos-container {
+display: flex;
+flex-wrap: wrap;
+gap: 15px 20px;
+justify-content: center;
+align-items: center;
+}
 
-        .filtro-label input {
-            position: absolute;
-            opacity: 0;
-            cursor: pointer;
-            height: 0;
-            width: 0;
-        }
+.filtro-label {
+display: block;
+position: relative;
+padding-left: 30px;
+cursor: pointer;
+font-size: 0.95rem;
+color: var(--luz);
+user-select: none;
+transition: color 0.3s;
+}
 
-        .checkmark {
-            position: absolute;
-            top: 50%;
-            left: 0;
-            transform: translateY(-50%);
-            height: 20px;
-            width: 20px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 4px;
-            transition: all 0.3s;
-        }
+.filtro-label:hover {
+color: var(--primario);
+}
 
-        .filtro-label:hover input ~ .checkmark {
-            background-color: rgba(0, 255, 255, 0.2);
-        }
+.filtro-label input {
+position: absolute;
+opacity: 0;
+cursor: pointer;
+height: 0;
+width: 0;
+}
 
-        .filtro-label input:checked ~ .checkmark {
-            background-color: var(--acento);
-            border-color: var(--acento);
-        }
+.checkmark {
+position: absolute;
+top: 50%;
+left: 0;
+transform: translateY(-50%);
+height: 20px;
+width: 20px;
+background-color: rgba(255, 255, 255, 0.1);
+border: 1px solid rgba(255, 255, 255, 0.3);
+border-radius: 4px;
+transition: all 0.3s;
+}
 
-        .checkmark:after {
-            content: "";
-            position: absolute;
-            display: none;
-        }
+.filtro-label:hover input ~ .checkmark {
+background-color: rgba(0, 255, 255, 0.2);
+}
 
-        .filtro-label input:checked ~ .checkmark:after {
-            display: block;
-        }
+.filtro-label input:checked ~ .checkmark {
+background-color: var(--acento);
+border-color: var(--acento);
+}
 
-        .filtro-label .checkmark:after {
-            left: 6px;
-            top: 2px;
-            width: 5px;
-            height: 10px;
-            border: solid var(--escuro);
-            border-width: 0 3px 3px 0;
-            transform: rotate(45deg);
-        }
-        /* --- FIM DOS ESTILOS DE FILTRO --- */
+.checkmark:after {
+content: "";
+position: absolute;
+display: none;
+}
 
-        #schedule-grid {
-            display: grid;
-            grid-template-columns: 70px repeat(7, 1fr);
-            gap: 5px;
-            text-align: center;
-        }
+.filtro-label input:checked ~ .checkmark:after {
+display: block;
+}
 
-        .grid-header {
-            font-weight: 700;
-            font-family: var(--fonte-secundaria);
-            padding: 10px 5px;
-            background-color: rgba(255, 255, 255, 0.05);
-            color: var(--primario);
-            border-radius: 6px;
-            text-transform: uppercase;
-            font-size: 0.8em;
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
-        
-        .hour-label {
-            font-weight: 600;
-            font-size: 0.8em;
-            color: rgba(255, 255, 255, 0.6);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-right: 1px solid rgba(255, 255, 255, 0.1);
-        }
+.filtro-label .checkmark:after {
+left: 6px;
+top: 2px;
+width: 5px;
+height: 10px;
+border: solid var(--escuro);
+border-width: 0 3px 3px 0;
+transform: rotate(45deg);
+}
+/* --- FIM DOS ESTILOS DE FILTRO --- */
 
-        .time-slot {
-            background-color: rgba(255, 255, 255, 0.05);
-            border-radius: 4px;
-            min-height: 30px;
-            transition: all 0.2s ease;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8em;
-            border: 1px solid transparent;
-        }
+#schedule-grid {
+display: grid;
+grid-template-columns: 70px repeat(7, 1fr);
+gap: 5px;
+text-align: center;
+}
 
-        .time-slot:hover {
-            background-color: rgba(255, 215, 0, 0.2);
-            transform: scale(1.03);
-            border-color: var(--primario);
-        }
-        
-        .time-slot.available {
-            background-color: rgba(0, 255, 255, 0.1);
-            font-weight: 600;
-            color: var(--acento);
-            border: 1px solid rgba(0, 255, 255, 0.3);
-        }
-        
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.7);
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(5px);
-        }
-        
-        .modal.visible { display: flex; }
+.grid-header {
+font-weight: 700;
+font-family: var(--fonte-secundaria);
+padding: 10px 5px;
+background-color: rgba(255, 255, 255, 0.05);
+color: var(--primario);
+border-radius: 6px;
+text-transform: uppercase;
+font-size: 0.8em;
+position: sticky;
+top: 0;
+z-index: 10;
+}
 
-        .modal-content {
-            background-color: rgba(30, 30, 30, 0.9);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            margin: auto;
-            padding: 30px;
-            border-radius: 12px;
-            width: 90%;
-            max-width: 500px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
-            position: relative;
-            animation: fadeIn 0.3s ease;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
-        }
+.hour-label {
+font-weight: 600;
+font-size: 0.8em;
+color: rgba(255, 255, 255, 0.6);
+display: flex;
+align-items: center;
+justify-content: center;
+border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
 
-        .close-button {
-            color: #aaa;
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-        .close-button:hover,
-        .close-button:focus { color: #fff; }
-        
-        .modal-content h2 {
-            margin-top: 0;
-            color: var(--primario);
-            font-size: 1.5rem;
-            border-bottom: 1px solid rgba(255, 215, 0, 0.3);
-            padding-bottom: 15px;
-            margin-bottom: 20px;
-        }
-    
-        .modal-content ul { list-style: none; padding: 0; }
-        .modal-content li {
-            padding: 12px 5px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 1rem;
-        }
-        
-        .modal-content li:last-child { border-bottom: none; }
-        .teacher-info { display: flex; flex-direction: column; text-align: left;}
-        .materia { font-size: 0.85em; color: rgba(255, 255, 255, 0.6); }
-        .teacher-rating { font-weight: 600; color: #fff; display: flex; align-items: center; }
-        .teacher-rating i { color: var(--primario); margin-right: 5px; }
-        
-        @media (max-width: 768px) {
-            h1 { font-size: 1.8rem; }
-            #schedule-grid { grid-template-columns: 50px repeat(7, 1fr); }
-            .grid-header { font-size: 0.65em; padding: 8px 1px; word-break: break-all;}
-            .time-slot { min-height: 35px; font-size: 0.65em; }
-        }
-        
-        @media (max-width: 480px) {
-            body { padding: 5px; }
-            .container { padding: 15px; }
-            h1 { font-size: 1.5rem; margin-bottom: 20px; }
-            #schedule-grid { grid-template-columns: 40px repeat(7, 1fr); gap: 2px;}
-            .grid-header { font-size: 0.5em; }
-        }
-    </style>
+.time-slot {
+background-color: rgba(255, 255, 255, 0.05);
+border-radius: 4px;
+min-height: 30px;
+transition: all 0.2s ease;
+cursor: pointer;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 0.8em;
+border: 1px solid transparent;
+}
+
+.time-slot:hover {
+background-color: rgba(255, 215, 0, 0.2);
+transform: scale(1.03);
+border-color: var(--primario);
+}
+
+.time-slot.available {
+background-color: rgba(0, 255, 255, 0.1);
+font-weight: 600;
+color: var(--acento);
+border: 1px solid rgba(0, 255, 255, 0.3);
+}
+
+.modal {
+display: none;
+position: fixed;
+z-index: 1000;
+left: 0;
+top: 0;
+width: 100%;
+height: 100%;
+overflow: auto;
+background-color: rgba(0, 0, 0, 0.7);
+align-items: center;
+justify-content: center;
+backdrop-filter: blur(5px);
+}
+
+.modal.visible { display: flex; }
+
+.modal-content {
+background-color: rgba(30, 30, 30, 0.9);
+border: 1px solid rgba(255, 255, 255, 0.15);
+margin: auto;
+padding: 30px;
+border-radius: 12px;
+width: 90%;
+max-width: 500px;
+box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+position: relative;
+animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+from { opacity: 0; transform: scale(0.9); }
+to { opacity: 1; transform: scale(1); }
+}
+
+.close-button {
+color: #aaa;
+position: absolute;
+top: 10px;
+right: 15px;
+font-size: 28px;
+font-weight: bold;
+cursor: pointer;
+transition: color 0.3s ease;
+}
+.close-button:hover,
+.close-button:focus { color: #fff; }
+
+.modal-content h2 {
+margin-top: 0;
+color: var(--primario);
+font-size: 1.5rem;
+border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+padding-bottom: 15px;
+margin-bottom: 20px;
+}
+
+.modal-content ul { list-style: none; padding: 0; }
+.modal-content li {
+padding: 12px 5px;
+border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+display: flex;
+justify-content: space-between;
+align-items: center;
+font-size: 1rem;
+}
+
+.modal-content li:last-child { border-bottom: none; }
+.teacher-info { display: flex; flex-direction: column; text-align: left;}
+.materia { font-size: 0.85em; color: rgba(255, 255, 255, 0.6); }
+.teacher-rating { font-weight: 600; color: #fff; display: flex; align-items: center; }
+.teacher-rating i { color: var(--primario); margin-right: 5px; }
+
+@media (max-width: 768px) {
+h1 { font-size: 1.8rem; }
+#schedule-grid { grid-template-columns: 50px repeat(7, 1fr); }
+.grid-header { font-size: 0.65em; padding: 8px 1px; word-break: break-all;}
+.time-slot { min-height: 35px; font-size: 0.65em; }
+}
+
+@media (max-width: 480px) {
+body { padding: 5px; }
+.container { padding: 15px; }
+h1 { font-size: 1.5rem; margin-bottom: 20px; }
+#schedule-grid { grid-template-columns: 40px repeat(7, 1fr); gap: 2px;}
+.grid-header { font-size: 0.5em; }
+}
+</style>
 </head>
 <body>
 
-    <!-- 
-    ==================================================================
-    ===> EDITAR DADOS DOS PROFESSORES E HORÁRIOS AQUI <===
-    ==================================================================
-    -->
-     <<script>
-        // BANCO DE DADOS SIMULADO
-        // Para adicionar um professor, copie um bloco de código (de { até }), cole e altere os dados.
-        // O campo 'disponibilidade' é uma lista de horários para aquele professor.
-        // Dia: 1=Seg, 2=Ter, 3=Qua, 4=Qui, 5=Sex, 6=Sáb, 7=Dom
-        // inicio/fim: Hora em formato 24h. Ex: { dia: 1, inicio: 14, fim: 17 } -> Segunda, das 14h às 17h
-        const professores = [
-            { 
-                id: 1, 
-                nome: 'Lucas de Oliveira Lira', 
-                materia: 'Programação/Matemática', 
-                telefone: '94 9909-4731', 
-                nota: 80,
-                disponibilidade: [
-                    { dia: 1, inicio: 10, fim: 23 }, // Segunda-feira, das 10:00 às 10:00
-                    { dia: 2, inicio: 10, fim: 23 }, // Terça-feira, das 10:00 às 23:00
-                    { dia: 3, inicio: 10, fim: 23 }, // Quinta-feira, das 10:00 às 23:00
-                    { dia: 4, inicio: 10, fim: 23 }, // Quarta-feira, das 18:00 às 23:00
-                   
-                ] 
-            },
-            { 
-                id: 2, 
-                nome: 'Raquell Aparecida de Oliveira', 
-                materia: 'Matemática', 
-                telefone: '33 9949-7281', 
-                nota: 60,
-                disponibilidade: [
-                    { dia: 1, inicio: 12.5, fim: 15.5 }, // Segunda-feira, das 12:30 às 15:30
-                    { dia: 2, inicio: 12.5, fim: 15.5 }, // Terça-feira, das 12:30 às 15:30
-                    { dia: 3, inicio: 12.5, fim: 15.5 }, // Quarta-feira, das 12:30 às 15:30
-                    { dia: 4, inicio: 12.5, fim: 15.5 }, // Quinta-feira, das 12:30 às 15:30
-                    { dia: 5, inicio: 12.5, fim: 15.5 }  // Sexta-feira, das 12:30 às 15:30
-                ]
-            },
-            { 
-                id: 3, 
-                nome: 'Naty', 
-                materia: 'História', 
-                telefone: '44 9937-2161', 
-                nota: 70,
-                disponibilidade: [
-                    { dia: 5, inicio: 18, fim: 20 },  // Sexta-feira, das 18:00 às 20:00
-                    { dia: 6, inicio: 7,  fim: 23 },  // Sábado, dia todo (das 07:00 às 23:00)
-                ] 
-            },
-           { 
-                id: 4, 
-                nome: 'Maria Fernanda Cequinel', 
-                materia: 'Pedagogia', 
-                telefone: '44 9765-3620', 
-                nota: 70, 
-                disponibilidade: [
-                    { dia: 1, inicio: 19, fim: 21 },   // Segunda, das 19:00 às 21:00
-                    { dia: 2, inicio: 19, fim: 21 },   // Terça, das 19:00 às 21:00
-                    { dia: 3, inicio: 19, fim: 21 },   // Quarta, das 19:00 às 21:00
-                    { dia: 4, inicio: 19, fim: 21 },   // Quinta, das 19:00 às 21:00
-                    { dia: 5, inicio: 19, fim: 21 },   // Sexta, das 19:00 às 21:00
-                    { dia: 6, inicio: 10.5, fim: 11.5 },// Sábado, das 10:30 às 11:30
-                    { dia: 6, inicio: 14, fim: 19.5 }   // Sábado, das 14:00 às 19:30
-                ] 
-            },     
-           { 
-                id: 5, 
-                nome: 'Crislaine Cesario Salles', 
-                materia: 'Pedagogia', 
-                telefone: '44 9935-8621', 
-                nota: 96, 
-                disponibilidade: [
-                    // Horários de segunda a sexta
-                    { dia: 1, inicio: 8, fim: 12 },   // Segunda, 08:00 - 12:00
-                    { dia: 1, inicio: 19, fim: 22 },  // Segunda, 19:00 - 22:00
-                    { dia: 2, inicio: 8, fim: 12 },   // Terça, 08:00 - 12:00
-                    { dia: 2, inicio: 19, fim: 22 },  // Terça, 19:00 - 22:00
-                    { dia: 3, inicio: 8, fim: 12 },   // Quarta, 08:00 - 12:00
-                    { dia: 3, inicio: 19, fim: 22 },  // Quarta, 19:00 - 22:00
-                    { dia: 4, inicio: 8, fim: 12 },   // Quinta, 08:00 - 12:00
-                    { dia: 4, inicio: 19, fim: 22 },  // Quinta, 19:00 - 22:00
-                    { dia: 5, inicio: 8, fim: 12 },   // Sexta, 08:00 - 12:00
-                    { dia: 5, inicio: 19, fim: 22 },  // Sexta, 19:00 - 22:00
-                    
-                    // Horários de fim de semana
-                    { dia: 6, inicio: 7, fim: 23 },   // Sábado, dia todo
-                    { dia: 7, inicio: 7, fim: 23 }    // Domingo, dia todo
-                ] 
-            },         
-            { 
-                id: 6, 
-                nome: 'Welington da Cruz Tavares', 
-                materia: 'Matemática', 
-                telefone: '44 9947-3567', 
-                nota: 78, 
-                disponibilidade: [
-                    { dia: 1, inicio: 8, fim: 12 },    // Segunda, das 08:00 às 12:00
-                    { dia: 4, inicio: 8, fim: 12 },    // Quinta, das 08:00 às 12:00
-                    { dia: 2, inicio: 13, fim: 14 },   // Terça, das 13:00 às 14:00
-                    { dia: 3, inicio: 13, fim: 14 },   // Quarta, das 13:00 às 14:00
-                    { dia: 5, inicio: 13, fim: 14 },   // Sexta, das 13:00 às 14:00
-                    { dia: 2, inicio: 16.5, fim: 17.5 },// Terça, das 16:30 às 17:30
-                    { dia: 3, inicio: 16.5, fim: 17.5 },// Quarta, das 16:30 às 17:30
-                    { dia: 5, inicio: 16.5, fim: 17.5 },// Sexta, das 16:30 às 17:30
-                    { dia: 6, inicio: 13, fim: 19 },   // Sábado, das 13:00 às 19:00
-                    { dia: 7, inicio: 13, fim: 19 }    // Domingo, das 13:00 às 19:00
-                ] 
-            },
-      { 
-                id: 7, 
-                nome: 'Léonardo Nunes oliveira', 
-                materia: 'História / Filosofia / Sociologia', 
-                telefone: '44 9934-7003', 
-                nota: 86, 
-                disponibilidade: [
-                    { dia: 1, inicio: 8, fim: 11.5 }, // Segunda, das 08:00 às 11:30
-                    { dia: 2, inicio: 8, fim: 11.5 }, // Terça, das 08:00 às 11:30
-                    { dia: 3, inicio: 8, fim: 11.5 }, // Quarta, das 08:00 às 11:30
-                    { dia: 4, inicio: 8, fim: 11.5 }, // Quinta, das 08:00 às 11:30
-                    { dia: 5, inicio: 8, fim: 11.5 }, // Sexta, das 08:00 às 11:30
-                    { dia: 6, inicio: 8, fim: 21 }    // Sábado, das 08:00 às 21:00
-                ] 
-            }, 
-            //falta a alice fazer a entrevista ainda
-            { id: 8, nome: 'Alice Martins', materia: 'Pedagogia', telefone: ' 44 9737-1552', nota: 0, disponibilidade: [] },
-            { 
-                id: 9, 
-                nome: 'Patrick Pacheco', 
-                materia: 'Matemática', 
-                telefone: '44 9820-3447', 
-                nota: 8, 
-                disponibilidade: [
-                    { dia: 6, inicio: 7, fim: 11.5 } // Sábado, das 07:00 às 11:30
-                ] 
-            },
-            //falta a kelmara mandar a lista de horários
-            { id: 10, nome: 'Kelmara Andrade', materia: 'Pedagogia', telefone: '44 9938-3477', nota: 7, disponibilidade: [] },
-            { 
-                id: 11, 
-                nome: 'Edwiges Franco', 
-                materia: 'História', 
-                telefone: '44 9823-9189', 
-                nota: 82, 
-                disponibilidade: [
-                    { dia: 1, inicio: 15, fim: 19 }, // Segunda, das 15:00 às 19:00
-                    { dia: 2, inicio: 15, fim: 19 }, // Terça, das 15:00 às 19:00
-                    { dia: 3, inicio: 15, fim: 19 }, // Quarta, das 15:00 às 19:00
-                    { dia: 4, inicio: 15, fim: 19 }, // Quinta, das 15:00 às 19:00
-                    { dia: 5, inicio: 15, fim: 19 }, // Sexta, das 15:00 às 19:00
-                    { dia: 6, inicio: 9, fim: 13 }   // Sábado, das 09:00 às 13:00
-                ] 
-            },
-           { 
-                id: 12, 
-                nome: 'Raissa Fernanda Melo Kuyava', 
-                materia: 'EPA / Calculo', 
-                telefone: '44 9744-4711', 
-                nota: 65, 
-                disponibilidade: [
-                    // Horários de Segunda a Sexta
-                    { dia: 1, inicio: 12.5, fim: 15 }, // Segunda, 12:30 - 15:00
-                    { dia: 1, inicio: 18, fim: 19 },   // Segunda, 18:00 - 19:00
-                    { dia: 2, inicio: 12.5, fim: 15 }, // Terça, 12:30 - 15:00
-                    { dia: 2, inicio: 18, fim: 19 },   // Terça, 18:00 - 19:00
-                    { dia: 3, inicio: 12.5, fim: 15 }, // Quarta, 12:30 - 15:00
-                    { dia: 3, inicio: 18, fim: 19 },   // Quarta, 18:00 - 19:00
-                    { dia: 4, inicio: 12.5, fim: 15 }, // Quinta, 12:30 - 15:00
-                    { dia: 4, inicio: 18, fim: 19 },   // Quinta, 18:00 - 19:00
-                    { dia: 5, inicio: 12.5, fim: 15 }, // Sexta, 12:30 - 15:00
-                    { dia: 5, inicio: 18, fim: 19 },   // Sexta, 18:00 - 19:00
-                    
-                    // Horários de Fim de Semana
-                    { dia: 6, inicio: 12.5, fim: 23 }, // Sábado, das 12:30 às 23:00
-                    { dia: 7, inicio: 8, fim: 23 }     // Domingo, das 08:00 às 23:00
-                ] 
-            },
-            //falta a ana carla mandar a lista de horários pelo zap zap
-            { id: 13, nome: 'Ana Carla de Oliveira Pereira', materia: 'Letras', telefone: '44 90000-0013', nota: 8, disponibilidade: [] },
-           //falta a ana clara mandar a lista de horários pelo zap zap
-            { id: 14, nome: 'Ana Clara Leite', materia: 'Letras', telefone: '44 90000-0014', nota: 75, disponibilidade: [] },
-            { 
-                id: 15, 
-                nome: 'Lucas Desante', 
-                materia: 'Matemática', 
-                telefone: '44 8802-1661', 
-                nota: 100, 
-                disponibilidade: [
-                    { dia: 2, inicio: 14.5, fim: 18 }, // Terça, das 14:30 às 18:00
-                    { dia: 3, inicio: 19, fim: 22 },   // Quarta, das 19:00 às 22:00
-                    { dia: 6, inicio: 8, fim: 22 },    // Sábado, das 08:00 às 22:00
-                    { dia: 7, inicio: 8, fim: 22 }     // Domingo, das 08:00 às 22:00
-                ] 
-            },
-             { 
-                id: 16, 
-                nome: 'Karla de oliveira rodrigues', 
-                materia: 'Pedagogia', 
-                telefone: '44 99966-0068', 
-                nota: 100, 
-                disponibilidade: [
-                    // Bloco das 17:30 às 18:30 (Seg-Sex)
-                    { dia: 1, inicio: 17.5, fim: 18.5 },
-                    { dia: 2, inicio: 17.5, fim: 18.5 },
-                    { dia: 3, inicio: 17.5, fim: 18.5 },
-                    { dia: 4, inicio: 17.5, fim: 18.5 },
-                    { dia: 5, inicio: 17.5, fim: 18.5 },
+<!-- 
+   ==================================================================
+   ===> EDITAR DADOS DOS PROFESSORES E HORÁRIOS AQUI <===
+   ==================================================================
+   -->
+<<script>
+// BANCO DE DADOS SIMULADO
+// Para adicionar um professor, copie um bloco de código (de { até }), cole e altere os dados.
+// O campo 'disponibilidade' é uma lista de horários para aquele professor.
+// Dia: 1=Seg, 2=Ter, 3=Qua, 4=Qui, 5=Sex, 6=Sáb, 7=Dom
+// inicio/fim: Hora em formato 24h. Ex: { dia: 1, inicio: 14, fim: 17 } -> Segunda, das 14h às 17h
+const professores = [
+{ 
+id: 1, 
+nome: 'Lucas de Oliveira Lira', 
+materia: 'Programação/Matemática', 
+telefone: '94 9909-4731', 
+nota: 80,
+disponibilidade: [
+{ dia: 1, inicio: 10, fim: 23 }, // Segunda-feira, das 10:00 às 10:00
+{ dia: 2, inicio: 10, fim: 23 }, // Terça-feira, das 10:00 às 23:00
+{ dia: 3, inicio: 10, fim: 23 }, // Quinta-feira, das 10:00 às 23:00
+{ dia: 4, inicio: 10, fim: 23 }, // Quarta-feira, das 18:00 às 23:00
 
-                    // Bloco das 11:30 às 14:30 (Ter e Sex)
-                    { dia: 2, inicio: 11.5, fim: 14.5 },
-                    { dia: 5, inicio: 11.5, fim: 14.5 }
-                ] 
-            },
-             { 
-                id: 17, 
-                nome: 'Rafael Kovalik', 
-                materia: 'História', 
-                telefone: '44 8841-5267', 
-                nota: 100, 
-                disponibilidade: [
-                    { dia: 1, inicio: 13.5, fim: 17.5 }, // Segunda, das 13:30 às 17:30
-                    { dia: 2, inicio: 13.5, fim: 17.5 }, // Terça, das 13:30 às 17:30
-                    { dia: 3, inicio: 13.5, fim: 17.5 }, // Quarta, das 13:30 às 17:30
-                    { dia: 4, inicio: 13.5, fim: 17.5 }, // Quinta, das 13:30 às 17:30
-                    { dia: 5, inicio: 13.5, fim: 17.5 }, // Sexta, das 13:30 às 17:30
-                    { dia: 6, inicio: 13.5, fim: 17.5 }, // Sábado, das 13:30 às 17:30
-                    { dia: 7, inicio: 13.5, fim: 17.5 }  // Domingo, das 13:30 às 17:30
-                ] 
-            },
-             { 
-                id: 18, 
-                nome: 'Beatriz Vaz de Miranda', 
-                materia: 'Matemática', 
-                telefone: '44 9951-0222', 
-                nota: 100, 
-                disponibilidade: [
-                    { dia: 1, inicio: 8, fim: 12 }, // Segunda, das 08:00 às 12:00
-                    { dia: 2, inicio: 8, fim: 12 }, // Terça, das 08:00 às 12:00
-                    { dia: 3, inicio: 8, fim: 12 }, // Quarta, das 08:00 às 12:00
-                    { dia: 4, inicio: 8, fim: 12 }, // Quinta, das 08:00 às 12:00
-                    { dia: 5, inicio: 8, fim: 12 }  // Sexta, das 08:00 às 12:00
-                ] 
-            },
-            { 
-                id: 19, 
-                nome: 'Carina Cambuí', 
-                materia: 'História', 
-                telefone: '44 9804-5461', 
-                nota: 0, 
-                disponibilidade: [
-                    { dia: 2, inicio: 8, fim: 11.5 }, // Terça, das 08:00 às 11:30
-                    { dia: 3, inicio: 8, fim: 11.5 }, // Quarta, das 08:00 às 11:30
-                    { dia: 4, inicio: 8, fim: 11.5 }, // Quinta, das 08:00 às 11:30
-                    { dia: 5, inicio: 8, fim: 11.5 }  // Sexta, das 08:00 às 11:30
-                ] 
-            },
-            { 
-                id: 20, 
-                nome: 'Fabrício', 
-                materia: 'Matemática', 
-                telefone: '19 98177-2859', 
-                nota: 100, 
-                disponibilidade: [
-                    { dia: 1, inicio: 14, fim: 18 }, // Segunda, das 14:00 às 18:00
-                    { dia: 2, inicio: 14, fim: 18 }, // Terça, das 14:00 às 18:00
-                    { dia: 4, inicio: 14, fim: 18 }  // Quinta, das 14:00 às 18:00
-                ] 
-            },
-             { 
-                id: 21, 
-                nome: 'Gabrielly Martins Davila', 
-                materia: 'Matemática', 
-                telefone: '44 9988-2735', 
-                nota:100, 
-                disponibilidade: [
-                    { dia: 1, inicio: 13, fim: 18 }, // Segunda, das 13:00 às 18:00
-                    { dia: 2, inicio: 13, fim: 18 }, // Terça, das 13:00 às 18:00
-                    { dia: 4, inicio: 13, fim: 18 }  // Quinta, das 13:00 às 18:00
-                ] 
-            },
-            { 
-                id: 22, 
-                nome: 'Helena Tramontini Marques', 
-                materia: 'Letras', 
-                telefone: '44 9725-6389', 
-                nota: 100, 
-                disponibilidade: [
-                    { dia: 1, inicio: 17.5, fim: 19 }, // Segunda, das 17:30 às 19:00
-                    { dia: 2, inicio: 17.5, fim: 19 }, // Terça, das 17:30 às 19:00
-                    { dia: 3, inicio: 17.5, fim: 19 }, // Quarta, das 17:30 às 19:00
-                    { dia: 4, inicio: 17.5, fim: 19 }, // Quinta, das 17:30 às 19:00
-                    { dia: 5, inicio: 17.5, fim: 19 }, // Sexta, das 17:30 às 19:00
-                    { dia: 6, inicio: 13.5, fim: 17 }  // Sábado, das 13:30 às 17:00
-                ] 
-            },
-            { 
-                id: 23, 
-                nome: 'Kauã Alexander', 
-                materia: 'Matemática', 
-                telefone: '44 9810-3465', 
-                nota: 100, 
-                disponibilidade: [
-                    { dia: 2, inicio: 13, fim: 17.5 }, // Terça, das 13:00 às 17:30
-                    { dia: 3, inicio: 13, fim: 15 },   // Quarta, das 13:00 às 15:00
-                    { dia: 5, inicio: 8, fim: 12 },    // Sexta, das 08:00 às 12:00
-                    { dia: 6, inicio: 13, fim: 17.5 }  // Sábado, das 13:00 às 17:30
-                ] 
-            },
-            { 
-                id: 24, 
-                nome: 'Leandro Yudi', 
-                materia: 'Geografia', 
-                telefone: '44 9732-9717', 
-                nota: 100, 
-                disponibilidade: [
-                    // Segunda
-                    { dia: 1, inicio: 8, fim: 10 },
-                    { dia: 1, inicio: 13, fim: 17 },
-                    // Terça
-                    { dia: 2, inicio: 8, fim: 10 },
-                    { dia: 2, inicio: 13, fim: 17 },
-                    // Quinta
-                    { dia: 4, inicio: 8, fim: 10 },
-                    { dia: 4, inicio: 13, fim: 17 }
-                ] 
-            },
-            { 
-                id: 25, 
-                nome: 'Rafaela Karen Scheffer', 
-                materia: 'História', 
-                telefone: '44 9167-8568', 
-                nota: 100, 
-                disponibilidade: [
-                    { dia: 2, inicio: 19, fim: 23 },    // Terça, das 19:00 às 23:00
-                    { dia: 3, inicio: 7, fim: 12 },     // Quarta, das 07:00 às 12:00
-                    { dia: 3, inicio: 20.5, fim: 23 },  // Quarta, das 20:30 às 23:00
-                    { dia: 4, inicio: 7, fim: 12 },     // Quinta, das 07:00 às 12:00
-                    { dia: 4, inicio: 20, fim: 22 },    // Quinta, das 20:00 às 22:00
-                    { dia: 5, inicio: 7, fim: 12 },     // Sexta, das 07:00 às 12:00
-                    { dia: 5, inicio: 19, fim: 22 },    // Sexta, das 19:00 às 22:00
-                    { dia: 7, inicio: 9, fim: 12 },     // Domingo, das 09:00 às 12:00
-                    { dia: 7, inicio: 14, fim: 17 }     // Domingo, das 14:00 às 17:00
-                ] 
-            },
-             { 
-                id: 26, 
-                nome: 'Rita de Cássia Duarte', 
-                materia: 'Matemática', 
-                telefone: '44 9809-3474', 
-                nota: 100, 
-                disponibilidade: [
-                    { dia: 5, inicio: 8, fim: 12 }  // Sexta, das 08:00 às 12:00
-                ] 
-            },
-              { 
-                id: 27, 
-                nome: 'Rodrigo Eber Almeida', 
-                materia: 'Matemática', 
-                telefone: '44 9734-6683', 
-                nota: 100, 
-                disponibilidade: [
-                    { dia: 3, inicio: 13, fim: 17.5 }  // Quarta, das 13:00 às 17:30
-                ] 
-            },
-            { 
-                id: 28, 
-                nome: 'Valéria Deparis do Amaral', 
-                materia: 'Pedagogia', 
-                telefone: '46 9985-9160', 
-                nota: 100, 
-                disponibilidade: [
-                    { dia: 1, inicio: 16.5, fim: 18.5 }, // Segunda, das 16:30 às 18:30
-                    { dia: 2, inicio: 16.5, fim: 18.5 }, // Terça, das 16:30 às 18:30
-                    { dia: 3, inicio: 16.5, fim: 18.5 }, // Quarta, das 16:30 às 18:30
-                    { dia: 4, inicio: 16.5, fim: 18.5 }, // Quinta, das 16:30 às 18:30
-                    { dia: 5, inicio: 16.5, fim: 18.5 }  // Sexta, das 16:30 às 18:30
-                ] 
-            },
-            {
+] 
+},
+{ 
+id: 2, 
+nome: 'Raquell Aparecida de Oliveira', 
+materia: 'Matemática', 
+telefone: '33 9949-7281', 
+nota: 60,
+disponibilidade: [
+{ dia: 1, inicio: 12.5, fim: 15.5 }, // Segunda-feira, das 12:30 às 15:30
+{ dia: 2, inicio: 12.5, fim: 15.5 }, // Terça-feira, das 12:30 às 15:30
+{ dia: 3, inicio: 12.5, fim: 15.5 }, // Quarta-feira, das 12:30 às 15:30
+{ dia: 4, inicio: 12.5, fim: 15.5 }, // Quinta-feira, das 12:30 às 15:30
+{ dia: 5, inicio: 12.5, fim: 15.5 }  // Sexta-feira, das 12:30 às 15:30
+]
+},
+{ 
+id: 3, 
+nome: 'Naty', 
+materia: 'História', 
+telefone: '44 9937-2161', 
+nota: 70,
+disponibilidade: [
+{ dia: 5, inicio: 18, fim: 20 },  // Sexta-feira, das 18:00 às 20:00
+{ dia: 6, inicio: 7,  fim: 23 },  // Sábado, dia todo (das 07:00 às 23:00)
+] 
+},
+{ 
+id: 4, 
+nome: 'Maria Fernanda Cequinel', 
+materia: 'Pedagogia', 
+telefone: '44 9765-3620', 
+nota: 70, 
+disponibilidade: [
+{ dia: 1, inicio: 19, fim: 21 },   // Segunda, das 19:00 às 21:00
+{ dia: 2, inicio: 19, fim: 21 },   // Terça, das 19:00 às 21:00
+{ dia: 3, inicio: 19, fim: 21 },   // Quarta, das 19:00 às 21:00
+{ dia: 4, inicio: 19, fim: 21 },   // Quinta, das 19:00 às 21:00
+{ dia: 5, inicio: 19, fim: 21 },   // Sexta, das 19:00 às 21:00
+{ dia: 6, inicio: 10.5, fim: 11.5 },// Sábado, das 10:30 às 11:30
+{ dia: 6, inicio: 14, fim: 19.5 }   // Sábado, das 14:00 às 19:30
+] 
+},     
+{ 
+id: 5, 
+nome: 'Crislaine Cesario Salles', 
+materia: 'Pedagogia', 
+telefone: '44 9935-8621', 
+nota: 96, 
+disponibilidade: [
+// Horários de segunda a sexta
+{ dia: 1, inicio: 8, fim: 12 },   // Segunda, 08:00 - 12:00
+{ dia: 1, inicio: 19, fim: 22 },  // Segunda, 19:00 - 22:00
+{ dia: 2, inicio: 8, fim: 12 },   // Terça, 08:00 - 12:00
+{ dia: 2, inicio: 19, fim: 22 },  // Terça, 19:00 - 22:00
+{ dia: 3, inicio: 8, fim: 12 },   // Quarta, 08:00 - 12:00
+{ dia: 3, inicio: 19, fim: 22 },  // Quarta, 19:00 - 22:00
+{ dia: 4, inicio: 8, fim: 12 },   // Quinta, 08:00 - 12:00
+{ dia: 4, inicio: 19, fim: 22 },  // Quinta, 19:00 - 22:00
+{ dia: 5, inicio: 8, fim: 12 },   // Sexta, 08:00 - 12:00
+{ dia: 5, inicio: 19, fim: 22 },  // Sexta, 19:00 - 22:00
 
-                  id: 29,
+// Horários de fim de semana
+{ dia: 6, inicio: 7, fim: 23 },   // Sábado, dia todo
+{ dia: 7, inicio: 7, fim: 23 }    // Domingo, dia todo
+] 
+},         
+{ 
+id: 6, 
+nome: 'Welington da Cruz Tavares', 
+materia: 'Matemática', 
+telefone: '44 9947-3567', 
+nota: 78, 
+disponibilidade: [
+{ dia: 1, inicio: 8, fim: 12 },    // Segunda, das 08:00 às 12:00
+{ dia: 4, inicio: 8, fim: 12 },    // Quinta, das 08:00 às 12:00
+{ dia: 2, inicio: 13, fim: 14 },   // Terça, das 13:00 às 14:00
+{ dia: 3, inicio: 13, fim: 14 },   // Quarta, das 13:00 às 14:00
+{ dia: 5, inicio: 13, fim: 14 },   // Sexta, das 13:00 às 14:00
+{ dia: 2, inicio: 16.5, fim: 17.5 },// Terça, das 16:30 às 17:30
+{ dia: 3, inicio: 16.5, fim: 17.5 },// Quarta, das 16:30 às 17:30
+{ dia: 5, inicio: 16.5, fim: 17.5 },// Sexta, das 16:30 às 17:30
+{ dia: 6, inicio: 13, fim: 19 },   // Sábado, das 13:00 às 19:00
+{ dia: 7, inicio: 13, fim: 19 }    // Domingo, das 13:00 às 19:00
+] 
+},
+{ 
+id: 7, 
+nome: 'Léonardo Nunes oliveira', 
+materia: 'História / Filosofia / Sociologia', 
+telefone: '44 9934-7003', 
+nota: 86, 
+disponibilidade: [
+{ dia: 1, inicio: 8, fim: 11.5 }, // Segunda, das 08:00 às 11:30
+{ dia: 2, inicio: 8, fim: 11.5 }, // Terça, das 08:00 às 11:30
+{ dia: 3, inicio: 8, fim: 11.5 }, // Quarta, das 08:00 às 11:30
+{ dia: 4, inicio: 8, fim: 11.5 }, // Quinta, das 08:00 às 11:30
+{ dia: 5, inicio: 8, fim: 11.5 }, // Sexta, das 08:00 às 11:30
+{ dia: 6, inicio: 8, fim: 21 }    // Sábado, das 08:00 às 21:00
+] 
+}, 
+//falta a alice fazer a entrevista ainda
+{ id: 8, nome: 'Alice Martins', materia: 'Pedagogia', telefone: ' 44 9737-1552', nota: 0, disponibilidade: [] },
+{ 
+id: 9, 
+nome: 'Patrick Pacheco', 
+materia: 'Matemática', 
+telefone: '44 9820-3447', 
+nota: 8, 
+disponibilidade: [
+{ dia: 6, inicio: 7, fim: 11.5 } // Sábado, das 07:00 às 11:30
+] 
+},
+//falta a kelmara mandar a lista de horários
+{ id: 10, nome: 'Kelmara Andrade', materia: 'Pedagogia', telefone: '44 9938-3477', nota: 7, disponibilidade: [] },
+{ 
+id: 11, 
+nome: 'Edwiges Franco', 
+materia: 'História', 
+telefone: '44 9823-9189', 
+nota: 82, 
+disponibilidade: [
+{ dia: 1, inicio: 15, fim: 19 }, // Segunda, das 15:00 às 19:00
+{ dia: 2, inicio: 15, fim: 19 }, // Terça, das 15:00 às 19:00
+{ dia: 3, inicio: 15, fim: 19 }, // Quarta, das 15:00 às 19:00
+{ dia: 4, inicio: 15, fim: 19 }, // Quinta, das 15:00 às 19:00
+{ dia: 5, inicio: 15, fim: 19 }, // Sexta, das 15:00 às 19:00
+{ dia: 6, inicio: 9, fim: 13 }   // Sábado, das 09:00 às 13:00
+] 
+},
+{ 
+id: 12, 
+nome: 'Raissa Fernanda Melo Kuyava', 
+materia: 'EPA / Calculo', 
+telefone: '44 9744-4711', 
+nota: 65, 
+disponibilidade: [
+// Horários de Segunda a Sexta
+{ dia: 1, inicio: 12.5, fim: 15 }, // Segunda, 12:30 - 15:00
+{ dia: 1, inicio: 18, fim: 19 },   // Segunda, 18:00 - 19:00
+{ dia: 2, inicio: 12.5, fim: 15 }, // Terça, 12:30 - 15:00
+{ dia: 2, inicio: 18, fim: 19 },   // Terça, 18:00 - 19:00
+{ dia: 3, inicio: 12.5, fim: 15 }, // Quarta, 12:30 - 15:00
+{ dia: 3, inicio: 18, fim: 19 },   // Quarta, 18:00 - 19:00
+{ dia: 4, inicio: 12.5, fim: 15 }, // Quinta, 12:30 - 15:00
+{ dia: 4, inicio: 18, fim: 19 },   // Quinta, 18:00 - 19:00
+{ dia: 5, inicio: 12.5, fim: 15 }, // Sexta, 12:30 - 15:00
+{ dia: 5, inicio: 18, fim: 19 },   // Sexta, 18:00 - 19:00
 
-                  nome: 'Samuel Apolinario',
+// Horários de Fim de Semana
+{ dia: 6, inicio: 12.5, fim: 23 }, // Sábado, das 12:30 às 23:00
+{ dia: 7, inicio: 8, fim: 23 }     // Domingo, das 08:00 às 23:00
+] 
+},
+//falta a ana carla mandar a lista de horários pelo zap zap
+{ id: 13, nome: 'Ana Carla de Oliveira Pereira', materia: 'Letras', telefone: '44 90000-0013', nota: 8, disponibilidade: [] },
+//falta a ana clara mandar a lista de horários pelo zap zap
+{ id: 14, nome: 'Ana Clara Leite', materia: 'Letras', telefone: '44 90000-0014', nota: 75, disponibilidade: [] },
+{ 
+id: 15, 
+nome: 'Lucas Desante', 
+materia: 'Matemática', 
+telefone: '44 8802-1661', 
+nota: 100, 
+disponibilidade: [
+{ dia: 2, inicio: 14.5, fim: 18 }, // Terça, das 14:30 às 18:00
+{ dia: 3, inicio: 19, fim: 22 },   // Quarta, das 19:00 às 22:00
+{ dia: 6, inicio: 8, fim: 22 },    // Sábado, das 08:00 às 22:00
+{ dia: 7, inicio: 8, fim: 22 }     // Domingo, das 08:00 às 22:00
+] 
+},
+{ 
+id: 16, 
+nome: 'Karla de oliveira rodrigues', 
+materia: 'Pedagogia', 
+telefone: '44 99966-0068', 
+nota: 100, 
+disponibilidade: [
+// Bloco das 17:30 às 18:30 (Seg-Sex)
+{ dia: 1, inicio: 17.5, fim: 18.5 },
+{ dia: 2, inicio: 17.5, fim: 18.5 },
+{ dia: 3, inicio: 17.5, fim: 18.5 },
+{ dia: 4, inicio: 17.5, fim: 18.5 },
+{ dia: 5, inicio: 17.5, fim: 18.5 },
 
-                  materia: 'Matemática',
+// Bloco das 11:30 às 14:30 (Ter e Sex)
+{ dia: 2, inicio: 11.5, fim: 14.5 },
+{ dia: 5, inicio: 11.5, fim: 14.5 }
+] 
+},
+{ 
+id: 17, 
+nome: 'Rafael Kovalik', 
+materia: 'História', 
+telefone: '44 8841-5267', 
+nota: 100, 
+disponibilidade: [
+{ dia: 1, inicio: 13.5, fim: 17.5 }, // Segunda, das 13:30 às 17:30
+{ dia: 2, inicio: 13.5, fim: 17.5 }, // Terça, das 13:30 às 17:30
+{ dia: 3, inicio: 13.5, fim: 17.5 }, // Quarta, das 13:30 às 17:30
+{ dia: 4, inicio: 13.5, fim: 17.5 }, // Quinta, das 13:30 às 17:30
+{ dia: 5, inicio: 13.5, fim: 17.5 }, // Sexta, das 13:30 às 17:30
+{ dia: 6, inicio: 13.5, fim: 17.5 }, // Sábado, das 13:30 às 17:30
+{ dia: 7, inicio: 13.5, fim: 17.5 }  // Domingo, das 13:30 às 17:30
+] 
+},
+{ 
+id: 18, 
+nome: 'Beatriz Vaz de Miranda', 
+materia: 'Matemática', 
+telefone: '44 9951-0222', 
+nota: 100, 
+disponibilidade: [
+{ dia: 1, inicio: 8, fim: 12 }, // Segunda, das 08:00 às 12:00
+{ dia: 2, inicio: 8, fim: 12 }, // Terça, das 08:00 às 12:00
+{ dia: 3, inicio: 8, fim: 12 }, // Quarta, das 08:00 às 12:00
+{ dia: 4, inicio: 8, fim: 12 }, // Quinta, das 08:00 às 12:00
+{ dia: 5, inicio: 8, fim: 12 }  // Sexta, das 08:00 às 12:00
+] 
+},
+{ 
+id: 19, 
+nome: 'Carina Cambuí', 
+materia: 'História', 
+telefone: '44 9804-5461', 
+nota: 0, 
+disponibilidade: [
+{ dia: 2, inicio: 8, fim: 11.5 }, // Terça, das 08:00 às 11:30
+{ dia: 3, inicio: 8, fim: 11.5 }, // Quarta, das 08:00 às 11:30
+{ dia: 4, inicio: 8, fim: 11.5 }, // Quinta, das 08:00 às 11:30
+{ dia: 5, inicio: 8, fim: 11.5 }  // Sexta, das 08:00 às 11:30
+] 
+},
+{ 
+id: 20, 
+nome: 'Fabrício', 
+materia: 'Matemática', 
+telefone: '19 98177-2859', 
+nota: 100, 
+disponibilidade: [
+{ dia: 1, inicio: 14, fim: 18 }, // Segunda, das 14:00 às 18:00
+{ dia: 2, inicio: 14, fim: 18 }, // Terça, das 14:00 às 18:00
+{ dia: 4, inicio: 14, fim: 18 }  // Quinta, das 14:00 às 18:00
+] 
+},
+{ 
+id: 21, 
+nome: 'Gabrielly Martins Davila', 
+materia: 'Matemática', 
+telefone: '44 9988-2735', 
+nota:100, 
+disponibilidade: [
+{ dia: 1, inicio: 13, fim: 18 }, // Segunda, das 13:00 às 18:00
+{ dia: 2, inicio: 13, fim: 18 }, // Terça, das 13:00 às 18:00
+{ dia: 4, inicio: 13, fim: 18 }  // Quinta, das 13:00 às 18:00
+] 
+},
+{ 
+id: 22, 
+nome: 'Helena Tramontini Marques', 
+materia: 'Letras', 
+telefone: '44 9725-6389', 
+nota: 100, 
+disponibilidade: [
+{ dia: 1, inicio: 17.5, fim: 19 }, // Segunda, das 17:30 às 19:00
+{ dia: 2, inicio: 17.5, fim: 19 }, // Terça, das 17:30 às 19:00
+{ dia: 3, inicio: 17.5, fim: 19 }, // Quarta, das 17:30 às 19:00
+{ dia: 4, inicio: 17.5, fim: 19 }, // Quinta, das 17:30 às 19:00
+{ dia: 5, inicio: 17.5, fim: 19 }, // Sexta, das 17:30 às 19:00
+{ dia: 6, inicio: 13.5, fim: 17 }  // Sábado, das 13:30 às 17:00
+] 
+},
+{ 
+id: 23, 
+nome: 'Kauã Alexander', 
+materia: 'Matemática', 
+telefone: '44 9810-3465', 
+nota: 100, 
+disponibilidade: [
+{ dia: 2, inicio: 13, fim: 17.5 }, // Terça, das 13:00 às 17:30
+{ dia: 3, inicio: 13, fim: 15 },   // Quarta, das 13:00 às 15:00
+{ dia: 5, inicio: 8, fim: 12 },    // Sexta, das 08:00 às 12:00
+{ dia: 6, inicio: 13, fim: 17.5 }  // Sábado, das 13:00 às 17:30
+] 
+},
+{ 
+id: 24, 
+nome: 'Leandro Yudi', 
+materia: 'Geografia', 
+telefone: '44 9732-9717', 
+nota: 100, 
+disponibilidade: [
+// Segunda
+{ dia: 1, inicio: 8, fim: 10 },
+{ dia: 1, inicio: 13, fim: 17 },
+// Terça
+{ dia: 2, inicio: 8, fim: 10 },
+{ dia: 2, inicio: 13, fim: 17 },
+// Quinta
+{ dia: 4, inicio: 8, fim: 10 },
+{ dia: 4, inicio: 13, fim: 17 }
+] 
+},
+{ 
+id: 25, 
+nome: 'Rafaela Karen Scheffer', 
+materia: 'História', 
+telefone: '44 9167-8568', 
+nota: 100, 
+disponibilidade: [
+{ dia: 2, inicio: 19, fim: 23 },    // Terça, das 19:00 às 23:00
+{ dia: 3, inicio: 7, fim: 12 },     // Quarta, das 07:00 às 12:00
+{ dia: 3, inicio: 20.5, fim: 23 },  // Quarta, das 20:30 às 23:00
+{ dia: 4, inicio: 7, fim: 12 },     // Quinta, das 07:00 às 12:00
+{ dia: 4, inicio: 20, fim: 22 },    // Quinta, das 20:00 às 22:00
+{ dia: 5, inicio: 7, fim: 12 },     // Sexta, das 07:00 às 12:00
+{ dia: 5, inicio: 19, fim: 22 },    // Sexta, das 19:00 às 22:00
+{ dia: 7, inicio: 9, fim: 12 },     // Domingo, das 09:00 às 12:00
+{ dia: 7, inicio: 14, fim: 17 }     // Domingo, das 14:00 às 17:00
+] 
+},
+{ 
+id: 26, 
+nome: 'Rita de Cássia Duarte', 
+materia: 'Matemática', 
+telefone: '44 9809-3474', 
+nota: 100, 
+disponibilidade: [
+{ dia: 5, inicio: 8, fim: 12 }  // Sexta, das 08:00 às 12:00
+] 
+},
+{ 
+id: 27, 
+nome: 'Rodrigo Eber Almeida', 
+materia: 'Matemática', 
+telefone: '44 9734-6683', 
+nota: 100, 
+disponibilidade: [
+{ dia: 3, inicio: 13, fim: 17.5 }  // Quarta, das 13:00 às 17:30
+] 
+},
+{ 
+id: 28, 
+nome: 'Valéria Deparis do Amaral', 
+materia: 'Pedagogia', 
+telefone: '46 9985-9160', 
+nota: 100, 
+disponibilidade: [
+{ dia: 1, inicio: 16.5, fim: 18.5 }, // Segunda, das 16:30 às 18:30
+{ dia: 2, inicio: 16.5, fim: 18.5 }, // Terça, das 16:30 às 18:30
+{ dia: 3, inicio: 16.5, fim: 18.5 }, // Quarta, das 16:30 às 18:30
+{ dia: 4, inicio: 16.5, fim: 18.5 }, // Quinta, das 16:30 às 18:30
+{ dia: 5, inicio: 16.5, fim: 18.5 }  // Sexta, das 16:30 às 18:30
+] 
+},
+{
 
-                 telefone: '44 99879-6493',
+id: 29,
 
-                  nota: 100,
+nome: 'Samuel Apolinario',
 
-                  disponibilidade: [
+materia: 'Matemática',
 
-                     { dia: 1, inicio: 16.5, fim: 22.0 },  // Segunda, a partir das 16:30 (suposto fim às 22:00)
+telefone: '44 99879-6493',
 
-                    { dia: 3, inicio: 16.5, fim: 17.50 }, // Quarta, das 16:30 às 17:50
+nota: 100,
 
-                    { dia: 4, inicio: 9.0, fim: 12.0 },   // Quinta, das 09:00 às 12:00
+disponibilidade: [
 
-                    { dia: 5, inicio: 13.5, fim: 18.0 }   // Sexta, das 13:30 às 18:00
+{ dia: 1, inicio: 16.5, fim: 22.0 },  // Segunda, a partir das 16:30 (suposto fim às 22:00)
 
-                  ]
+{ dia: 3, inicio: 16.5, fim: 17.50 }, // Quarta, das 16:30 às 17:50
 
-              },
-            {
-                 id: 30,
-                 nome: 'Ana Carla de Oliveira',
-                 materia: 'Pedagogia',
-                 telefone: '44 99834-3882',
-                 nota: 80,
-                 disponibilidade: [
-                    { dia: 1, inicio: 8.0, fim: 11.0 },   // Segunda, das 08:00 às 11:00
-                    { dia: 3, inicio: 8.0, fim: 9.0 },    // Quarta, das 08:00 às 09:00
-                    { dia: 4, inicio: 8.0, fim: 9.0 },    // Quinta, das 08:00 às 09:00
-                    { dia: 5, inicio: 8.0, fim: 11.0 },   // Sexta, das 08:00 às 11:00
-                    { dia: 6, inicio: 8.0, fim: 18.0 }    // Sábado, das 08:00 às 18:00
-                 ]
-            }
-            {
-               id: 31,
-                nome: 'Thiago Cardoso',
-                materia: 'Matemática',
-                telefone: '91 8417-6882',
-                nota: 90, 
-                 disponibilidade: [
-               { dia: 1, inicio: 9, fim: 12 },    // Segunda, das 09:00 às 12:00
-               { dia: 1, inicio: 14, fim: 16 },   // Segunda, das 14:00 às 16:00
-               { dia: 2, inicio: 14, fim: 16 },   // Terça, das 14:00 às 16:00
-               { dia: 3, inicio: 14, fim: 16 },   // Quarta, das 14:00 às 16:00
-               { dia: 4, inicio: 9, fim: 12 },    // Quinta, das 09:00 às 12:00
-               { dia: 4, inicio: 14, fim: 16 },   // Quinta, das 14:00 às 16:00
-               { dia: 5, inicio: 9, fim: 12 },    // Sexta, das 09:00 às 12:00
-               { dia: 5, inicio: 14, fim: 16 }    // Sexta, das 14:00 às 16:00
-              ]
-            };
+{ dia: 4, inicio: 9.0, fim: 12.0 },   // Quinta, das 09:00 às 12:00
 
-        ];
-        
-    </script>
-    <!-- ===============================================================
-    FIM DA ÁREA DE EDIÇÃO - Não mexa no código abaixo desta linha.
-    =============================================================== -->
-    
-    <div id="particles-js"></div> 
+{ dia: 5, inicio: 13.5, fim: 18.0 }   // Sexta, das 13:30 às 18:00
 
-    <div class="page-wrapper">
-        <div class="container">
-            <h1>Horários Disponíveis</h1>
+]
 
-            <div id="filtros-container">
-                <div id="filtro-busca-container">
-                    <div class="search-wrapper">
-                        <input type="text" id="filtro-nome" placeholder="Pesquisar por nome do professor...">
-                        <i class="fas fa-search"></i>
-                    </div>
-                </div>
-                <div id="filtro-cursos-container">
-                    <!-- Os filtros de curso serão gerados dinamicamente aqui -->
-                </div>
-            </div>
+},
+{
+id: 30,
+nome: 'Ana Carla de Oliveira',
+materia: 'Pedagogia',
+telefone: '44 99834-3882',
+nota: 80,
+disponibilidade: [
+{ dia: 1, inicio: 8.0, fim: 11.0 },   // Segunda, das 08:00 às 11:00
+{ dia: 3, inicio: 8.0, fim: 9.0 },    // Quarta, das 08:00 às 09:00
+{ dia: 4, inicio: 8.0, fim: 9.0 },    // Quinta, das 08:00 às 09:00
+{ dia: 5, inicio: 8.0, fim: 11.0 },   // Sexta, das 08:00 às 11:00
+{ dia: 6, inicio: 8.0, fim: 18.0 }    // Sábado, das 08:00 às 18:00
+]
+},
+{ 
+    id: 31, 
+    nome: 'Thiago Cardoso', 
+    materia: 'Matemática', 
+    telefone: '91 8417-6882', 
+    nota: 90, 
+    disponibilidade: [
+        { dia: 1, inicio: 9, fim: 12 },    // Segunda, das 09:00 às 12:00
+        { dia: 1, inicio: 14, fim: 16 },   // Segunda, das 14:00 às 16:00
+        { dia: 2, inicio: 14, fim: 16 },   // Terça, das 14:00 às 16:00
+        { dia: 3, inicio: 14, fim: 16 },   // Quarta, das 14:00 às 16:00
+        { dia: 4, inicio: 9, fim: 12 },    // Quinta, das 09:00 às 12:00
+        { dia: 4, inicio: 14, fim: 16 },   // Quinta, das 14:00 às 16:00
+        { dia: 5, inicio: 9, fim: 12 },    // Sexta, das 09:00 às 12:00
+        { dia: 5, inicio: 14, fim: 16 }    // Sexta, das 14:00 às 16:00
+    ] 
+}
 
-            <div id="schedule-grid">
-                <!-- A grade de horários será gerada aqui pelo JavaScript -->
-            </div>
-        </div>
-    </div>
+];
 
-    <div id="modal" class="modal">
-        <div class="modal-content">
-            <span class="close-button">&times;</span>
-            <h2 id="modal-title">Professores Disponíveis</h2>
-            <ul id="modal-teacher-list"></ul>
-        </div>
-    </div>
+</script>
+<!-- ===============================================================
+   FIM DA ÁREA DE EDIÇÃO - Não mexa no código abaixo desta linha.
+   =============================================================== -->
 
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            
-            const scheduleGrid = document.getElementById('schedule-grid');
-            const modal = document.getElementById('modal');
-            const modalTitle = document.getElementById('modal-title');
-            const modalTeacherList = document.getElementById('modal-teacher-list');
-            const closeModalButton = document.querySelector('.close-button');
-            const filtroCursosContainer = document.getElementById('filtro-cursos-container');
-            const filtroNomeInput = document.getElementById('filtro-nome');
+<div id="particles-js"></div> 
 
-            const diasDaSemana = ["", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb", "Dom"];
-            
-            const timeSlotsDoDia = [];
-            for(let i = 7; i <= 23; i += 0.5) {
-                timeSlotsDoDia.push(i);
-            }
+<div class="page-wrapper">
+<div class="container">
+<h1>Horários Disponíveis</h1>
 
-            function formatarHora(horaDecimal) {
-                const hora = Math.floor(horaDecimal);
-                const minutos = (horaDecimal % 1) * 60;
-                return `${String(hora).padStart(2, '0')}:${String(minutos).padStart(2, '0')}`;
-            }
-            
-            function gerarFiltrosDeCurso() {
-                const todosOsCursos = new Set();
-                professores.forEach(prof => {
-                    if (prof.materia) { // Verifica se a matéria existe
-                        const cursos = prof.materia.split('/').map(m => m.trim());
-                        cursos.forEach(curso => todosOsCursos.add(curso));
-                    }
-                });
+<div id="filtros-container">
+<div id="filtro-busca-container">
+<div class="search-wrapper">
+<input type="text" id="filtro-nome" placeholder="Pesquisar por nome do professor...">
+<i class="fas fa-search"></i>
+</div>
+</div>
+<div id="filtro-cursos-container">
+<!-- Os filtros de curso serão gerados dinamicamente aqui -->
+</div>
+</div>
 
-                filtroCursosContainer.innerHTML = '';
-                
-                [...todosOsCursos].sort().forEach(curso => {
-                    const label = document.createElement('label');
-                    label.className = 'filtro-label';
-                    label.innerHTML = `
-                        ${curso}
-                        <input type="checkbox" class="filtro-curso" value="${curso}">
-                        <span class="checkmark"></span>
-                    `;
-                    filtroCursosContainer.appendChild(label);
-                });
+<div id="schedule-grid">
+<!-- A grade de horários será gerada aqui pelo JavaScript -->
+</div>
+</div>
+</div>
 
-                filtroCursosContainer.addEventListener('change', gerarGradeHorarios);
-            }
+<div id="modal" class="modal">
+<div class="modal-content">
+<span class="close-button">&times;</span>
+<h2 id="modal-title">Professores Disponíveis</h2>
+<ul id="modal-teacher-list"></ul>
+</div>
+</div>
 
-            function gerarGradeHorarios() {
-                const cursosSelecionados = Array.from(filtroCursosContainer.querySelectorAll('.filtro-curso:checked')).map(cb => cb.value);
-                const termoBusca = filtroNomeInput.value.toLowerCase().trim();
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
 
-                if (cursosSelecionados.length === 0 && termoBusca === '') {
-                    scheduleGrid.style.display = 'block';
-                    scheduleGrid.innerHTML = `<div style="text-align:center; padding: 40px 20px; color: var(--primario); background-color: rgba(255,215,0,0.05); border-radius: 8px;">Selecione um curso ou pesquise por um nome para visualizar os horários.</div>`;
-                    return;
-                }
+const scheduleGrid = document.getElementById('schedule-grid');
+const modal = document.getElementById('modal');
+const modalTitle = document.getElementById('modal-title');
+const modalTeacherList = document.getElementById('modal-teacher-list');
+const closeModalButton = document.querySelector('.close-button');
+const filtroCursosContainer = document.getElementById('filtro-cursos-container');
+const filtroNomeInput = document.getElementById('filtro-nome');
 
-                const professoresFiltrados = professores.filter(p => {
-                    const nomeCorresponde = termoBusca === '' || p.nome.toLowerCase().includes(termoBusca);
-                    
-                    let cursoCorresponde = true;
-                    if (cursosSelecionados.length > 0) {
-                        const cursosDoProfessor = p.materia ? p.materia.split('/').map(m => m.trim()) : [];
-                        cursoCorresponde = cursosDoProfessor.some(c => cursosSelecionados.includes(c));
-                    }
-                    
-                    return nomeCorresponde && cursoCorresponde;
-                });
+const diasDaSemana = ["", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb", "Dom"];
 
-                scheduleGrid.innerHTML = ''; 
-                scheduleGrid.style.display = 'grid'; 
+const timeSlotsDoDia = [];
+for(let i = 7; i <= 23; i += 0.5) {
+timeSlotsDoDia.push(i);
+}
 
-                diasDaSemana.forEach(dia => {
-                    const headerCell = document.createElement('div');
-                    headerCell.classList.add('grid-header');
-                    headerCell.textContent = dia;
-                    scheduleGrid.appendChild(headerCell);
-                });
+function formatarHora(horaDecimal) {
+const hora = Math.floor(horaDecimal);
+const minutos = (horaDecimal % 1) * 60;
+return `${String(hora).padStart(2, '0')}:${String(minutos).padStart(2, '0')}`;
+}
 
-                timeSlotsDoDia.forEach(hora => {
-                    const hourLabel = document.createElement('div');
-                    hourLabel.classList.add('hour-label');
-                    hourLabel.textContent = formatarHora(hora);
-                    scheduleGrid.appendChild(hourLabel);
+function gerarFiltrosDeCurso() {
+const todosOsCursos = new Set();
+professores.forEach(prof => {
+if (prof.materia) { // Verifica se a matéria existe
+const cursos = prof.materia.split('/').map(m => m.trim());
+cursos.forEach(curso => todosOsCursos.add(curso));
+}
+});
 
-                    for (let dia = 1; dia <= 7; dia++) {
-                        const timeSlot = document.createElement('div');
-                        timeSlot.classList.add('time-slot');
-                        timeSlot.dataset.day = dia;
-                        timeSlot.dataset.hour = hora;
-                        
-                        const professoresDisponiveisNesteSlot = professoresFiltrados.filter(p => 
-                            p.disponibilidade.some(h => h.dia === dia && hora >= h.inicio && hora < h.fim)
-                        );
+filtroCursosContainer.innerHTML = '';
 
-                        if (professoresDisponiveisNesteSlot.length > 0) {
-                            timeSlot.classList.add('available');
-                            timeSlot.textContent = `${professoresDisponiveisNesteSlot.length} disp.`;
-                        } else {
-                            timeSlot.textContent = '—';
-                        }
-                        scheduleGrid.appendChild(timeSlot);
-                    }
-                });
-            }
-            
-            function abrirModal(dia, hora) {
-                const cursosSelecionados = Array.from(filtroCursosContainer.querySelectorAll('.filtro-curso:checked')).map(cb => cb.value);
-                const termoBusca = filtroNomeInput.value.toLowerCase().trim();
+[...todosOsCursos].sort().forEach(curso => {
+const label = document.createElement('label');
+label.className = 'filtro-label';
+label.innerHTML = `
+                       ${curso}
+                       <input type="checkbox" class="filtro-curso" value="${curso}">
+                       <span class="checkmark"></span>
+                   `;
+filtroCursosContainer.appendChild(label);
+});
 
-                const diaSemanaNome = ["", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"][dia];
-                const horaFormatada = formatarHora(hora);
-                modalTitle.textContent = `Disponíveis: ${diaSemanaNome} às ${horaFormatada}`;
-                modalTeacherList.innerHTML = ''; 
+filtroCursosContainer.addEventListener('change', gerarGradeHorarios);
+}
 
-                let professoresDisponiveis = professores.filter(p => {
-                    const nomeCorresponde = termoBusca === '' || p.nome.toLowerCase().includes(termoBusca);
+function gerarGradeHorarios() {
+const cursosSelecionados = Array.from(filtroCursosContainer.querySelectorAll('.filtro-curso:checked')).map(cb => cb.value);
+const termoBusca = filtroNomeInput.value.toLowerCase().trim();
 
-                    let cursoCorresponde = true;
-                    if (cursosSelecionados.length > 0) {
-                        const cursosDoProfessor = p.materia ? p.materia.split('/').map(m => m.trim()) : [];
-                        cursoCorresponde = cursosDoProfessor.some(c => cursosSelecionados.includes(c));
-                    }
-                    
-                    const estaDisponivel = p.disponibilidade.some(h => h.dia === dia && hora >= h.inicio && hora < h.fim);
-                    
-                    return nomeCorresponde && cursoCorresponde && estaDisponivel;
-                });
-                
-                professoresDisponiveis.sort((a, b) => b.nota - a.nota);
+if (cursosSelecionados.length === 0 && termoBusca === '') {
+scheduleGrid.style.display = 'block';
+scheduleGrid.innerHTML = `<div style="text-align:center; padding: 40px 20px; color: var(--primario); background-color: rgba(255,215,0,0.05); border-radius: 8px;">Selecione um curso ou pesquise por um nome para visualizar os horários.</div>`;
+return;
+}
 
-                if (professoresDisponiveis.length > 0) {
-                    professoresDisponiveis.forEach(prof => {
-                        const li = document.createElement('li');
-                        li.innerHTML = `
-                            <div class="teacher-info">
-                                <strong>${prof.nome}</strong>
-                                <span class="materia">${prof.materia}</span>
-                            </div>
-                            <div class="teacher-rating">
-                                <i class="fas fa-star"></i>
-                                <span>${prof.nota.toFixed(1)}</span>
-                            </div>
-                        `;
-                        modalTeacherList.appendChild(li);
-                    });
-                }
-                
-                modal.classList.add('visible');
-            }
-            
-            function fecharModal() {
-                modal.classList.remove('visible');
-            }
+const professoresFiltrados = professores.filter(p => {
+const nomeCorresponde = termoBusca === '' || p.nome.toLowerCase().includes(termoBusca);
 
-            // --- EVENT LISTENERS ---
-            scheduleGrid.addEventListener('click', function(event) {
-                const target = event.target;
-                if (target && target.classList.contains('time-slot') && target.classList.contains('available')) {
-                    const dia = parseInt(target.dataset.day);
-                    const hora = parseFloat(target.dataset.hour);
-                    abrirModal(dia, hora);
-                }
-            });
-            
-            filtroNomeInput.addEventListener('input', gerarGradeHorarios);
-            closeModalButton.addEventListener('click', fecharModal);
-            modal.addEventListener('click', function(event) {
-                if (event.target === modal) { 
-                    fecharModal();
-                }
-            });
+let cursoCorresponde = true;
+if (cursosSelecionados.length > 0) {
+const cursosDoProfessor = p.materia ? p.materia.split('/').map(m => m.trim()) : [];
+cursoCorresponde = cursosDoProfessor.some(c => cursosSelecionados.includes(c));
+}
 
-            // --- INICIALIZAÇÃO ---
-            gerarFiltrosDeCurso(); 
-            gerarGradeHorarios();
-            
-            particlesJS('particles-js', {
-                "particles": { "number": { "value": 80, "density": { "enable": true, "value_area": 800 } }, "color": { "value": "#ffffff" }, "shape": { "type": "circle" }, "opacity": { "value": 0.5, "random": true }, "size": { "value": 3, "random": true }, "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.4, "width": 1 }, "move": { "enable": true, "speed": 2, "direction": "none", "random": true, "out_mode": "out" } },
-                "interactivity": { "detect_on": "canvas", "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" } } },
-                "retina_detect": true
-            });
-        });
-    </script>
+return nomeCorresponde && cursoCorresponde;
+});
+
+scheduleGrid.innerHTML = ''; 
+scheduleGrid.style.display = 'grid'; 
+
+diasDaSemana.forEach(dia => {
+const headerCell = document.createElement('div');
+headerCell.classList.add('grid-header');
+headerCell.textContent = dia;
+scheduleGrid.appendChild(headerCell);
+});
+
+timeSlotsDoDia.forEach(hora => {
+const hourLabel = document.createElement('div');
+hourLabel.classList.add('hour-label');
+hourLabel.textContent = formatarHora(hora);
+scheduleGrid.appendChild(hourLabel);
+
+for (let dia = 1; dia <= 7; dia++) {
+const timeSlot = document.createElement('div');
+timeSlot.classList.add('time-slot');
+timeSlot.dataset.day = dia;
+timeSlot.dataset.hour = hora;
+
+const professoresDisponiveisNesteSlot = professoresFiltrados.filter(p => 
+p.disponibilidade.some(h => h.dia === dia && hora >= h.inicio && hora < h.fim)
+);
+
+if (professoresDisponiveisNesteSlot.length > 0) {
+timeSlot.classList.add('available');
+timeSlot.textContent = `${professoresDisponiveisNesteSlot.length} disp.`;
+} else {
+timeSlot.textContent = '—';
+}
+scheduleGrid.appendChild(timeSlot);
+}
+});
+}
+
+function abrirModal(dia, hora) {
+const cursosSelecionados = Array.from(filtroCursosContainer.querySelectorAll('.filtro-curso:checked')).map(cb => cb.value);
+const termoBusca = filtroNomeInput.value.toLowerCase().trim();
+
+const diaSemanaNome = ["", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"][dia];
+const horaFormatada = formatarHora(hora);
+modalTitle.textContent = `Disponíveis: ${diaSemanaNome} às ${horaFormatada}`;
+modalTeacherList.innerHTML = ''; 
+
+let professoresDisponiveis = professores.filter(p => {
+const nomeCorresponde = termoBusca === '' || p.nome.toLowerCase().includes(termoBusca);
+
+let cursoCorresponde = true;
+if (cursosSelecionados.length > 0) {
+const cursosDoProfessor = p.materia ? p.materia.split('/').map(m => m.trim()) : [];
+cursoCorresponde = cursosDoProfessor.some(c => cursosSelecionados.includes(c));
+}
+
+const estaDisponivel = p.disponibilidade.some(h => h.dia === dia && hora >= h.inicio && hora < h.fim);
+
+return nomeCorresponde && cursoCorresponde && estaDisponivel;
+});
+
+professoresDisponiveis.sort((a, b) => b.nota - a.nota);
+
+if (professoresDisponiveis.length > 0) {
+professoresDisponiveis.forEach(prof => {
+const li = document.createElement('li');
+li.innerHTML = `
+                           <div class="teacher-info">
+                               <strong>${prof.nome}</strong>
+                               <span class="materia">${prof.materia}</span>
+                           </div>
+                           <div class="teacher-rating">
+                               <i class="fas fa-star"></i>
+                               <span>${prof.nota.toFixed(1)}</span>
+                           </div>
+                       `;
+modalTeacherList.appendChild(li);
+});
+}
+
+modal.classList.add('visible');
+}
+
+function fecharModal() {
+modal.classList.remove('visible');
+}
+
+// --- EVENT LISTENERS ---
+scheduleGrid.addEventListener('click', function(event) {
+const target = event.target;
+if (target && target.classList.contains('time-slot') && target.classList.contains('available')) {
+const dia = parseInt(target.dataset.day);
+const hora = parseFloat(target.dataset.hour);
+abrirModal(dia, hora);
+}
+});
+
+filtroNomeInput.addEventListener('input', gerarGradeHorarios);
+closeModalButton.addEventListener('click', fecharModal);
+modal.addEventListener('click', function(event) {
+if (event.target === modal) { 
+fecharModal();
+}
+});
+
+// --- INICIALIZAÇÃO ---
+gerarFiltrosDeCurso(); 
+gerarGradeHorarios();
+
+particlesJS('particles-js', {
+"particles": { "number": { "value": 80, "density": { "enable": true, "value_area": 800 } }, "color": { "value": "#ffffff" }, "shape": { "type": "circle" }, "opacity": { "value": 0.5, "random": true }, "size": { "value": 3, "random": true }, "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.4, "width": 1 }, "move": { "enable": true, "speed": 2, "direction": "none", "random": true, "out_mode": "out" } },
+"interactivity": { "detect_on": "canvas", "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" } } },
+"retina_detect": true
+});
+});
+</script>
 
 </body>
 </html>
