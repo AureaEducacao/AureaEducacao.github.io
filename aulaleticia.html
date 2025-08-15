@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enfrentamento ao Assédio Escolar | Áurea</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primario: #FFD700;
+            --primario-escuro: #B8860B;
+            --secundario: #6A5ACD;
+            --secundario-escuro: #483D8B;
+            --acento: #00FFFF;
+            --luz: #F0FFF0;
+            --escuro: #0A0A0A;
+            --sucesso: #3CB371;
+            --aviso: #FFA500;
+            --gradiente-primario: linear-gradient(135deg, var(--primario), var(--secundario));
+            --gradiente-secundario: linear-gradient(45deg, var(--primario-escuro), var(--secundario-escuro));
+            --sombra: 0 8px 12px rgba(0, 0, 0, 0.2);
+            --shadow-lg: 0 12px 20px rgba(0, 0, 0, 0.3);
+            --transicao: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            --fonte-principal: 'Poppins', sans-serif;
+            --fonte-secundaria: 'Roboto Mono', monospace;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body, html {
+            font-family: var(--fonte-principal);
+            line-height: 1.7;
+            color: var(--luz);
+            background-color: var(--escuro);
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        .page-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.35);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primario);
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+        }
+
+        .logo img {
+            height: 36px;
+            margin-right: 10px;
+        }
+
+        .hero {
+            padding: 80px 0 50px;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: var(--primario);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            color: var(--luz);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            position: relative;
+            color: var(--luz);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 120px;
+            height: 6px;
+            background: var(--acento);
+            margin: 20px auto;
+            border-radius: 3px;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            max-width: 900px;
+            margin: 0 auto 60px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .quiz-section {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            padding: 40px;
+            margin: 60px 0;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .quiz-title {
+            font-size: 2rem;
+            color: var(--primario);
+            margin-bottom: 20px;
+        }
+
+        .quiz-subtitle {
+            font-size: 1.2rem;
+            color: var(--luz);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .question-container {
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-left: 4px solid var(--acento);
+            box-shadow: var(--sombra);
+        }
+
+        .question-number {
+            font-size: 1.1rem;
+            color: var(--primario);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .question-text {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--luz);
+            font-weight: 500;
+        }
+
+        .options-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+        }
+
+        .option {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transicao);
+            display: flex;
+            align-items: flex-start;
+            border: 2px solid transparent;
+        }
+
+        .option:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--primario);
+        }
+
+        .option.selected {
+            background: rgba(106, 90, 205, 0.2);
+            border-color: var(--secundario);
+        }
+
+        .option input {
+            margin-right: 15px;
+            margin-top: 3px;
+        }
+
+        .option label {
+            cursor: pointer;
+            flex: 1;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transicao);
+            border: none;
+            font-size: 1.1rem;
+            box-shadow: var(--sombra);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 20px;
+        }
+
+        .btn-primario {
+            background: var(--gradiente-primario);
+            color: var(--escuro);
+        }
+
+        .btn-primario:hover {
+            background: var(--acento);
+            color: var(--escuro);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .results-container {
+            text-align: center;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            margin-top: 40px;
+            display: none;
+        }
+
+        .results-title {
+            font-size: 2rem;
+            color: var(--primario);
+            margin-bottom: 20px;
+        }
+
+        .score {
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--acento);
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
+        }
+
+        .feedback {
+            font-size: 1.2rem;
+            color: var(--luz);
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        footer {
+            background-color: #0A0A0A;
+            color: #ddd;
+            padding: 60px 0 30px;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primario);
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .footer-text {
+            font-size: 1.1rem;
+            color: #aaa;
+            margin-bottom: 30px;
+        }
+
+        .footer-bottom {
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #777;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .quiz-section {
+                padding: 25px 15px;
+            }
+            
+            .question-text {
+                font-size: 1.1rem;
+            }
+            
+            .options-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <header>
+            <div class="header-content">
+                <a href="#" class="logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    Áurea Educação
+                </a>
+            </div>
+        </header>
+
+        <main>
+            <section class="hero">
+                <div class="container">
+                    <h1 class="hero-title">Enfrentamento ao Assédio Escolar</h1>
+                    <p class="hero-subtitle">Aula sobre enfrentamento de assédio nas escolas estaduais de Minas Gerais</p>
+                </div>
+            </section>
+
+            <section class="video-section">
+                <div class="container">
+                    <h2 class="section-title">Aula Completa</h2>
+                    <div class="video-container">
+                        <iframe src="https://drive.google.com/file/d/1hbml1FJ10mBVx00elvKc14LrJmP4H2hY/preview" allow="autoplay" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </section>
+
+            <section class="quiz-section">
+                <div class="container">
+                    <div class="quiz-header">
+                        <h2 class="quiz-title">Questionário sobre o tema</h2>
+                        <p class="quiz-subtitle">Teste seus conhecimentos sobre enfrentamento ao assédio escolar com estas 6 perguntas:</p>
+                    </div>
+
+                    <form id="quiz-form">
+                        <!-- Pergunta 1 -->
+                        <div class="question-container">
+                            <div class="question-number">Pergunta 1 de 6</div>
+                            <p class="question-text">O que caracteriza assédio escolar?</p>
+                            <div class="options-container">
+                                <div class="option">
+                                    <input type="radio" name="q1" id="q1a" value="a">
+                                    <label for="q1a">Conflitos eventuais entre colegas</label>
+                                </div>
+                                <div class="option">
+                                    <input type="radio" name="q1" id="q1b" value="b">
+                                    <label for="q1b">Ações repetitivas de intimidação, humilhação e agressão</label>
+                                </div>
+                                <div class="option">
+                                    <input type="radio" name="q1" id="q1c" value="c">
+                                    <label for="q1c">Discussões acaloradas em sala de aula</label>
+                                </div>
+                                <div class="option">
+                                    <input type="radio" name="q1" id="q1d" value="d">
+                                    <label for="q1d">Competições saudáveis entre alunos</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pergunta 2 -->
+                        <div class="question-container">
+                            <div class="question-number">Pergunta 2 de 6</div>
+                            <p class="question-text">Qual órgão em Minas Gerais é responsável por receber denúncias de assédio escolar?</p>
+                            <div class="options-container">
+                                <div class="option">
+                                    <input type="radio" name="q2" id="q2a" value="a">
+                                    <label for="q2a">Secretaria de Estado de Educação (SEE-MG)</label>
+                                </div>
+                                <div class="option">
+                                    <input type="radio" name="q2" id="q2b" value="b">
+                                    <label for="q2b">Conselho Tutelar</label>
+                                </div>
+                                <div class="option">
+                                    <input type="radio" name="q2" id="q2c" value="c">
+                                    <label for="q2c">Ministério Público</label>
+                                </div>
+                                <div class="option">
+                                    <input type="radio" name="q2" id="q2d" value="d">
+                                    <label for="q2d">Todas as alternativas anteriores</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pergunta 3 -->
+                        <div class="question-container">
+                            <div class="question-number">Pergunta 3 de 6</div>
+                            <p class="question-text">O que a vítima de assédio escolar deve fazer, segundo a cartilha de enfrentamento?</p>
+                            <div class="options-container">
+                                <div class="option">
+                                    <input type="radio" name="q3" id="q3a" value="a">
+                                    <label for="q3a">Ignorar e esperar que passe</label>
+                                </div>
+                                <div class="option">
+                                    <input type="radio" name="q3" id="q3b" value="b">
+                                    <label for="q3b">Procurar a direção da escola e relatar o ocorrido</label>
+                                </div>
+                                <div class="option">
+                                    <input type="radio" name="q3" id="q3c" value="c">
+                                    <label for="q3c">Revidar as agressões</label>
+                                </div>
+                                <div class="option">
+                                    <input type="radio" name="q3" id="q3d" value="d">
+                                    <label for="q3d">Abandonar a escola</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pergunta 4 -->
+                        <div class="question-container">
+                            <div class="question-number">Pergunta 4 de 6</div>
+                            <p class="question-text">Qual das alternativas abaixo é uma medida de prevenção ao assédio escolar?</p>
+                            <div class="options-container">
+                                <div class="option">
+                                    <input type="radio" name="q4" id="q4a" value="a">
+                                    <label for="q4a">Promover a cultura de paz e respeito nas escolas</label>
+                                </div>
+                                <div class="option">
+                                    <input type="radio" name="q4" id="q4b" value="b">
+                                    <label for="q4b">Isolar os alunos considerados problemáticos</label>
+                                </div>
+                                <div class="option">
+                                    <input type="radio" name="q4" id="q4c" value="c">
+                                    <label for="q4c">Ignorar os conflitos entre alunos</label>
+                                </div>
+                                <div class="option">
+                                    <input type="radio" name="q4" id="q4d" value="d">
+                                    <label for="q4d">Punir imediatamente sem apuração</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pergunta 5 -->
+                        <div class="question-container">
+                            <div class="question-number">Pergunta 5 de 6</div>
+                            <p class="question-text">O que a Lei nº 13.185/2016 estabelece?</p>
+                            <div class="options-container">
+                                <div class="option">
+                                    <input type="radio" name="q5" id="q5a" value="a">
+                                    <label for="q5a">A obrigatoriedade de notificação de casos de violência contra crianças e adolescentes</label>
+                                </div>
+                                <div class="option">
+                                    <input type="radio" name="q5" id="q5b" value="b">
+                                    <label for="q5b">O combate à violência e ao assédio escolar (bullying) em todo o território nacional</label>
+                                </div>
+                                <div class="option">
+                                    <input type="radio" name="q5" id="q5c" value="c">
+                                    <label for="q5c">A criação de delegacias especializadas em assédio escolar</label>
+                                </div>
+                                <div class="option">
+                                    <input type="radio" name="q5" id="q5d" value="d">
+                                    <label for="q5d">A exclusão de alunos envolvidos em assédio escolar</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pergunta 6 -->
+                        <div class="question-container">
+                            <div class="question-number">Pergunta 6 de 6</div>
+                            <p class="question-text">Qual o papel do professor no enfrentamento do assédio escolar?</p>
+                            <div class="options-container">
+                                <div class="option">
+                                    <input type="radio" name="q6" id="q6a" value="a">
+                                    <label for="q6a">Apenas lecionar, não se envolvendo em conflitos</label>
+                                </div>
+                                <div class="option">
+                                    <input type="radio" name="q6" id="q6b" value="b">
+                                    <label for="q6b">Observar, identificar e comunicar os casos à direção</label>
+                                </div>
+                                <div class="option">
+                                    <input type="radio" name="q6" id="q6c" value="c">
+                                    <label for="q6c">Punir os alunos envolvidos sem comunicar a direção</label>
+                                </div>
+                                <div class="option">
+                                    <input type="radio" name="q6" id="q6d" value="d">
+                                    <label for="q6d">Deixar que os alunos resolvam entre si</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="button" id="submit-btn" class="btn btn-primario">Verificar Respostas</button>
+                    </form>
+
+                    <div class="results-container" id="results">
+                        <h2 class="results-title">Seu Resultado</h2>
+                        <div class="score" id="score">0/6</div>
+                        <p class="feedback" id="feedback">Você ainda pode melhorar! Reveja o vídeo e tente novamente.</p>
+                        <button type="button" id="retry-btn" class="btn btn-primario">Refazer Questionário</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-logo">Áurea Educação</div>
+                <p class="footer-text">Transformando o aprendizado com aulas particulares personalizadas</p>
+                <div class="footer-bottom">
+                    <p>&copy; 2025 Áurea. Todos os direitos reservados.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const options = document.querySelectorAll('.option');
+            const submitBtn = document.getElementById('submit-btn');
+            const retryBtn = document.getElementById('retry-btn');
+            const resultsContainer = document.getElementById('results');
+            const scoreElement = document.getElementById('score');
+            const feedbackElement = document.getElementById('feedback');
+            const quizForm = document.getElementById('quiz-form');
+            
+            // Adiciona interatividade às opções
+            options.forEach(option => {
+                option.addEventListener('click', function() {
+                    const radio = this.querySelector('input[type="radio"]');
+                    radio.checked = true;
+                    
+                    // Remove a seleção de todas as opções nesta pergunta
+                    const questionContainer = this.closest('.question-container');
+                    questionContainer.querySelectorAll('.option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    
+                    // Adiciona a seleção à opção clicada
+                    this.classList.add('selected');
+                });
+            });
+            
+            // Respostas corretas
+            const correctAnswers = {
+                q1: 'b',
+                q2: 'd',
+                q3: 'b',
+                q4: 'a',
+                q5: 'b',
+                q6: 'b'
+            };
+            
+            // Verifica as respostas
+            submitBtn.addEventListener('click', function() {
+                let score = 0;
+                const userAnswers = {};
+                
+                // Coleta as respostas do usuário
+                for (let i = 1; i <= 6; i++) {
+                    const questionName = 'q' + i;
+                    const selectedOption = document.querySelector(`input[name="${questionName}"]:checked`);
+                    
+                    if (selectedOption) {
+                        userAnswers[questionName] = selectedOption.value;
+                        if (selectedOption.value === correctAnswers[questionName]) {
+                            score++;
+                        }
+                    }
+                }
+                
+                // Exibe os resultados
+                scoreElement.textContent = score + '/6';
+                
+                if (score === 6) {
+                    feedbackElement.textContent = 'Parabéns! Você demonstrou excelente compreensão do tema.';
+                } else if (score >= 4) {
+                    feedbackElement.textContent = 'Bom trabalho! Você tem um bom entendimento, mas pode melhorar em alguns pontos.';
+                } else if (score >= 2) {
+                    feedbackElement.textContent = 'Continue estudando! Reveja o vídeo para melhorar seu conhecimento sobre o tema.';
+                } else {
+                    feedbackElement.textContent = 'Recomendamos assistir ao vídeo novamente para compreender melhor o conteúdo.';
+                }
+                
+                resultsContainer.style.display = 'block';
+                
+                // Rola para os resultados
+                resultsContainer.scrollIntoView({ behavior: 'smooth' });
+            });
+            
+            // Botão para refazer o questionário
+            retryBtn.addEventListener('click', function() {
+                // Reseta o formulário
+                quizForm.reset();
+                
+                // Remove a seleção visual
+                document.querySelectorAll('.option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                
+                // Oculta os resultados
+                resultsContainer.style.display = 'none';
+                
+                // Rola para o topo do questionário
+                document.querySelector('.quiz-header').scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
