@@ -464,6 +464,7 @@
             font-weight: 700;
             color: var(--primario);
             margin-bottom: 25px;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
         }
 
         .footer-logo img {
@@ -571,7 +572,7 @@
             <div class="header-content">
                 <a href="#" class="logo">
                     <!-- Logo Áurea - usando uma versão em base64 para garantir que funcione -->
-                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBkPSJNMjU2IDQ4QzE0MS4xIDQ4IDQ4IDE0MS4xIDQ4IDI1NnM5My4xIDIwOCAyMDggMjA4IDIwOC05My4xIDIwOC0yMDhTMzcwLjkgNDggMjU2IDQ4em0wIDM4NGMtOTcuMiAwLTE3Ni03OC44LTE3Ni0xNzZzNzguOC0xNzYgMTc2LTE3NiAxNzYgNzguOCAxNzYgMTc2LTc4LjggMTc2LTE3NiAxNzZ6IiBmaWxsPSIjZmZkNzAwIi8+PHBhdGggZD0iTTI4OCAzMjBoLTY0di02NGg2NHYtNjRoLTY0di02NGg2NHYtNjRIMjI0djI1Nmg2NHYtNjR6bTY0LTY0aDY0djY0aC02NHYtNjR6bTY0LTY0aDY0djY0aC02NHYtNjR6bTY0LTEyOGgtNjR2NjRoNjR2LTY0eiIgZmlsbD0iI2ZmZDcwMCIvPjwvc3ZnPg==" alt="Logo Áurea">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQPSIxMDAlIiB2aWV3Qm94PSIwIDAgNTEyIDUxMiI+PHBhdGggZD0iTTI1NiA0OEMxNDEuMSA0OCA0OCAxNDEuMSA0OCAyNTZzOTMuMSAyMDggMjA4IDIwOCAyMDgtOTMuMSAyMDgtMjA4UzM3MC45IDQ4IDI1NiA0OHptMCAzODRjLTk3LjIgMC0xNzYtNzguOC0xNzYtMTc2czc4LjgtMTc2IDE3Ni0xNzYgMTc2IDc4LjggMTc2IDE3Ni03OC44IDE3Ni0xNzYgMTc2eiIgZmlsbD0iI2ZmZDcwMCIvPjxwYXRoIGQ9Ik0yODggMzIwaC02NHYtNjRoNjR2LTY0aC02NHYtNjRoNjR2LTY0SDIyNHYyNTZoNjR2LTY0em02NC02NGg2NHY2NGgtNjR2LTY0em02NC02NGg2NHY2NGgtNjR2LTY0em02NC0xMjhoLTY0djY0aDY0di02NHoiIGZpbGw9IiNmZmQ3MDAiLz48L3N2Zz4=" alt="Logo Áurea">
                     Áurea Educação
                 </a>
             </div>
@@ -594,11 +595,20 @@
                 </div>
             </section>
 
+            <section class="video-section">
+                <div class="container">
+                    <h2 class="section-title">Aula sobre Direitos Fundamentais</h2>
+                    <div class="video-container">
+                        <iframe src="https://drive.google.com/file/d/198MpWo_-JHoh-24Qjs55SG8BY-UolfVy/preview" allow="autoplay" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </section>
+
             <section class="quiz-section">
                 <div class="container">
                     <div class="quiz-header">
                         <h2 class="quiz-title">Questionário sobre o tema</h2>
-                        <p class="quiz-subtitle">Teste seus conhecimentos sobre enfrentamento ao assédio escolar com estas 6 perguntas:</p>
+                        <p class="quiz-subtitle">Teste seus conhecimentos sobre enfrentamento ao assédio escolar e direitos fundamentais com estas 9 perguntas:</p>
                     </div>
 
                     <form id="quiz-form">
@@ -606,7 +616,7 @@
                         <div class="question-container">
                             <div class="question-number">
                                 <i class="fas fa-question-circle"></i>
-                                Pergunta 1 de 6
+                                Pergunta 1 de 9
                             </div>
                             <p class="question-text">Segundo a Lei 13.185/2016, qual é a definição correta de bullying/assédio escolar?</p>
                             <div class="options-container">
@@ -627,7 +637,7 @@
                                 </div>
                                 <div class="option">
                                     <span class="option-letter">D</span>
-                                    <label for="q1d">Agressões físicas que resultam em lesões corporais comprovadas</label>
+                                    <label for="q1d">Agressões físicas that resultam em lesões corporais comprovadas</label>
                                     <input type="radio" name="q1" id="q1d" value="d">
                                 </div>
                             </div>
@@ -637,7 +647,7 @@
                         <div class="question-container">
                             <div class="question-number">
                                 <i class="fas fa-question-circle"></i>
-                                Pergunta 2 de 6
+                                Pergunta 2 de 9
                             </div>
                             <p class="question-text">Qual das seguintes alternativas NÃO é considerada uma estratégia eficaz de prevenção ao assédio escolar nas escolas?</p>
                             <div class="options-container">
@@ -668,7 +678,7 @@
                         <div class="question-container">
                             <div class="question-number">
                                 <i class="fas fa-question-circle"></i>
-                                Pergunta 3 de 6
+                                Pergunta 3 de 9
                             </div>
                             <p class="question-text">De acordo com o protocolo de Minas Gerais, qual é o primeiro passo que a escola deve tomar ao receber uma denúncia de assédio escolar?</p>
                             <div class="options-container">
@@ -699,7 +709,7 @@
                         <div class="question-container">
                             <div class="question-number">
                                 <i class="fas fa-question-circle"></i>
-                                Pergunta 4 de 6
+                                Pergunta 4 de 9
                             </div>
                             <p class="question-text">Qual é a diferença fundamental entre conflito escolar e assédio escolar (bullying)?</p>
                             <div class="options-container">
@@ -730,13 +740,13 @@
                         <div class="question-container">
                             <div class="question-number">
                                 <i class="fas fa-question-circle"></i>
-                                Pergunta 5 de 6
+                                Pergunta 5 de 9
                             </div>
                             <p class="question-text">Em relação ao cyberbullying, qual afirmação é CORRETA?</p>
                             <div class="options-container">
                                 <div class="option">
                                     <span class="option-letter">A</span>
-                                    <label for="q5a">É de responsabilidade exclusiva dos pais, não cabendo intervenção da escola</label>
+                                    <label for="q5a">É de responsabilidade exclusiva dos parents, não cabendo intervenção da escola</label>
                                     <input type="radio" name="q5" id="q5a" value="a">
                                 </div>
                                 <div class="option">
@@ -761,7 +771,7 @@
                         <div class="question-container">
                             <div class="question-number">
                                 <i class="fas fa-question-circle"></i>
-                                Pergunta 6 de 6
+                                Pergunta 6 de 9
                             </div>
                             <p class="question-text">Qual é o papel do Conselho Tutelar em casos de assédio escolar?</p>
                             <div class="options-container">
@@ -788,6 +798,114 @@
                             </div>
                         </div>
 
+                        <!-- Pergunta 7 (Nova) -->
+                        <div class="question-container">
+                            <div class="question-number">
+                                <i class="fas fa-question-circle"></i>
+                                Pergunta 7 de 9
+                            </div>
+                            <p class="question-text">A Constituição Federal de 1988, em seu artigo 5º, assegura diversos direitos individuais e coletivos. Sobre eles, marque a alternativa correta:</p>
+                            <div class="options-container">
+                                <div class="option">
+                                    <span class="option-letter">A</span>
+                                    <label for="q7a">O direito de reunião independe de aviso prévio à autoridade competente.</label>
+                                    <input type="radio" name="q7" id="q7a" value="a">
+                                </div>
+                                <div class="option">
+                                    <span class="option-letter">B</span>
+                                    <label for="q7b">A liberdade de expressão permite anonimato em casos de interesse social.</label>
+                                    <input type="radio" name="q7" id="q7b" value="b">
+                                </div>
+                                <div class="option">
+                                    <span class="option-letter">C</span>
+                                    <label for="q7c">Todos são iguais perante a lei, sem distinção de qualquer natureza, garantindo-se a inviolabilidade do direito à vida, à liberdade, à igualdade, à segurança e à propriedade.</label>
+                                    <input type="radio" name="q7" id="q7c" value="c">
+                                </div>
+                                <div class="option">
+                                    <span class="option-letter">D</span>
+                                    <label for="q7d">O direito de propriedade é absoluto e não pode sofrer limitações pelo interesse público.</label>
+                                    <input type="radio" name="q7" id="q7d" value="d">
+                                </div>
+                                <div class="option">
+                                    <span class="option-letter">E</span>
+                                    <label for="q7e">A Constituição não prevê proteção contra tortura e tratamento desumano.</label>
+                                    <input type="radio" name="q7" id="q7e" value="e">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pergunta 8 (Nova) -->
+                        <div class="question-container">
+                            <div class="question-number">
+                                <i class="fas fa-question-circle"></i>
+                                Pergunta 8 de 9
+                            </div>
+                            <p class="question-text">De acordo com o artigo 6º da CF/88, são considerados direitos sociais:</p>
+                            <div class="options-container">
+                                <div class="option">
+                                    <span class="option-letter">A</span>
+                                    <label for="q8a">Educação, saúde, lazer, liberdade, segurança e voto.</label>
+                                    <input type="radio" name="q8" id="q8a" value="a">
+                                </div>
+                                <div class="option">
+                                    <span class="option-letter">B</span>
+                                    <label for="q8b">Educação, saúde, trabalho, moradia, lazer, segurança, previdência social, proteção à maternidade e à infância e assistência aos desamparados.</label>
+                                    <input type="radio" name="q8" id="q8b" value="b">
+                                </div>
+                                <div class="option">
+                                    <span class="option-letter">C</span>
+                                    <label for="q8c">Trabalho, lazer, liberdade, voto, moradia e saúde.</label>
+                                    <input type="radio" name="q8" id="q8c" value="c">
+                                </div>
+                                <div class="option">
+                                    <span class="option-letter">D</span>
+                                    <label for="q8d">Saúde, education, liberdade, moradia e propriedade.</label>
+                                    <input type="radio" name="q8" id="q8d" value="d">
+                                </div>
+                                <div class="option">
+                                    <span class="option-letter">E</span>
+                                    <label for="q8e">Somente saúde, educação e trabalho.</label>
+                                    <input type="radio" name="q8" id="q8e" value="e">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pergunta 9 (Nova) -->
+                        <div class="question-container">
+                            <div class="question-number">
+                                <i class="fas fa-question-circle"></i>
+                                Pergunta 9 de 9
+                            </div>
+                            <p class="question-text">Segundo o artigo 37 da CF/88, a administração pública direta e indireta de qualquer dos Poderes da União, dos Estados, do Distrito Federal e dos Municípios obedecerá aos seguintes princípios:</p>
+                            <div class="options-container">
+                                <div class="option">
+                                    <span class="option-letter">A</span>
+                                    <label for="q9a">Publicidade, eficiência, igualdade, soberania e justiça.</label>
+                                    <input type="radio" name="q9" id="q9a" value="a">
+                                </div>
+                                <div class="option">
+                                    <span class="option-letter">B</span>
+                                    <label for="q9b">Legalidade, impessoalidade, moralidade, publicidade e eficiência.</label>
+                                    <input type="radio" name="q9" id="q9b" value="b">
+                                </div>
+                                <div class="option">
+                                    <span class="option-letter">C</span>
+                                    <label for="q9c">Moralidade, liberdade, publicidade, legalidade e igualdade.</label>
+                                    <input type="radio" name="q9" id="q9c" value="c">
+                                </div>
+                                <div class="option">
+                                    <span class="option-letter">D</span>
+                                    <label for="q9d">Soberania, legalidade, justiça, eficiência e impessoalidade.</label>
+                                    <input type="radio" name="q9" id="q9d" value="d">
+                                </div>
+                                <div class="option">
+                                    <span class="option-letter">E</span>
+                                    <label for="q9e">Igualdade, fraternidade, publicidade, eficiência e democracia.</label>
+                                    <input type="radio" name="q9" id="q9e" value="e">
+                                </div>
+                            </div>
+                        </div>
+
                         <div style="text-align: center;">
                             <button type="button" id="submit-btn" class="btn btn-primario">Verificar Respostas</button>
                         </div>
@@ -795,7 +913,7 @@
 
                     <div class="results-container" id="results">
                         <h2 class="results-title">Seu Resultado</h2>
-                        <div class="score" id="score">0/6</div>
+                        <div class="score" id="score">0/9</div>
                         <div class="progress-bar">
                             <div class="progress" id="progress"></div>
                         </div>
@@ -940,7 +1058,10 @@
                 q3: 'c',
                 q4: 'b',
                 q5: 'c',
-                q6: 'b'
+                q6: 'b',
+                q7: 'c',
+                q8: 'b',
+                q9: 'b'
             };
             
             // Verifica as respostas
@@ -949,7 +1070,7 @@
                 const userAnswers = {};
                 
                 // Coleta as respostas do usuário
-                for (let i = 1; i <= 6; i++) {
+                for (let i = 1; i <= 9; i++) {
                     const questionName = 'q' + i;
                     const selectedOption = document.querySelector(`input[name="${questionName}"]:checked`);
                     
@@ -962,19 +1083,19 @@
                 }
                 
                 // Exibe os resultados
-                scoreElement.textContent = score + '/6';
-                const percentage = (score / 6) * 100;
+                scoreElement.textContent = score + '/9';
+                const percentage = (score / 9) * 100;
                 progressElement.style.width = percentage + '%';
                 
                 // Feedback personalizado
-                if (score === 6) {
-                    feedbackElement.textContent = 'Excelente! Você demonstrou domínio completo do tema e compreensão profunda das estratégias de enfrentamento ao assédio escolar.';
-                } else if (score >= 4) {
+                if (score === 9) {
+                    feedbackElement.textContent = 'Excelente! Você demonstrou domínio completo do tema e compreensão profunda das estratégias de enfrentamento ao assédio escolar e direitos fundamentais.';
+                } else if (score >= 6) {
                     feedbackElement.textContent = 'Bom trabalho! Você tem um bom entendimento do tema, mas pode aprofundar em alguns aspectos. Reveja as questões que errou para consolidar seu conhecimento.';
-                } else if (score >= 2) {
+                } else if (score >= 3) {
                     feedbackElement.textContent = 'Continue estudando! O tema é complexo e requer atenção. Reveja o vídeo e preste atenção aos detalhes para melhorar sua compreensão.';
                 } else {
-                    feedbackElement.textContent = 'Recomendamos assistir ao vídeo novamente com atenção. O enfrentamento ao assédio escolar é um tema crucial que merece dedicação.';
+                    feedbackElement.textContent = 'Recomendamos assistir aos vídeos novamente com atenção. O enfrentamento ao assédio escolar e direitos fundamentais são temas cruciais que merecem dedicação.';
                 }
                 
                 resultsContainer.style.display = 'block';
